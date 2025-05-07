@@ -1,0 +1,63 @@
+# Set default PDK_ROOT
+if { ![info exists env(PDK_ROOT)] } {
+  puts stderr "Warning: PDK_ROOT env. var. not found or empty, trying to find an open_pdks install"
+  if {[file isdir /usr/share/pdk]} {set ::env(PDK_ROOT) /usr/share/pdk
+  } elseif {[file isdir /usr/local/share/pdk]} {set ::env(PDK_ROOT) /usr/local/share/pdk
+  } elseif {[file isdir $env(HOME)/share/pdk]} {set ::env(PDK_ROOT) $env(HOME)/share/pdk
+  } elseif {[file isdir $env(HOME)/.volare]} {set ::env(PDK_ROOT) $env(HOME)/.volare
+  } else {
+    puts stderr {No open_pdks installation found, set PDK_ROOT env. var. and restart xschem}
+  }
+}
+
+# Set default PDK
+if { ![info exists env(PDK)] } {
+  set ::env(PDK) ihp-sg13g2
+}
+
+# Source the PDK xschemrc file
+if {![info exists PDK]} {
+    source $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/xschemrc
+}
+
+# Add current directory to xschem library path
+append XSCHEM_LIBRARY_PATH :[file dirname [info script]]
+
+# displays mos parameters simulation data , used in symbol sky130_fd_pr/annotate_fet_params.sym
+proc display_fet_params_2 {instname} {
+  set txt {}
+  set schpath [xschem get sim_sch_path]
+  set symbol [xschem getprop instance $instname cell::name]
+  set spiceprefix [xschem getprop instance $instname spiceprefix]
+  set model [xschem translate $instname @model]
+  set type [xschem getprop symbol $symbol type]
+
+  if {[regexp {[pn]mos} $type]} {
+    set m n$model
+    set devpath [string tolower @n.$schpath$spiceprefix$instname.$m]
+
+    append txt "ids   = [to_eng [xschem raw value i($devpath\[ids\]) -1]]\n"
+    append txt "gm    = [to_eng [xschem raw value $devpath\[gm\] -1]]\n"
+    append txt "gds   = [to_eng [xschem raw value $devpath\[gds\] -1]]\n"
+    append txt "vth   = [to_eng [xschem raw value v($devpath\[vth\]) -1]]\n"
+    append txt "vgs   = [to_eng [xschem raw value v($devpath\[vgs\]) -1]]\n"
+    append txt "vdss  = [to_eng [xschem raw value v($devpath\[vdss\]) -1]]\n"
+    append txt "vds   = [to_eng [xschem raw value v($devpath\[vds\]) -1]]\n"
+    append txt "cgg   = [to_eng [xschem raw value $devpath\[cgg\] -1]]\n"
+    append txt "cgdol = [to_eng [xschem raw value $devpath\[cgdol\] -1]]\n"
+    append txt "cgsol = [to_eng [xschem raw value $devpath\[cgsol\] -1]]\n"
+    set pi 3.141592654
+    set gm [xschem raw value $devpath\[gm\] -1]
+    set cgg [xschem raw value $devpath\[cgg\] -1]
+    set cgdol [xschem raw value $devpath\[cgdol\] -1]
+    set cgsol [xschem raw value $devpath\[cgsol\] -1]
+    set ids [xschem raw value i($devpath\[ids\]) -1]
+    set gmid [expr $gm / $ids]
+    if {[catch { expr $gm / 2 / $pi / ($cgg + $cgdol + $cgsol)} ft]} {
+      set ft {}
+    }
+    append txt "ft    = [to_eng ${ft}]\n"
+    append txt "gm/id = [to_eng [expr $gmid]]\n"
+  }
+  return $txt
+}
