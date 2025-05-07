@@ -1,0 +1,40 @@
+v {xschem version=3.4.6 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 0 60 20 60 {}
+L 4 0 0 20 0 {}
+L 4 20 -30 20 90 {}
+L 4 20 90 160 30 {}
+L 4 20 -30 160 30 {}
+L 4 0 -50 180 -50 {}
+L 4 180 -50 180 110 {}
+L 4 0 110 180 110 {}
+L 4 0 -50 0 110 {}
+B 5 77.5 -52.5 82.5 -47.5 {name=vdd dir=inout}
+B 5 177.5 77.5 182.5 82.5 {name=vfb dir=in}
+B 5 177.5 7.5 182.5 12.5 {name=voutp dir=out}
+B 5 177.5 47.5 182.5 52.5 {name=voutn dir=out}
+B 5 -2.5 57.5 2.5 62.5 {name=vinp dir=in}
+B 5 -2.5 -2.5 2.5 2.5 {name=vinn dir=in}
+B 5 117.5 -52.5 122.5 -47.5 {name=ibias_1u dir=in}
+B 5 117.5 107.5 122.5 112.5 {name=d_ena dir=in}
+B 5 77.5 107.5 82.5 112.5 {name=vss dir=inout}
+B 5 177.5 97.5 182.5 102.5 {name=vbp dir=out}
+T {vfb} 170 73.5 0 1 0.2 0.2 {}
+T {voutp} 170 3.5 0 1 0.2 0.2 {}
+T {voutn} 170 43.5 0 1 0.2 0.2 {}
+T {vinp} 25 56 0 0 0.2 0.2 {}
+T {vinn} 25 -4 0 0 0.2 0.2 {}
+T {@symname} 35 24 0 0 0.2 0.2 {}
+T {@name} 145 -62 0 0 0.2 0.2 {}
+T {vdd} 84 -25 1 1 0.2 0.2 {}
+T {ibias_1u} 124 -45 1 0 0.2 0.2 {}
+T {d_ena} 124 75 1 0 0.2 0.2 {}
+T {vss} 84 105 1 1 0.2 0.2 {}
+T {vbp} 170 93.5 0 1 0.2 0.2 {}
