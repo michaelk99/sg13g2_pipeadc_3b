@@ -351,7 +351,8 @@ spiceprefix=X
 }
 C {opin.sym} 1370 -660 0 0 {name=p10 lab=vbp
 }
-C {util/annotate_fet_params_2.sym} 980 -330 0 0 {name=annot2 ref=MN3}
-C {util/annotate_fet_params_2.sym} 1090 -590 0 0 {name=annot3 ref=MN1}
-C {util/annotate_fet_params_2.sym} 1080 -840 0 0 {name=annot4 ref=MP1}
-C {util/annotate_fet_params_2.sym} 1350 -850 0 0 {name=annot5 ref=MP3}
+C {sg13g2_pr/annotate_fet_params.sym} 980 -320 0 0 {name=annot1 ref=MN3}
+C {sg13g2_pr/annotate_fet_params.sym} 1100 -590 0 0 {name=annot2 ref=MN1}
+C {sg13g2_pr/annotate_fet_params.sym} 1080 -840 0 0 {name=annot3 ref=MP1}
+C {sg13g2_pr/annotate_fet_params.sym} 1360 -860 0 0 {name=annot4 ref=MP3
+}
