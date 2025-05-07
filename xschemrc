@@ -24,7 +24,7 @@ if {![info exists PDK]} {
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]
 
 # displays mos parameters simulation data , used in symbol sky130_fd_pr/annotate_fet_params.sym
-proc display_fet_params_2 {instname} {
+proc display_fet_params {instname} {
   set txt {}
   set schpath [xschem get sim_sch_path]
   set symbol [xschem getprop instance $instname cell::name]
@@ -60,4 +60,24 @@ proc display_fet_params_2 {instname} {
     append txt "gm/id = [to_eng [expr $gmid]]\n"
   }
   return $txt
+}
+
+# writes the .save instructions for given FET instance
+proc write_save_lines {type model schpath spiceprefix instname} {
+  global sch_expand
+  if {[regexp {[pn]mos} $type]} {
+    set m n$model
+    set devpath [string tolower @n.$schpath$spiceprefix$instname.$m]
+
+    append sch_expand(savelist) ".save $devpath\[ids\]\n"
+    append sch_expand(savelist) ".save $devpath\[gm\]\n"
+    append sch_expand(savelist) ".save $devpath\[gds\]\n"
+    append sch_expand(savelist) ".save $devpath\[vth\]\n"
+    append sch_expand(savelist) ".save $devpath\[vgs\]\n"
+    append sch_expand(savelist) ".save $devpath\[vdss\]\n"
+    append sch_expand(savelist) ".save $devpath\[vds\]\n"
+    append sch_expand(savelist) ".save $devpath\[cgg\]\n"
+    append sch_expand(savelist) ".save $devpath\[cgsol\]\n"
+    append sch_expand(savelist) ".save $devpath\[cgdol\]\n"
+  }
 }
