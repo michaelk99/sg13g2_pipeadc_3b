@@ -48,8 +48,8 @@ L 4 330 0 330 20 {}
 L 4 160 170 170 170 {}
 B 5 137.5 -2.5 142.5 2.5 {name=vdd_1v5 dir=inout}
 B 5 167.5 -2.5 172.5 2.5 {name=ibias_20u dir=in}
-B 5 47.5 -2.5 52.5 2.5 {name=vmult dir=in}
-B 5 77.5 -2.5 82.5 2.5 {name=vsample dir=in}
+B 5 47.5 -2.5 52.5 2.5 {name=vhold dir=in}
+B 5 77.5 -2.5 82.5 2.5 {name=vtrack dir=in}
 B 5 -2.5 67.5 2.5 72.5 {name=vi_p dir=in}
 B 5 -2.5 167.5 2.5 172.5 {name=di_code[2:0] dir=in}
 B 5 197.5 -2.5 202.5 2.5 {name=vref_p dir=in}
@@ -63,8 +63,8 @@ B 5 47.5 217.5 52.5 222.5 {name=vss dir=inout}
 A 4 200 90 15.8113883008419 108.434948822922 360 {}
 T {vdd_1v5} 136 5 3 1 0.2 0.2 {}
 T {ibias_20u} 174 5 1 0 0.2 0.2 {}
-T {vmult} 54 5 1 0 0.2 0.2 {}
-T {vsample} 84 5 1 0 0.2 0.2 {}
+T {vhold} 54 5 1 0 0.2 0.2 {}
+T {vtrack} 84 5 1 0 0.2 0.2 {}
 T {vi_p} 25 66 0 0 0.2 0.2 {}
 T {di_code[2:0]} 25 166 0 0 0.2 0.2 {}
 T {vref_p} 196 5 3 1 0.2 0.2 {}
