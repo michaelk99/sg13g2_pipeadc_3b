@@ -5,11 +5,11 @@ V {}
 S {}
 E {}
 T {1.45 < 1.5(nom) < 1.55V} 370 -890 0 0 0.4 0.4 {}
-T {60uA} 880 -150 0 0 0.4 0.4 {}
-T {~0.54V} 750 -300 2 1 0.3 0.3 {}
-T {~0.37V} 860 -530 2 1 0.3 0.3 {}
-T {20uA} 610 -150 0 0 0.4 0.4 {}
-T {30uA} 1250 -150 0 0 0.4 0.4 {}
+T {600nA} 880 -150 0 0 0.4 0.4 {}
+T {~0.27V} 750 -300 2 1 0.3 0.3 {}
+T {~0.4V} 860 -530 2 1 0.3 0.3 {}
+T {300nA} 610 -150 0 0 0.4 0.4 {}
+T {300nA} 1250 -150 0 0 0.4 0.4 {}
 N 820 -640 820 -620 {
 lab=voutn}
 N 900 -710 960 -710 {
@@ -105,7 +105,7 @@ lab=tail}
 N 360 -250 360 -210 {
 lab=ena_n}
 N 640 -440 640 -310 {
-lab=ibias_1u}
+lab=ibias_300n}
 N 540 -390 700 -390 {
 lab=ena}
 N 420 -210 480 -210 {
@@ -113,7 +113,7 @@ lab=vss}
 N 480 -210 480 -160 {
 lab=vss}
 N 740 -440 740 -420 {
-lab=ibias_1u}
+lab=ibias_300n}
 N 740 -390 820 -390 {
 lab=vss}
 N 820 -390 820 -210 {
@@ -132,8 +132,8 @@ N 480 -360 480 -310 {lab=vdd}
 N 420 -310 480 -310 {lab=vdd}
 N 420 -860 420 -360 {lab=vdd}
 N 420 -860 760 -860 {lab=vdd}
-N 640 -440 740 -440 {lab=ibias_1u}
-N 160 -440 640 -440 {lab=ibias_1u}
+N 640 -440 740 -440 {lab=ibias_300n}
+N 160 -440 640 -440 {lab=ibias_300n}
 N 160 -590 780 -590 {lab=vinp}
 N 260 -180 260 -160 {
 lab=vss}
@@ -219,47 +219,47 @@ N 840 -350 1120 -350 {lab=gate_n}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="(c) 2025 M. Koefinger"}
 C {sg13g2_pr/sg13_lv_nmos.sym} 880 -280 0 0 {name=MN3
 l=0.5u
-w=3u
-ng=6
+w=1u
+ng=2
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} 980 -710 0 0 {name=MP2
 l=0.5u
-w=10u
-ng=10
+w=0.5u
+ng=1
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 800 -590 0 0 {name=MN1
 l=0.5u
-w=18.5u
-ng=37
+w=5u
+ng=10
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 1020 -590 0 1 {name=MN2
 l=0.5u
-w=18.5u
-ng=37
+w=5u
+ng=10
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} 840 -710 0 1 {name=MP1
 l=0.5u
-w=10u
-ng=10
+w=0.5u
+ng=1
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 660 -280 0 1 {name=MN4
 l=0.5u
-w=1u	
+w=0.5u	
 ng=2
 m=1
 model=sg13_lv_nmos
@@ -281,7 +281,7 @@ m=1
 model=sg13_lv_pmos
 spiceprefix=X
 }
-C {ipin.sym} 160 -440 0 0 {name=p1 lab=ibias_1u}
+C {ipin.sym} 160 -440 0 0 {name=p1 lab=ibias_300n}
 C {iopin.sym} 160 -860 0 1 {name=p2 lab=vdd}
 C {iopin.sym} 160 -160 0 1 {name=p3 lab=vss}
 C {ipin.sym} 160 -590 0 0 {name=p4 lab=vinp}
@@ -337,16 +337,16 @@ C {opin.sym} 1140 -660 0 0 {name=p13 lab=voutp}
 C {ipin.sym} 160 -660 0 0 {name=p14 lab=vfb}
 C {sg13g2_pr/sg13_lv_nmos.sym} 1250 -280 0 0 {name=MN9
 l=0.5u
-w=1.5u
-ng=3
+w=0.5u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} 1290 -730 0 1 {name=MP3
 l=0.5u
-w=10u
-ng=10
+w=0.5u
+ng=1
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
@@ -358,3 +358,5 @@ C {sg13g2_pr/annotate_fet_params.sym} 1100 -590 0 0 {name=annot2 ref=MN1}
 C {sg13g2_pr/annotate_fet_params.sym} 1080 -840 0 0 {name=annot3 ref=MP1}
 C {sg13g2_pr/annotate_fet_params.sym} 1360 -860 0 0 {name=annot4 ref=MP3
 }
+C {sg13g2_pr/annotate_fet_params.sym} -20 -350 0 0 {name=annot5 ref=MN4}
+C {sg13g2_pr/annotate_fet_params.sym} 1370 -330 0 0 {name=annot6 ref=MN9}
