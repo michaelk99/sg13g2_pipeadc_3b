@@ -126,7 +126,7 @@ value="
 *.include /foss/designs/xschem/ota-5t-fd-dev-sav.spice
 .include ota-5t-fd_tb-ol.save
 .options savecurrents
-.param ibias=20u
+.param ibias=300n
 .param ci=100f
 .param cload=2*ci
 .param cf=ci
