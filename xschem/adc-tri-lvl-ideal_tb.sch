@@ -92,14 +92,14 @@ value="
 save all
 
 ** Set clock signal
-let fs = 100Meg
+let fs = 2Meg
 let fclk = fs
 let tper_clk = 1/fclk
 let tfr_clk = tper_clk/100
 let ton_clk = tper_clk/2-2*tfr_clk
 
 ** Set input signal
-let f_sig = 1Meg
+let f_sig = 20k
 let tper_sig = 1/f_sig
 let tfr_sig = tper_sig*5/10
 let ton_sig = tper_sig*1/1000
