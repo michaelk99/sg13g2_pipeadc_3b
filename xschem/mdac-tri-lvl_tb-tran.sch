@@ -94,48 +94,53 @@ value="
 .options savecurrents
 .options method=gear reltol=.005 
 .options sparse
-.param fs=100Meg
-.param ibias=20u
-.param gain_cl=1
+.param fs=2Meg
+.param ibias=300n
 .param cap=100f
 .param cap_load = 100f
 .param ron=1
 .param roff=1G
 
 .control
-save voutp voutn vin vip vid vcmi phi1 phi2 code[2:0] vout vref_p vref_n
+save voutp voutn vinn vipp vid vcmi phi1 phi2 code[2:0] vout vref_p vref_n di_pon vdd
 save xmdac.vdac_p xmdac.vdac_n xmdac.vgndp xmdac.vgndn xmdac.vfb xmdac.vbp
 save xmdac.xc1.vc_p xmdac.xc2.vc_p xmdac.xc3.vc_p xmdac.xc4.vc_p
-
-let n_per_startup = 100
-let fs = 100Meg
-let tsettle = 1/fs/2
-let t_rf = 0.1n
-let t_on = tsettle/2
-let t_delay = n_per_startup/fs
-let t_per = tsettle
-let v_step_i = 1
-
-let tstep = 0.1*t_rf
-let tstop = 20*t_per+t_delay
-let tstart = t_delay
-
-let err_max = 0.25
-
-alter @VIN[DC] = 0.0
-alter @VCODE2[DC] = 0.0
-alter @VCODE1[DC] = 0.0
-alter @VCODE0[DC] = 1.5
+save xmdac.xota.tail xmdac.xota.ena xmdac.xota.ena_n xmdac.xota.gate_n
 
 set wr_singlescale
 set wr_vecnames
 option numdgt=3
 
-set opSimOnly = 0
+** Sim options
+set startupSim = 1
+set opSimOnly = 1
 
-** Main Simulations
-if $opSimOnly eq 0
-	*optran 0 0 0 0.1n 1u 0
+** System Specs
+let err_max = 0.25
+let fs = 2Meg
+
+** Startup 
+let n_per_startup = 100
+let tsettle = 1/fs/2
+let t_rf = 0.01/fs
+let t_delay = n_per_startup/fs
+let t_per = tsettle
+
+** Default Input Config
+alter @VIN[DC] = 0.0
+alter @VCODE2[DC] = 0.0
+alter @VCODE1[DC] = 0.0
+alter @VCODE0[DC] = 1.5
+
+** Transient Sim Options
+let tstep = 0.1*t_rf
+if $startupSim eq 1
+	let tstart = 0
+	let tstop = t_delay
+
+else
+	let tstart = t_delay
+	let tstop = 20*t_per+t_delay
 	let vi = 1
 	let vref = 1.5
 	*let vi = -1
@@ -146,6 +151,11 @@ if $opSimOnly eq 0
 	alter @VCODE2[DC] = 0
 	*alter @VCODE1[DC] = 0
 	*alter @VCODE2[DC] = 1.5
+end
+
+** Main Simulations
+if $opSimOnly eq 0
+	*optran 0 0 0 $&t_per $&t_delay 0
 	tran $&tstep $&tstop $&tstart
 	
 	setplot tran1
@@ -168,7 +178,10 @@ if $opSimOnly eq 0
 end
 
 alter @VIN[DC] = 0
-optran 0 0 0 0.1n 1u 0
+alter @VCODE2[DC] = 0.0
+alter @VCODE1[DC] = 0.0
+alter @VCODE0[DC] = 1.5
+optran 0 0 0 $&t_per $&t_delay 0
 op
 remzerovec
 write mdac-tri-lvl_tb-tran.raw
