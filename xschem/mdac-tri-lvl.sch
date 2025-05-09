@@ -112,12 +112,12 @@ N 270 -170 270 -140 {lab=vcm}
 N 270 -140 1240 -140 {lab=vcm}
 N 1240 -290 1240 -140 {lab=vcm}
 N 1240 -290 1310 -290 {lab=vcm}
-N 200 -720 1110 -720 {lab=ibias_20u}
+N 200 -720 1110 -720 {lab=ibias_300n}
 N 560 -680 1400 -680 {lab=vo_p}
 N 560 -680 560 -320 {lab=vo_p}
 N 540 -700 540 -580 {lab=vo_n}
 N 1070 -740 1070 -500 {lab=vdd_1v5}
-N 1110 -720 1110 -500 {lab=ibias_20u}
+N 1110 -720 1110 -500 {lab=ibias_300n}
 N 440 -630 440 -580 {lab=vtrack}
 N 440 -630 1280 -630 {lab=vtrack}
 N 1280 -630 1280 -510 {lab=vtrack}
@@ -159,7 +159,7 @@ C {ipin.sym} 510 -560 0 0 {name=p4 lab=vi_n}
 C {ipin.sym} 200 -120 0 0 {name=p5 lab=di_ena}
 C {iopin.sym} 200 -100 2 0 {name=p6 lab=vss}
 C {iopin.sym} 200 -740 2 0 {name=p7 lab=vdd_1v5}
-C {ipin.sym} 200 -720 0 0 {name=p8 lab=ibias_20u}
+C {ipin.sym} 200 -720 0 0 {name=p8 lab=ibias_300n}
 C {opin.sym} 1530 -440 0 0 {name=p9 lab=vo_n}
 C {opin.sym} 1530 -400 0 0 {name=p10 lab=vo_p}
 C {cmfb_sc.sym} 1310 -320 0 0 {name=xcmfb cap=\{cap\} div=10}
