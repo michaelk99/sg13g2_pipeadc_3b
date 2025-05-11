@@ -22,7 +22,7 @@ B 5 177.5 7.5 182.5 12.5 {name=voutp dir=out}
 B 5 177.5 47.5 182.5 52.5 {name=voutn dir=out}
 B 5 -2.5 57.5 2.5 62.5 {name=vinp dir=in}
 B 5 -2.5 -2.5 2.5 2.5 {name=vinn dir=in}
-B 5 117.5 -52.5 122.5 -47.5 {name=ibias_300n dir=in}
+B 5 117.5 -52.5 122.5 -47.5 {name=ibias_1u5 dir=in}
 B 5 117.5 107.5 122.5 112.5 {name=d_ena dir=in}
 B 5 77.5 107.5 82.5 112.5 {name=vss dir=inout}
 B 5 177.5 97.5 182.5 102.5 {name=vbp dir=out}
@@ -34,7 +34,7 @@ T {vinn} 25 -4 0 0 0.2 0.2 {}
 T {@symname} 35 24 0 0 0.2 0.2 {}
 T {@name} 145 -62 0 0 0.2 0.2 {}
 T {vdd} 84 -25 1 1 0.2 0.2 {}
-T {ibias_300n} 124 -45 1 0 0.2 0.2 {}
+T {ibias_1u5} 124 -45 1 0 0.2 0.2 {}
 T {d_ena} 124 75 1 0 0.2 0.2 {}
 T {vss} 84 105 1 1 0.2 0.2 {}
 T {vbp} 170 93.5 0 1 0.2 0.2 {}
