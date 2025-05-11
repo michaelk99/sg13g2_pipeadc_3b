@@ -4,7 +4,7 @@ K {}
 V {}
 S {}
 E {}
-T {ADC only works for f_sig < fs/100!} 20 -490 0 0 0.5 0.5 {}
+T {ADC only works for f_sig < fs/10!} 20 -490 0 0 0.5 0.5 {}
 N 290 -310 290 -260 {
 lab=vcm}
 N 290 -260 360 -260 {
@@ -99,7 +99,7 @@ let tfr_clk = tper_clk/100
 let ton_clk = tper_clk/2-2*tfr_clk
 
 ** Set input signal
-let f_sig = 20k
+let f_sig = 200k
 let tper_sig = 1/f_sig
 let tfr_sig = tper_sig*5/10
 let ton_sig = tper_sig*1/1000
