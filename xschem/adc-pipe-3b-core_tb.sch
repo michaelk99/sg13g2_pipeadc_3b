@@ -94,16 +94,15 @@ bus=true}
 C {devices/launcher.sym} 680 -160 0 0 {name=h1
 descr="Annotate OP"
 tclcommand="set show_hidden_texts 1; xschem annotate_op"}
-C {devices/code_shown.sym} -850 -1130 0 0 {name=STIMULI
+C {devices/code_shown.sym} -1120 -1260 0 0 {name=STIMULI
 only_toplevel=false
 value="
 .include adc-pipe-3b-core_tb.save
 .options savecurrents
-.options method=gear reltol=.005 
+.options method=gear reltol=1e-4
 .options sparse
-.param fs=100Meg
-.param ibias=20u
-.param gain_cl=1
+.param fs=2Meg
+.param ibias=1.5u
 .param cap=100f
 .param cap_load = 100f
 .param ron=1
@@ -111,21 +110,28 @@ value="
 
 .control
 save vin vip vid vcmi phi1 phi2 vref do10 do11 do12 do20 do21 do22 do30 do31 do32
-save xadc.vres1_p xadc.vres1_n xadc.vres2_p xadc.vres2_n
+save xadc.vres1p xadc.vres1n xadc.vres2p xadc.vres2n
 save xadc.xmdac1.vdac_p xadc.mdac1.vdac_n xadc.xmdac1.vgndp xadc.xmdac1.vgndn xadc.xmdac1.vfb xadc.xmdac1.vbp
 save xadc.xmdac1.xc1.vc_p xadc.xmdac1.xc2.vc_p xadc.xmdac1.xc3.vc_p xadc.xmdac1.xc4.vc_p
 save xadc.xmdac2.vdac_p xadc.mdac2.vdac_n xadc.xmdac2.vgndp xadc.xmdac2.vgndn xadc.xmdac2.vfb xadc.xmdac2.vbp
 save xadc.xmdac2.xc1.vc_p xadc.xmdac2.xc2.vc_p xadc.xmdac2.xc3.vc_p xadc.xmdac2.xc4.vc_p
 
+set wr_singlescale
+set wr_vecnames
+option numdgt=3
+
+** Sim Options
+set opSimOnly = 0
+
 ** Set sampling frequency
-let fs = 100Meg
+let fs = 2Meg
 
 ** Set Startup time
-let t_delay = n_per_startup/fs
 let n_per_startup = 100
+let t_delay = n_per_startup/fs
 
 ** Set input signal
-let f_sig = 1Meg
+let f_sig = 100k
 let tper_sig = 1/f_sig
 let tfr_sig = tper_sig*5/10
 let ton_sig = tper_sig*1/1000
@@ -135,51 +141,48 @@ let tstep = 0.001/fs
 let tstop = 2/f_sig+t_delay
 let tstart = t_delay
 
-let err_max = 0.25
-
 alter @VIN[DC] = 0.0
-
-set wr_singlescale
-set wr_vecnames
-option numdgt=3
-
-set opSimOnly = 0
 
 ** Main Simulations
 if $opSimOnly eq 0
-	*optran 0 0 0 0.1n 1u 0
 	** Set sources
 	*alter @VIN[PULSE]=[ -1.5 1.5 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
-	alter @VIN[SIN] = [ 0 1.5 $&f_sig t_delay 0 0 ]
+	alter @VIN[SIN] = [ 0 1 $&f_sig t_delay 0 0 ]
 	tran $&tstep $&tstop $&tstart
 	
 	setplot tran1
 	let vid = v(vid)
-	let vcmo = (voutp+voutn)/2
-	let vcmi = (xadc.xmdac1.vgndp+xadc.xmdac1.vgndn)/2
-	let vod = v(vout)
+	let vres1 = xadc.vres1p - xadc.vres1n
+	let vres2 = xadc.vres2p - xadc.vres2n
+
+	let vcmo1 = (xadc.vres1p+xadc.vres1n)/2
+	let vcmo2 = (xadc.vres2p+xadc.vres2n)/2
+	let vcmi1 = (xadc.xmdac1.vgndp+xadc.xmdac1.vgndn)/2
+	let vcmi2 = (xadc.xmdac2.vgndp+xadc.xmdac2.vgndn)/2
+
 	let vcap_in_n = v(xadc.xmdac1.xc2.vc_p,xadc.xmdac1.vgndn)
-	let v_in_n = v(vin,vcmi)
-	let v_dac_p = v(xadc.xmdac1.vdac_p,vcmi)
+	let v_in_n = v(vin,vcmi1)
+	let v_dac_p = v(xadc.xmdac1.vdac_p,vcmi1)
 	let vcap_in_p = v(xadc.xmdac1.xc4.vc_p,xadc.xmdac1.vgndp)
 	let v_in_p = v(vip,vcmi)
-	let v_dac_n = v(xadc.xmdac1.vdac_n,vcmi)
-	let settle_goal = 2*vi-vref
-	let err = (settle_goal-vod)/settle_goal
-	let vres1 = vres1_p - vres1_n
-	let vres2 = vres2_p - vres2_n
-	plot vid vod vcmo vcmi phi2
+	let v_dac_n = v(xadc.xmdac1.vdac_n,vcmi1)
+
+	let err1 = 2*vid-vres1
+	let err2 = 2*vres1-vres2
+
+	plot vid vres1 vcmo1 vcmi1 phi2
 	plot vcap_in_n v_in_n v_dac_p vcap_in_p v_in_p v_dac_n
-	plot err*100 err_max*100 phi2*100
+	plot err1
+	plot err2
 	plot vid vres1 vres2
-	plot do12 do11 do10
-	plot do22 do21 do20
-	plot do32 do31 do30
+	plot do12 do11 do10 vid
+	plot do22 do21 do20 vres1
+	plot do32 do31 do30 vres2
 
 end
 
 alter @VIN[DC] = 0
-optran 0 0 0 0.1n 1u 0
+optran 0 0 0 0.1u $&t_delay 0
 op
 remzerovec
 write adc-pipe-3b-core_tb.raw
@@ -228,12 +231,11 @@ C {lab_wire.sym} 330 -500 0 0 {name=p13 sig_type=std_logic lab=vin}
 C {lab_wire.sym} 380 -700 0 0 {name=p14 sig_type=std_logic lab=vcmi}
 C {lab_wire.sym} 490 -870 3 0 {name=p15 sig_type=std_logic lab=vipp}
 C {lab_wire.sym} 490 -550 3 0 {name=p16 sig_type=std_logic lab=vinn}
-C {clk_noverlap_ideal.sym} 370 -390 0 0 {name=xclkgen fs=\{fs\} tnover=2n tdelay=0 trf=0.1n
+C {clk_noverlap_ideal.sym} 370 -390 0 0 {name=xclkgen fs=\{fs\} tnover=50n tdelay=0 trf=5n
 }
 C {devices/gnd.sym} 680 -600 0 0 {name=l10 lab=GND}
 C {devices/lab_pin.sym} 700 -820 1 0 {name=p17 sig_type=std_logic lab=di_pon}
-C {devices/vsource.sym} 270 -330 0 0 {name=V7 value=1.5
-}
+C {devices/vsource.sym} 270 -330 0 0 {name=V7 value=1.5}
 C {devices/gnd.sym} 270 -270 0 0 {name=l14 lab=GND}
 C {devices/lab_pin.sym} 270 -400 1 0 {name=p18 sig_type=std_logic lab=vref}
 C {devices/lab_pin.sym} 760 -820 1 0 {name=p20 sig_type=std_logic lab=vref}
