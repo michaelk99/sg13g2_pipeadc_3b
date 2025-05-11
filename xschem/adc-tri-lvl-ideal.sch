@@ -101,13 +101,14 @@ C {netlist_at_end.sym} 540 -430 0 0 {name=DFF only_toplevel=false value="
 a21 D0 CLK NULL NULL %d(Q0 NQ0) dff1
 a22 D1 CLK NULL NULL %d(Q1 NQ1) dff1
 "
-}
+spice_ignore=true}
 C {netlist_at_end.sym} 30 -210 0 0 {name=MODELS only_toplevel=false value="
 .model adc_buf adc_bridge(in_low=0.7499 in_high=0.7501)
 .model dac1 dac_bridge(out_low = 0 out_high = 1.5 out_undef = 0 input_load = 0.1e-15 t_rise = 0.01e-9 t_fall = 0.01e-9)
 .model inv1 d_inverter(rise_delay = 0.01e-9 fall_delay = 0.01e-9 input_load = 0.1e-15)
 .model and1 d_and(rise_delay = 0.01e-9 fall_delay = 0.01e-9 input_load = 0.01e-15)
-.model dff1 d_dff(clk_delay = 0.01e-9 set_delay = 0.01e-9 reset_delay = 0.01e-9 ic = 0 rise_delay = 0.01e-9 fall_delay = 0.01e-9)"}
+.model dff1 d_dff(clk_delay = 0.01e-9 set_delay = 0.01e-9 reset_delay = 0.01e-9 ic = 0 rise_delay = 0.01e-9 fall_delay = 0.01e-9)
+.model dlatch1 d_dlatch(data_delay = 0.01e-9 enable_delay = 0.01e-9 set_delay = 0.01e-9 reset_delay = 0.01e-9 ic = 0 rise_delay = 0.01e-9 fall_delay = 0.01e-9)"}
 C {ipin.sym} 120 -690 0 0 {name=p2 lab=vip}
 C {ipin.sym} 120 -670 0 0 {name=p3 lab=vin}
 C {ipin.sym} 120 -460 0 0 {name=p5 lab=vref}
@@ -148,3 +149,8 @@ a221 D1 NQ1 inv1
 a222 NQ1 Q1 inv1
 "
 spice_ignore=true}
+C {netlist_at_end.sym} 780 -310 0 0 {name=DLATCH only_toplevel=false value="
+a21 D0 CLK NULL NULL %d(Q0 NQ0) dlatch1
+a22 D1 CLK NULL NULL %d(Q1 NQ1) dlatch1
+"
+}
