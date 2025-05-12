@@ -1,0 +1,28 @@
+
+19. Printing statistics.
+
+=== adc_pipe_encoder ===
+
+   Number of wires:                 36
+   Number of wire bits:             41
+   Number of public wires:          10
+   Number of public wire bits:      15
+   Number of ports:                  5
+   Number of port bits:             10
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 26
+     sg13g2_dfrbp_1                  8
+     sg13g2_inv_1                    1
+     sg13g2_nand2_1                  2
+     sg13g2_nand3_1                  1
+     sg13g2_nor2_1                   5
+     sg13g2_nor2b_1                  3
+     sg13g2_tiehi                    1
+     sg13g2_xnor2_1                  2
+     sg13g2_xor2_1                   3
+
+   Chip area for module '\adc_pipe_encoder': 549.763200
+     of which used for sequential elements: 377.395200 (68.65%)
+

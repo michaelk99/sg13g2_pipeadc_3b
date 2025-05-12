@@ -1,0 +1,340 @@
+/* Verilog module written by vlog2Verilog (qflow) */
+/* With explicit power connections */
+/* With case-insensitive names (SPICE-compatible) */
+
+module adc_pipe_encoder_TOP(
+    inout VPWR,
+    inout VGND,
+    input clock_i,
+    input [2:0] d1_i,
+    input [2:0] d2_i,
+    input [2:0] d3_i,
+    output [2:0] d_o,
+    input reset_i
+);
+
+wire _19_ ;
+wire \encoder.pipeStage_sreg[1][2]  ;
+wire _16_ ;
+wire _13_ ;
+wire _10_ ;
+wire _07_ ;
+wire _04_ ;
+wire _01_ ;
+wire [2:0] d_o ;
+wire _24_ ;
+wire [2:0] d2_i ;
+wire _21_ ;
+wire _18_ ;
+wire \encoder.pipeStage_sreg[2][2]  ;
+wire _15_ ;
+wire _12_ ;
+wire _09_ ;
+wire \encoder.pipeStage_sreg[1][1]  ;
+wire _06_ ;
+wire _03_ ;
+wire _00_ ;
+wire clock_i ;
+wire _26_ ;
+wire _23_ ;
+wire _20_ ;
+wire _17_ ;
+wire _14_ ;
+wire reset_i ;
+wire [2:0] d1_i ;
+wire _11_ ;
+wire _08_ ;
+wire \encoder.pipeStage_sreg[2][1]  ;
+wire _05_ ;
+wire _02_ ;
+wire \encoder.pipeStage_sreg[1][0]  ;
+wire [2:0] d3_i ;
+wire _25_ ;
+wire _22_ ;
+
+sg13g2_xnor2_1 _27_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(\encoder.pipeStage_sreg[1][0] ),
+    .B(d3_i[2]),
+    .Y(_08_)
+);
+
+sg13g2_nor2_1 _28_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(reset_i),
+    .B(_08_),
+    .Y(_00_)
+);
+
+sg13g2_nand2_1 _29_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(\encoder.pipeStage_sreg[1][0] ),
+    .B(d3_i[2]),
+    .Y(_09_)
+);
+
+sg13g2_xor2_1 _30_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(\encoder.pipeStage_sreg[1][1] ),
+    .B(_09_),
+    .X(_10_)
+);
+
+sg13g2_nor2_1 _31_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(reset_i),
+    .B(_10_),
+    .Y(_01_)
+);
+
+sg13g2_nand3_1 _32_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(\encoder.pipeStage_sreg[1][0] ),
+    .B(d3_i[2]),
+    .C(\encoder.pipeStage_sreg[1][1] ),
+    .Y(_11_)
+);
+
+sg13g2_xor2_1 _33_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(\encoder.pipeStage_sreg[1][2] ),
+    .B(_11_),
+    .X(_12_)
+);
+
+sg13g2_nor2_1 _34_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(reset_i),
+    .B(_12_),
+    .Y(_02_)
+);
+
+sg13g2_inv_1 _35_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(d2_i[1]),
+    .Y(_13_)
+);
+
+sg13g2_nor3_1 _36_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(d2_i[2]),
+    .B(reset_i),
+    .C(_13_),
+    .Y(_03_)
+);
+
+sg13g2_xnor2_1 _37_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(d2_i[2]),
+    .B(\encoder.pipeStage_sreg[2][1] ),
+    .Y(_14_)
+);
+
+sg13g2_nor2_1 _38_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(reset_i),
+    .B(_14_),
+    .Y(_04_)
+);
+
+sg13g2_nand2_1 _39_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(d2_i[2]),
+    .B(\encoder.pipeStage_sreg[2][1] ),
+    .Y(_15_)
+);
+
+sg13g2_xor2_1 _40_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(\encoder.pipeStage_sreg[2][2] ),
+    .B(_15_),
+    .X(_16_)
+);
+
+sg13g2_nor2_1 _41_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(reset_i),
+    .B(_16_),
+    .Y(_05_)
+);
+
+sg13g2_inv_1 _42_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(d1_i[1]),
+    .Y(_17_)
+);
+
+sg13g2_nor3_1 _43_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(reset_i),
+    .B(d1_i[2]),
+    .C(_17_),
+    .Y(_06_)
+);
+
+sg13g2_nor2b_1 _44_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .A(reset_i),
+    .B_N(d1_i[2]),
+    .Y(_07_)
+);
+
+sg13g2_tiehi _45_ (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .L_HI(_26_)
+);
+
+sg13g2_dfrbp_1 \encoder.pipeStage_sreg[0][0]$_SDFF_PP0_  (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .CLK(clock_i),
+    .D(_00_),
+    .Q(d_o[0]),
+    .Q_N(_25_),
+    .RESET_B(_26_)
+);
+
+sg13g2_dfrbp_1 \encoder.pipeStage_sreg[0][1]$_SDFF_PP0_  (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .CLK(clock_i),
+    .D(_01_),
+    .Q(d_o[1]),
+    .Q_N(_24_),
+    .RESET_B(_26_)
+);
+
+sg13g2_dfrbp_1 \encoder.pipeStage_sreg[0][2]$_SDFF_PP0_  (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .CLK(clock_i),
+    .D(_02_),
+    .Q(d_o[2]),
+    .Q_N(_23_),
+    .RESET_B(_26_)
+);
+
+sg13g2_dfrbp_1 \encoder.pipeStage_sreg[1][0]$_SDFF_PP0_  (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .CLK(clock_i),
+    .D(_03_),
+    .Q(\encoder.pipeStage_sreg[1][0] ),
+    .Q_N(_22_),
+    .RESET_B(_26_)
+);
+
+sg13g2_dfrbp_1 \encoder.pipeStage_sreg[1][1]$_SDFF_PP0_  (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .CLK(clock_i),
+    .D(_04_),
+    .Q(\encoder.pipeStage_sreg[1][1] ),
+    .Q_N(_21_),
+    .RESET_B(_26_)
+);
+
+sg13g2_dfrbp_1 \encoder.pipeStage_sreg[1][2]$_SDFF_PP0_  (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .CLK(clock_i),
+    .D(_05_),
+    .Q(\encoder.pipeStage_sreg[1][2] ),
+    .Q_N(_20_),
+    .RESET_B(_26_)
+);
+
+sg13g2_dfrbp_1 \encoder.pipeStage_sreg[2][1]$_SDFF_PP0_  (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .CLK(clock_i),
+    .D(_06_),
+    .Q(\encoder.pipeStage_sreg[2][1] ),
+    .Q_N(_19_),
+    .RESET_B(_26_)
+);
+
+sg13g2_dfrbp_1 \encoder.pipeStage_sreg[2][2]$_SDFF_PP0_  (
+    .VDD(VPWR),
+    .VSS(VGND),
+    .VNB(VGND),
+    .VPB(VPWR),
+    .CLK(clock_i),
+    .D(_07_),
+    .Q(\encoder.pipeStage_sreg[2][2] ),
+    .Q_N(_18_),
+    .RESET_B(_26_)
+);
+
+endmodule

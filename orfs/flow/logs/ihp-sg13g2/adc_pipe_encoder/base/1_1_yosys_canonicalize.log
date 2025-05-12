@@ -1,0 +1,20 @@
+1. Executing Verilog-2005 frontend: /foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v
+2. Executing Liberty frontend: ./objects/ihp-sg13g2/adc_pipe_encoder/base/lib/sg13g2_stdcell_typ_1p20V_25C.lib
+3. Executing Liberty frontend: ./objects/ihp-sg13g2/adc_pipe_encoder/base/lib/sg13g2_stdcell_typ_1p20V_25C.lib
+4. Executing Verilog-2005 frontend: /foss/designs/sg13g2_pipeadc_3b/orfs/flow/platforms/ihp-sg13g2/cells_clkgate.v
+Using ABC speed script.
+Extracting clock period from SDC file: ./results/ihp-sg13g2/adc_pipe_encoder/base/clock_period.txt
+Setting clock period to 10000
+5. Executing HIERARCHY pass (managing design hierarchy).
+6. Executing AST frontend in derive mode using pre-parsed AST for module `\adc_pipe_encoder'.
+Warning: Replacing memory \pipeStage_sreg with list of registers. See /foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:63
+6.1. Analyzing design hierarchy..
+6.2. Analyzing design hierarchy..
+7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Warning: Ignoring module adc_pipe_encoder because it contains processes (run 'proc' command first).
+8. Executing RTLIL backend.
+Warnings: 2 unique messages, 2 total
+End of script. Logfile hash: ea27b48357, CPU: user 0.05s system 0.01s, MEM: 31.26 MB peak
+Yosys 0.51 (git sha1 c4b519022, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
+Time spent: 85% 4x read_liberty (0 sec), 4% 4x read_verilog (0 sec), ...
+Elapsed time: 0:00.19[h:]min:sec. CPU time: user 0.09 sys 0.00 (52%). Peak memory: 36492KB.

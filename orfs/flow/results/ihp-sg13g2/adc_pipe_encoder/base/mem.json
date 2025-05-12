@@ -1,0 +1,302 @@
+{
+  "creator": "Yosys 0.51 (git sha1 c4b519022, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)",
+  "modules": {
+    "adc_pipe_encoder": {
+      "attributes": {
+        "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:10.1-97.10",
+        "top": "00000000000000000000000000000001",
+        "dynports": "00000000000000000000000000000001",
+        "hdlname": "adc_pipe_encoder"
+      },
+      "parameter_default_values": {
+        "BITS_ADC_STAGE": "00000000000000000000000000000001",
+        "NUM_BITS": "00000000000000000000000000000011",
+        "NUM_BITS_PER_STAGE": "00000000000000000000000000000010",
+        "REDUNDANCY": "00000000000000000000000000000001"
+      },
+      "ports": {
+        "clock_i": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "reset_i": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "d_stage_i": {
+          "direction": "input",
+          "bits": [ 4, 5, 6, 7 ]
+        },
+        "d_last_stage_i": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "d_o": {
+          "direction": "output",
+          "bits": [ 9, 10, 11 ]
+        }
+      },
+      "cells": {
+        "$auto$alumacc.cc:495:replace_alu$963": {
+          "hide_name": 1,
+          "type": "$alu",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000011",
+            "Y_WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:70.38-70.70"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "BI": "input",
+            "CI": "input",
+            "CO": "output",
+            "X": "output",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 8 ],
+            "B": [ 12, 13, 14 ],
+            "BI": [ "0" ],
+            "CI": [ "0" ],
+            "CO": [ 15, 16, 17 ],
+            "X": [ 18, 19, 20 ],
+            "Y": [ 21, 22, 23 ]
+          }
+        },
+        "$auto$alumacc.cc:495:replace_alu$966": {
+          "hide_name": 1,
+          "type": "$alu",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000011",
+            "Y_WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:88.38-88.70"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "BI": "input",
+            "CI": "input",
+            "CO": "output",
+            "X": "output",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, 5 ],
+            "B": [ "0", 24, 25 ],
+            "BI": [ "0" ],
+            "CI": [ "0" ],
+            "CO": [ 26, 27, 28 ],
+            "X": [ 29, 30, 31 ],
+            "Y": [ 32, 33, 34 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$958": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000001",
+            "SRST_VALUE": "00",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:59.1-74.4"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 6, 7 ],
+            "Q": [ 24, 25 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$960": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000001",
+            "SRST_VALUE": "000",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:59.1-74.4"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 21, 22, 23 ],
+            "Q": [ 9, 10, 11 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$961": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000000",
+            "SRST_POLARITY": "00000000000000000000000000000001",
+            "SRST_VALUE": "000",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:77.1-92.4"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 32, 33, 34 ],
+            "Q": [ 12, 13, 14 ],
+            "SRST": [ 3 ]
+          }
+        }
+      },
+      "netnames": {
+        "$add$/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:70$471_Y": {
+          "hide_name": 1,
+          "bits": [ 21, 22, 23 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:70.38-70.70"
+          }
+        },
+        "$add$/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:88$473_Y": {
+          "hide_name": 1,
+          "bits": [ 32, 33, 34 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:88.38-88.70"
+          }
+        },
+        "$auto$alumacc.cc:511:replace_alu$964": {
+          "hide_name": 1,
+          "bits": [ 18, 19, 20 ],
+          "attributes": {
+            "unused_bits": "0 1 2"
+          }
+        },
+        "$auto$alumacc.cc:511:replace_alu$967": {
+          "hide_name": 1,
+          "bits": [ 29, 30, 31 ],
+          "attributes": {
+            "unused_bits": "0 1 2"
+          }
+        },
+        "$auto$alumacc.cc:512:replace_alu$965": {
+          "hide_name": 1,
+          "bits": [ 15, 16, 17 ],
+          "attributes": {
+            "unused_bits": "0 1 2"
+          }
+        },
+        "$auto$alumacc.cc:512:replace_alu$968": {
+          "hide_name": 1,
+          "bits": [ 26, 27, 28 ],
+          "attributes": {
+            "unused_bits": "0 1 2"
+          }
+        },
+        "clock_i": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:16.16-16.23"
+          }
+        },
+        "d_last_stage_i": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:19.105-19.119"
+          }
+        },
+        "d_o": {
+          "hide_name": 0,
+          "bits": [ 9, 10, 11 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:21.32-21.35"
+          }
+        },
+        "d_stage[0]": {
+          "hide_name": 0,
+          "bits": [ 8, "0", "0" ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:31.21-31.28"
+          }
+        },
+        "d_stage[1]": {
+          "hide_name": 0,
+          "bits": [ 4, 5 ],
+          "attributes": {
+          }
+        },
+        "d_stage[2]": {
+          "hide_name": 0,
+          "bits": [ "0", 6, 7 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:31.21-31.28"
+          }
+        },
+        "d_stage_i": {
+          "hide_name": 0,
+          "bits": [ 4, 5, 6, 7 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:18.105-18.114"
+          }
+        },
+        "pipeStage_sreg[0]": {
+          "hide_name": 0,
+          "bits": [ 9, 10, 11 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:28.21-28.35"
+          }
+        },
+        "pipeStage_sreg[1]": {
+          "hide_name": 0,
+          "bits": [ 12, 13, 14 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:28.21-28.35"
+          }
+        },
+        "pipeStage_sreg[2]": {
+          "hide_name": 0,
+          "bits": [ "0", 24, 25 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:28.21-28.35"
+          }
+        },
+        "reset_i": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder.v:17.16-17.23"
+          }
+        }
+      }
+    }
+  }
+}
