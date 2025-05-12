@@ -61,8 +61,7 @@ N 740 -820 740 -760 {lab=phi2}
 N 780 -820 780 -760 {lab=vcmi}
 N 700 -820 700 -760 {lab=di_pon}
 N 680 -820 680 -760 {lab=VDD}
-N 810 -720 1380 -720 {lab=do3[2:0]
-bus=true}
+N 810 -720 1380 -720 {lab=do3}
 N 810 -680 880 -680 {lab=do1[2:0]
 bus=true}
 N 880 -680 880 -590 {lab=do1[2:0]
@@ -81,15 +80,7 @@ N 1140 -630 1220 -630 {lab=do2[1]}
 N 1140 -600 1220 -600 {lab=do2[0]}
 N 1130 -700 1130 -590 {lab=do2[2:0]
 bus=true}
-N 1530 -660 1590 -660 {lab=do32}
-N 1530 -630 1590 -630 {lab=do31}
-N 1530 -600 1590 -600 {lab=do30}
-N 1390 -660 1470 -660 {lab=do3[2]}
-N 1390 -630 1470 -630 {lab=do3[1]}
-N 1390 -600 1470 -600 {lab=do3[0]}
 N 810 -700 1130 -700 {lab=do2[2:0]
-bus=true}
-N 1380 -720 1380 -590 {lab=do3[2:0]
 bus=true}
 C {devices/launcher.sym} 680 -160 0 0 {name=h1
 descr="Annotate OP"
@@ -109,7 +100,7 @@ value="
 .param roff=1G
 
 .control
-save vin vip vid vcmi phi1 phi2 vref do10 do11 do12 do20 do21 do22 do30 do31 do32
+save vin vip vid vcmi phi1 phi2 vref do10 do11 do12 do20 do21 do22 do3
 save xadc.vres1p xadc.vres1n xadc.vres2p xadc.vres2n
 save xadc.xmdac1.vdac_p xadc.mdac1.vdac_n xadc.xmdac1.vgndp xadc.xmdac1.vgndn xadc.xmdac1.vfb xadc.xmdac1.vbp
 save xadc.xmdac1.xc1.vc_p xadc.xmdac1.xc2.vc_p xadc.xmdac1.xc3.vc_p xadc.xmdac1.xc4.vc_p
@@ -177,7 +168,7 @@ if $opSimOnly eq 0
 	plot vid vres1 vres2
 	plot do12 do11 do10 vid
 	plot do22 do21 do20 vres1
-	plot do32 do31 do30 vres2
+	plot do3 vres2
 
 end
 
@@ -264,7 +255,7 @@ C {lab_wire.sym} 940 -630 0 0 {name=p9 sig_type=std_logic lab=do1[1]}
 C {lab_wire.sym} 940 -600 0 0 {name=p10 sig_type=std_logic lab=do1[0]}
 C {lab_wire.sym} 880 -680 0 0 {name=p11 sig_type=std_logic lab=do1[2:0]}
 C {lab_wire.sym} 880 -700 0 0 {name=p19 sig_type=std_logic lab=do2[2:0]}
-C {lab_wire.sym} 880 -720 0 0 {name=p21 sig_type=std_logic lab=do3[2:0]}
+C {lab_wire.sym} 880 -720 0 0 {name=p21 sig_type=std_logic lab=do3}
 C {bus_connect_nolab.sym} 1130 -650 0 0 {name=r4}
 C {bus_connect_nolab.sym} 1130 -620 0 0 {name=r5}
 C {bus_connect_nolab.sym} 1130 -590 0 0 {name=r6}
@@ -277,21 +268,6 @@ C {devices/vsource.sym} 1250 -600 3 0 {name=V10 value=0
 C {lab_wire.sym} 1190 -660 0 0 {name=p27 sig_type=std_logic lab=do2[2]}
 C {lab_wire.sym} 1190 -630 0 0 {name=p28 sig_type=std_logic lab=do2[1]}
 C {lab_wire.sym} 1190 -600 0 0 {name=p29 sig_type=std_logic lab=do2[0]}
-C {bus_connect_nolab.sym} 1380 -650 0 0 {name=r7}
-C {bus_connect_nolab.sym} 1380 -620 0 0 {name=r8}
-C {bus_connect_nolab.sym} 1380 -590 0 0 {name=r9}
-C {devices/vsource.sym} 1500 -660 3 0 {name=V11 value=0
-}
-C {devices/vsource.sym} 1500 -630 3 0 {name=V12 value=0
-}
-C {devices/vsource.sym} 1500 -600 3 0 {name=V13 value=0
-}
-C {lab_wire.sym} 1440 -660 0 0 {name=p33 sig_type=std_logic lab=do3[2]}
-C {lab_wire.sym} 1440 -630 0 0 {name=p34 sig_type=std_logic lab=do3[1]}
-C {lab_wire.sym} 1440 -600 0 0 {name=p35 sig_type=std_logic lab=do3[0]}
 C {lab_wire.sym} 1340 -660 0 0 {name=p24 sig_type=std_logic lab=do22}
 C {lab_wire.sym} 1340 -630 0 0 {name=p25 sig_type=std_logic lab=do21}
 C {lab_wire.sym} 1340 -600 0 0 {name=p26 sig_type=std_logic lab=do20}
-C {lab_wire.sym} 1590 -660 0 0 {name=p30 sig_type=std_logic lab=do32}
-C {lab_wire.sym} 1590 -630 0 0 {name=p31 sig_type=std_logic lab=do31}
-C {lab_wire.sym} 1590 -600 0 0 {name=p32 sig_type=std_logic lab=do30}
