@@ -1,0 +1,44 @@
+v {xschem version=3.4.6 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 0 20 20 20 {}
+L 4 0 100 20 100 {}
+L 4 0 60 60 0 {}
+L 4 0 60 60 120 {}
+L 4 60 0 200 0 {}
+L 4 60 120 200 120 {}
+L 4 230 0 230 120 {}
+L 4 20 100 40 100 {}
+L 4 20 20 40 20 {}
+L 4 200 0 230 0 {}
+L 4 200 120 230 120 {}
+B 5 207.5 -2.5 212.5 2.5 {name=vcm dir=in}
+B 5 187.5 -2.5 192.5 2.5 {name=vref dir=in}
+B 5 167.5 -2.5 172.5 2.5 {name=vphi2 dir=in}
+B 5 147.5 -2.5 152.5 2.5 {name=vphi1 dir=in}
+B 5 127.5 -2.5 132.5 2.5 {name=di_rst dir=in}
+B 5 107.5 -2.5 112.5 2.5 {name=di_ena dir=in}
+B 5 87.5 -2.5 92.5 2.5 {name=vdd_1v5 dir=inout}
+B 5 -2.5 17.5 2.5 22.5 {name=vinp dir=in}
+B 5 227.5 57.5 232.5 62.5 {name=do_b[2:0] dir=out}
+B 5 -2.5 97.5 2.5 102.5 {name=vinn dir=in}
+B 5 87.5 117.5 92.5 122.5 {name=vss dir=inout}
+T {vcm} 214 5 1 0 0.2 0.2 {}
+T {vref} 194 5 1 0 0.2 0.2 {}
+T {vphi2} 174 5 1 0 0.2 0.2 {}
+T {vphi1} 154 5 1 0 0.2 0.2 {}
+T {di_rst} 134 5 1 0 0.2 0.2 {}
+T {di_ena} 114 5 1 0 0.2 0.2 {}
+T {vdd_1v5} 86 5 3 1 0.2 0.2 {}
+T {vinp} 45 16 0 0 0.2 0.2 {}
+T {do_b[2:0]} 225 56 0 1 0.2 0.2 {}
+T {vinn} 45 86 0 0 0.2 0.2 {}
+T {vss} 94 115 1 1 0.2 0.2 {}
+T {@symname} 30 54 0 0 0.3 0.3 {}
+T {@name} 175 118 0 0 0.2 0.2 {}
