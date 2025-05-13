@@ -5,11 +5,11 @@ V {}
 S {}
 E {}
 B 2 1010 -630 1810 -230 {flags=graph
-ypos1=-0.046528386
-ypos2=1.4533617
+ypos1=-0.1
+ypos2=1.5
 divy=5
 unity=1
-x2=7.1000006e-05
+x2=9.3792027e-05
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -20,20 +20,49 @@ do_b1
 do_b0
 BITS;do_b2,do_b1,do_b0
 vdig;vdig_plt;vid
-vid; vid"
-color="4 5 6 6 6 21 21 10"
+vid; vid
+vres1;vres1
+vres2;vres2"
+color="4 5 6 6 6 21 21 10 4 4"
 unitx=1
 logx=0
 logy=0
 hilight_wave=1
 digital=1
 legend=1
-x1=5.1000006e-05
 linewidth_mult=2
 dataset=-1
 divx=5
 subdivy=1
 y1=-0.1
+y2=1.5
+x1=9.1134377e-05}
+B 2 1020 -1160 1820 -760 {flags=graph
+ypos1=-0.3
+ypos2=1.5
+divy=5
+unity=1
+x2=9.3792027e-05
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+node="vres2;vres2
+do3;xadc.do3
+phi1;phi1
+phi2;phi2"
+color="4 6 21 7"
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=1
+legend=1
+linewidth_mult=2
+dataset=-1
+divx=5
+subdivy=1
+y1=-0.3
+x1=9.1134377e-05
 y2=1.5}
 N 270 -780 290 -780 {
 lab=GND}
@@ -122,6 +151,7 @@ save xadc.xpipe.xmdac1.vdac_p xadc.xpipe.mdac1.vdac_n xadc.xpipe.xmdac1.vgndp xa
 save xadc.xpipe.xmdac1.xc1.vc_p xadc.xpipe.xmdac1.xc2.vc_p xadc.xpipe.xmdac1.xc3.vc_p xadc.xpipe.xmdac1.xc4.vc_p
 save xadc.xpipe.xmdac2.vdac_p xadc.xpipe.mdac2.vdac_n xadc.xpipe.xmdac2.vgndp xadc.xpipe.xmdac2.vgndn xadc.xpipe.xmdac2.vfb xadc.xpipe.xmdac2.vbp
 save xadc.xpipe.xmdac2.xc1.vc_p xadc.xpipe.xmdac2.xc2.vc_p xadc.xpipe.xmdac2.xc3.vc_p xadc.xpipe.xmdac2.xc4.vc_p
+save xadc.do3
 
 set wr_singlescale
 set wr_vecnames
@@ -145,7 +175,7 @@ let ton_sig = tper_sig*1/1000
 
 ** Set transient simulation parameters
 let tstep = 0.001/fs
-let tstop = 2/f_sig+t_delay
+let tstop = 5/f_sig+t_delay
 let tstart = t_delay
 
 alter @VIN[DC] = 0.0
@@ -153,6 +183,7 @@ alter @VIN[DC] = 0.0
 ** Main Simulations
 if $opSimOnly eq 0
 	** Set sources
+	alter @VRST[PULSE] = [1.5 0 0 10p 10p $&t_delay)
 	*alter @VIN[PULSE]=[ -1.5 1.5 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
 	alter @VIN[SIN] = [ 0 1 $&f_sig t_delay 0 0 ]
 	tran $&tstep $&tstop $&tstart
@@ -272,7 +303,7 @@ C {devices/vdd.sym} 680 -820 0 0 {name=l5 lab=VDD}
 C {devices/lab_pin.sym} 740 -820 1 0 {name=p5 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} 760 -820 1 0 {name=p7 sig_type=std_logic lab=phi2}
 C {devices/gnd.sym} 360 -270 0 0 {name=l7 lab=GND}
-C {devices/vsource.sym} 360 -330 0 0 {name=vrst value="pulse(1.5 0 \{1/fs\} 10p 10p \{0.5/fs*100\} \{1/fs*100\})"
+C {devices/vsource.sym} 360 -330 0 0 {name=vrst value="0"
 }
 C {devices/lab_pin.sym} 360 -400 1 0 {name=p32 sig_type=std_logic lab=reset}
 C {devices/lab_pin.sym} 720 -820 1 0 {name=p31 sig_type=std_logic lab=reset}
