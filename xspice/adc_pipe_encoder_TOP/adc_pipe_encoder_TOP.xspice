@@ -1,0 +1,83 @@
+* XSpice netlist created from SPICE and liberty sources by spi2xspice.py
+*SPICE netlist created from verilog structural netlist module adc_pipe_encoder_TOP by vlog2Spice (qflow)
+.subckt adc_pipe_encoder_TOP a_VPWR a_VGND a_clock_i a_d1_i_0_ a_d1_i_1_ a_d1_i_2_ a_d2_i_0_ a_d2_i_1_ a_d2_i_2_ a_d3_i a_d_o_0_ a_d_o_1_ a_d_o_2_ a_reset_i
+A_27_ [\encoder.pipeStage_sreg_1__0_\ d3_i] _08_ d_lut_sg13g2_xnor2_1
+A_28_ [reset_i _08_] _00_ d_lut_sg13g2_nor2_1
+A_29_ [\encoder.pipeStage_sreg_1__0_\ d3_i] _09_ d_lut_sg13g2_nand2_1
+A_30_ [\encoder.pipeStage_sreg_1__1_\ _09_] _10_ d_lut_sg13g2_xor2_1
+A_31_ [reset_i _10_] _01_ d_lut_sg13g2_nor2_1
+A_32_ [\encoder.pipeStage_sreg_1__0_\ d3_i \encoder.pipeStage_sreg_1__1_\] _11_ d_lut_sg13g2_nand3_1
+A_33_ [\encoder.pipeStage_sreg_1__2_\ _11_] _12_ d_lut_sg13g2_xor2_1
+A_34_ [reset_i _12_] _02_ d_lut_sg13g2_nor2_1
+A_35_ [d1_i_0_] _13_ d_lut_sg13g2_inv_1
+A_36_ [reset_i d1_i_2_ _13_] _03_ d_lut_sg13g2_nor3_1
+A_37_ [d1_i_2_ \encoder.pipeStage_sreg_2__1_\] _14_ d_lut_sg13g2_xnor2_1
+A_38_ [reset_i _14_] _04_ d_lut_sg13g2_nor2_1
+A_39_ [d1_i_2_ \encoder.pipeStage_sreg_2__1_\] _15_ d_lut_sg13g2_nand2_1
+A_40_ [\encoder.pipeStage_sreg_2__2_\ _15_] _16_ d_lut_sg13g2_xor2_1
+A_41_ [reset_i _16_] _05_ d_lut_sg13g2_nor2_1
+A_42_ [d2_i_0_] _17_ d_lut_sg13g2_inv_1
+A_43_ [d2_i_2_ reset_i _17_] _06_ d_lut_sg13g2_nor3_1
+A_44_ [reset_i d2_i_2_] _07_ d_lut_sg13g2_nor2b_1
+A_45_ _26_ done
+A\encoder.pipeStage_sreg_0__0_$_SDFF_PP0_ _00_ clock_i NULL ~_26_ d_o_0_ _25_ ddflop
+A\encoder.pipeStage_sreg_0__1_$_SDFF_PP0_ _01_ clock_i NULL ~_26_ d_o_1_ _24_ ddflop
+A\encoder.pipeStage_sreg_0__2_$_SDFF_PP0_ _02_ clock_i NULL ~_26_ d_o_2_ _23_ ddflop
+A\encoder.pipeStage_sreg_1__0_$_SDFF_PP0_ _03_ clock_i NULL ~_26_ \encoder.pipeStage_sreg_1__0_\ _22_ ddflop
+A\encoder.pipeStage_sreg_1__1_$_SDFF_PP0_ _04_ clock_i NULL ~_26_ \encoder.pipeStage_sreg_1__1_\ _21_ ddflop
+A\encoder.pipeStage_sreg_1__2_$_SDFF_PP0_ _05_ clock_i NULL ~_26_ \encoder.pipeStage_sreg_1__2_\ _20_ ddflop
+A\encoder.pipeStage_sreg_2__1_$_SDFF_PP0_ _06_ clock_i NULL ~_26_ \encoder.pipeStage_sreg_2__1_\ _19_ ddflop
+A\encoder.pipeStage_sreg_2__2_$_SDFF_PP0_ _07_ clock_i NULL ~_26_ \encoder.pipeStage_sreg_2__2_\ _18_ ddflop
+
+.model todig_1v5 adc_bridge(in_high=1.0 in_low=0.5 rise_delay=500p fall_delay=500p)
+.model toana_1v5 dac_bridge(out_high=1.5 out_low=0)
+
+.model ddflop d_dff(ic=0 rise_delay=50p fall_delay=50p)
+.model dlatch d_dlatch(ic=0 rise_delay=50p fall_delay=50p)
+.model dzero d_pulldown(load=250f)
+.model done d_pullup(load=250f)
+
+AA2D1 [a_VPWR] [VPWR] todig_1v5
+AA2D2 [a_VGND] [VGND] todig_1v5
+AA2D3 [a_clock_i] [clock_i] todig_1v5
+AA2D4 [a_d1_i_0_] [d1_i_0_] todig_1v5
+AA2D5 [a_d1_i_1_] [d1_i_1_] todig_1v5
+AA2D6 [a_d1_i_2_] [d1_i_2_] todig_1v5
+AA2D7 [a_d2_i_0_] [d2_i_0_] todig_1v5
+AA2D8 [a_d2_i_1_] [d2_i_1_] todig_1v5
+AA2D9 [a_d2_i_2_] [d2_i_2_] todig_1v5
+AA2D10 [a_d3_i] [d3_i] todig_1v5
+AD2A1 [d_o_0_] [a_d_o_0_] toana_1v5
+AD2A2 [d_o_1_] [a_d_o_1_] toana_1v5
+AD2A3 [d_o_2_] [a_d_o_2_] toana_1v5
+AA2D11 [a_reset_i] [reset_i] todig_1v5
+
+.ends
+
+* sg13g2_xnor2_1 !(A^B)
+.model d_lut_sg13g2_xnor2_1 d_lut (rise_delay=50p fall_delay=50p input_load=250f
++ table_values "1001")
+* sg13g2_nor2_1 !(A+B)
+.model d_lut_sg13g2_nor2_1 d_lut (rise_delay=50p fall_delay=50p input_load=250f
++ table_values "1000")
+* sg13g2_nand2_1 !(A*B)
+.model d_lut_sg13g2_nand2_1 d_lut (rise_delay=50p fall_delay=50p input_load=250f
++ table_values "1110")
+* sg13g2_xor2_1 (A^B)
+.model d_lut_sg13g2_xor2_1 d_lut (rise_delay=50p fall_delay=50p input_load=250f
++ table_values "0110")
+* sg13g2_nand3_1 !(A*B*C)
+.model d_lut_sg13g2_nand3_1 d_lut (rise_delay=50p fall_delay=50p input_load=250f
++ table_values "11111110")
+* sg13g2_inv_1 !(A)
+.model d_lut_sg13g2_inv_1 d_lut (rise_delay=50p fall_delay=50p input_load=250f
++ table_values "10")
+* sg13g2_nor3_1 !(A+B+C)
+.model d_lut_sg13g2_nor3_1 d_lut (rise_delay=50p fall_delay=50p input_load=250f
++ table_values "10000000")
+* sg13g2_nor2b_1 !(A+!B_N)
+.model d_lut_sg13g2_nor2b_1 d_lut (rise_delay=50p fall_delay=50p input_load=250f
++ table_values "0010")
+* sg13g2_tiehi 1
+* sg13g2_dfrbp_1 IQ
+.end
