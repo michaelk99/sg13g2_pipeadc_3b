@@ -49,9 +49,9 @@ module adc_pipe_encoder_TOP(clock_i, reset_i, d1_i, d2_i, d3_i, d_o);
   (* src = "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:16.22-16.26" *)
   input [2:0] d2_i;
   wire [2:0] d2_i;
-  (* src = "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:17.22-17.26" *)
-  input [2:0] d3_i;
-  wire [2:0] d3_i;
+  (* src = "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:17.16-17.20" *)
+  input d3_i;
+  wire d3_i;
   (* src = "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:19.23-19.26" *)
   output [2:0] d_o;
   wire [2:0] d_o;
@@ -75,7 +75,7 @@ module adc_pipe_encoder_TOP(clock_i, reset_i, d1_i, d2_i, d3_i, d_o);
   wire reset_i;
   sg13g2_xnor2_1 _27_ (
     .A(\encoder.pipeStage_sreg[1][0] ),
-    .B(d3_i[2]),
+    .B(d3_i),
     .Y(_08_)
   );
   sg13g2_nor2_1 _28_ (
@@ -85,7 +85,7 @@ module adc_pipe_encoder_TOP(clock_i, reset_i, d1_i, d2_i, d3_i, d_o);
   );
   sg13g2_nand2_1 _29_ (
     .A(\encoder.pipeStage_sreg[1][0] ),
-    .B(d3_i[2]),
+    .B(d3_i),
     .Y(_09_)
   );
   sg13g2_xor2_1 _30_ (
@@ -100,7 +100,7 @@ module adc_pipe_encoder_TOP(clock_i, reset_i, d1_i, d2_i, d3_i, d_o);
   );
   sg13g2_nand3_1 _32_ (
     .A(\encoder.pipeStage_sreg[1][0] ),
-    .B(d3_i[2]),
+    .B(d3_i),
     .C(\encoder.pipeStage_sreg[1][1] ),
     .Y(_11_)
   );
@@ -115,17 +115,17 @@ module adc_pipe_encoder_TOP(clock_i, reset_i, d1_i, d2_i, d3_i, d_o);
     .Y(_02_)
   );
   sg13g2_inv_1 _35_ (
-    .A(d2_i[1]),
+    .A(d1_i[0]),
     .Y(_13_)
   );
   sg13g2_nor3_1 _36_ (
-    .A(d2_i[2]),
-    .B(reset_i),
+    .A(reset_i),
+    .B(d1_i[2]),
     .C(_13_),
     .Y(_03_)
   );
   sg13g2_xnor2_1 _37_ (
-    .A(d2_i[2]),
+    .A(d1_i[2]),
     .B(\encoder.pipeStage_sreg[2][1] ),
     .Y(_14_)
   );
@@ -135,7 +135,7 @@ module adc_pipe_encoder_TOP(clock_i, reset_i, d1_i, d2_i, d3_i, d_o);
     .Y(_04_)
   );
   sg13g2_nand2_1 _39_ (
-    .A(d2_i[2]),
+    .A(d1_i[2]),
     .B(\encoder.pipeStage_sreg[2][1] ),
     .Y(_15_)
   );
@@ -150,18 +150,18 @@ module adc_pipe_encoder_TOP(clock_i, reset_i, d1_i, d2_i, d3_i, d_o);
     .Y(_05_)
   );
   sg13g2_inv_1 _42_ (
-    .A(d1_i[1]),
+    .A(d2_i[0]),
     .Y(_17_)
   );
   sg13g2_nor3_1 _43_ (
-    .A(reset_i),
-    .B(d1_i[2]),
+    .A(d2_i[2]),
+    .B(reset_i),
     .C(_17_),
     .Y(_06_)
   );
   sg13g2_nor2b_1 _44_ (
     .A(reset_i),
-    .B_N(d1_i[2]),
+    .B_N(d2_i[2]),
     .Y(_07_)
   );
   sg13g2_tiehi _45_ (

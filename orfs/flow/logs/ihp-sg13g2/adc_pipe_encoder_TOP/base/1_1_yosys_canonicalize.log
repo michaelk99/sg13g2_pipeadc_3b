@@ -18,7 +18,7 @@ Warning: Ignoring module $paramod$67e3fdef299baad15c967aaefb642a826d90b5e9\adc_p
 Warning: Ignoring module $paramod\onehot2bin\WIDTH=s32'00000000000000000000000000000011 because it contains processes (run 'proc' command first).
 8. Executing RTLIL backend.
 Warnings: 3 unique messages, 3 total
-End of script. Logfile hash: 0b1f5bf044, CPU: user 0.05s system 0.01s, MEM: 31.01 MB peak
+End of script. Logfile hash: 582cd07282, CPU: user 0.04s system 0.02s, MEM: 29.36 MB peak
 Yosys 0.51 (git sha1 c4b519022, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
-Time spent: 84% 4x read_liberty (0 sec), 4% 4x read_verilog (0 sec), ...
-Elapsed time: 0:00.21[h:]min:sec. CPU time: user 0.07 sys 0.02 (48%). Peak memory: 36848KB.
+Time spent: 85% 4x read_liberty (0 sec), 4% 4x read_verilog (0 sec), ...
+Elapsed time: 0:00.20[h:]min:sec. CPU time: user 0.08 sys 0.01 (50%). Peak memory: 34952KB.

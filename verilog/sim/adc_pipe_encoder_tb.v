@@ -16,7 +16,7 @@ module adc_pipe_encoder_tb();
     localparam real TH_L_STAGE_1 = 0.3 * 2 * VREF;
     localparam real TH_H_STAGE_2 = 0.7 * 2 * VREF;
     localparam real TH_L_STAGE_2 = 0.3 * 2 * VREF;
-    localparam real TH_H_STAGE_3 = 0.7 * 2 * VREF;
+    localparam real TH_H_STAGE_3 = 0.5 * 2 * VREF;
     localparam real TH_L_STAGE_3 = 0.3 * 2 * VREF;
 
     reg clock_tb;
@@ -50,7 +50,7 @@ module adc_pipe_encoder_tb();
         .reset_i(reset_tb),
         .d1_i(d1_tb),
         .d2_i(d2_tb),
-        .d3_i(d3_tb),
+        .d3_i(d3_tb[2]),
         .d_o(d_tb)
     );
 

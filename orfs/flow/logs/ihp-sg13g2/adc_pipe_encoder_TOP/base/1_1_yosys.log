@@ -191,7 +191,7 @@ abc -script /foss/designs/sg13g2_pipeadc_3b/orfs/flow/scripts/abc_speed.script -
 21.1. Executing BMUXMAP pass.
 21.2. Executing DEMUXMAP pass.
 exec cp /foss/designs/sg13g2_pipeadc_3b/orfs/flow/designs/ihp-sg13g2/adc_pipe_encoder_TOP/constraint.sdc ./results/ihp-sg13g2/adc_pipe_encoder_TOP/base/1_synth.sdc
-End of script. Logfile hash: a93ebdf516, CPU: user 0.16s system 0.01s, MEM: 35.29 MB peak
+End of script. Logfile hash: e8845fc4ee, CPU: user 0.14s system 0.03s, MEM: 34.32 MB peak
 Yosys 0.51 (git sha1 c4b519022, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
-Time spent: 26% 2x abc (0 sec), 17% 4x read_liberty (0 sec), ...
-Elapsed time: 0:00.50[h:]min:sec. CPU time: user 0.28 sys 0.01 (58%). Peak memory: 37860KB.
+Time spent: 27% 2x abc (0 sec), 17% 4x read_liberty (0 sec), ...
+Elapsed time: 0:00.52[h:]min:sec. CPU time: user 0.26 sys 0.03 (57%). Peak memory: 36988KB.

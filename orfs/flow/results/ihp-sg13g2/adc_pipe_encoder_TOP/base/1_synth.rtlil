@@ -244,47 +244,40 @@ module \adc_pipe_encoder_TOP
   parameter \REDUNDANCY 1
   parameter \BITS_ADC_STAGE 1
   parameter \ONEHOT_WIDTH 3
-  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:29.44-29.50"
-  attribute \unused_bits "0"
-  wire width 6 \binary
+  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:29.61-29.67"
+  wire width 4 \binary
   attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:13.16-13.23"
   wire input 1 \clock_i
   attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:15.22-15.26"
   wire width 3 input 3 \d1_i
   attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:16.22-16.26"
   wire width 3 input 4 \d2_i
-  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:17.22-17.26"
-  wire width 3 input 5 \d3_i
+  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:17.16-17.20"
+  wire input 5 \d3_i
   attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:19.23-19.26"
   wire width 3 output 6 \d_o
   attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:14.16-14.23"
   wire input 2 \reset_i
   attribute \module_not_derived 1
-  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:53.7-59.6"
+  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:54.7-60.6"
   cell $paramod$67e3fdef299baad15c967aaefb642a826d90b5e9\adc_pipe_encoder \encoder
     connect \clock_i \clock_i
-    connect \d_last_stage_i \binary [1]
+    connect \d_last_stage_i \d3_i
     connect \d_o \d_o
-    connect \d_stage_i \binary [5:2]
+    connect \d_stage_i \binary
     connect \reset_i \reset_i
   end
   attribute \module_not_derived 1
-  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:32.41-35.6"
+  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:38.41-41.6"
   cell $paramod\onehot2bin\WIDTH=s32'00000000000000000000000000000011 \o2b_stage_1
-    connect \binary_o \binary [5:4]
-    connect \onehot_i \d1_i
+    connect \binary_o \binary [1:0]
+    connect \onehot_i { \d1_i [2] \d1_i [0] \d1_i [1] }
   end
   attribute \module_not_derived 1
-  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:37.41-40.6"
+  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:43.41-46.6"
   cell $paramod\onehot2bin\WIDTH=s32'00000000000000000000000000000011 \o2b_stage_2
     connect \binary_o \binary [3:2]
-    connect \onehot_i \d2_i
-  end
-  attribute \module_not_derived 1
-  attribute \src "/foss/designs/sg13g2_pipeadc_3b/orfs/flow/../../verilog/rtl/adc_pipe_encoder_TOP.v:42.41-45.6"
-  cell $paramod\onehot2bin\WIDTH=s32'00000000000000000000000000000011 \o2b_stage_3
-    connect \binary_o \binary [1:0]
-    connect \onehot_i \d3_i
+    connect \onehot_i { \d2_i [2] \d2_i [0] \d2_i [1] }
   end
 end
 attribute \abc9_box 1

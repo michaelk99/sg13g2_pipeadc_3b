@@ -4,11 +4,11 @@
 === adc_pipe_encoder_TOP ===
 
    Number of wires:                 38
-   Number of wire bits:             46
+   Number of wire bits:             44
    Number of public wires:          11
-   Number of public wire bits:      19
+   Number of public wire bits:      17
    Number of ports:                  6
-   Number of port bits:             14
+   Number of port bits:             12
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
