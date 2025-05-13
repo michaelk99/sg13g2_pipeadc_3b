@@ -1,0 +1,6 @@
+numpy
+scipy
+sympy
+control
+matplotlib
+pygmid
