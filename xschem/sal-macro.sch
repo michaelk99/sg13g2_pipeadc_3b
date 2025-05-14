@@ -92,8 +92,8 @@ N 210 -690 270 -690 {lab=vdd}
 N 470 -600 470 -570 {lab=#net4}
 N 560 -570 640 -570 {lab=#net4}
 N 640 -590 640 -570 {lab=#net4}
-N 300 -590 300 -430 {lab=#net2}
-N 300 -430 410 -430 {lab=#net2}
+N 310 -590 310 -430 {lab=#net2}
+N 310 -430 410 -430 {lab=#net2}
 N 230 -600 430 -600 {lab=vclk}
 N 840 -690 940 -690 {lab=vdd}
 N 940 -690 940 -650 {lab=vdd}
@@ -146,7 +146,7 @@ N 760 -560 840 -560 {lab=#net5}
 N 760 -570 760 -560 {lab=#net5}
 C {title.sym} 160 0 0 0 {name=l1 author="Michael Koefinger"}
 C {devices/adc_bridge.sym} 900 -520 0 0 {name=A1 adc_bridge_model= comp0}
-C {devices/vccs.sym} 410 -340 0 0 {name=G1 value=10e-6}
+C {devices/vccs.sym} 410 -340 0 0 {name=G1 value=100e-6}
 C {netlist_at_end.sym} 30 -90 0 0 {name=MODEL only_toplevel=false value=".model comp0 adc_bridge(in_low=0.74 in_high=0.76)"}
 C {iopin.sym} 280 -150 0 1 {name=p1 lab=vss}
 C {ipin.sym} 330 -360 0 0 {name=p2 lab=vip_1}
@@ -201,12 +201,12 @@ footprint=1206
 device=resistor
 m=1}
 C {res.sym} 450 -370 0 0 {name=R5
-value=1Meg
+value=100Meg
 footprint=1206
 device=resistor
 m=1}
 C {res.sym} 490 -370 0 0 {name=R6
-value=1Meg
+value=100e-6
 footprint=1206
 device=resistor
 m=1}
