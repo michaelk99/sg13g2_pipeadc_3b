@@ -106,6 +106,7 @@ save xadc.xmdac1.vdac_p xadc.mdac1.vdac_n xadc.xmdac1.vgndp xadc.xmdac1.vgndn xa
 save xadc.xmdac1.xc1.vc_p xadc.xmdac1.xc2.vc_p xadc.xmdac1.xc3.vc_p xadc.xmdac1.xc4.vc_p
 save xadc.xmdac2.vdac_p xadc.mdac2.vdac_n xadc.xmdac2.vgndp xadc.xmdac2.vgndn xadc.xmdac2.vfb xadc.xmdac2.vbp
 save xadc.xmdac2.xc1.vc_p xadc.xmdac2.xc2.vc_p xadc.xmdac2.xc3.vc_p xadc.xmdac2.xc4.vc_p
+save xadc.xadc3.D0
 
 set wr_singlescale
 set wr_vecnames
@@ -137,8 +138,8 @@ alter @VIN[DC] = 0.0
 ** Main Simulations
 if $opSimOnly eq 0
 	** Set sources
-	*alter @VIN[PULSE]=[ -1.5 1.5 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
-	alter @VIN[SIN] = [ 0 1 $&f_sig t_delay 0 0 ]
+	alter @VIN[PULSE]=[ -1.5 1.5 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
+	*alter @VIN[SIN] = [ 0 1 $&f_sig t_delay 0 0 ]
 	tran $&tstep $&tstop $&tstart
 	
 	setplot tran1
@@ -169,6 +170,10 @@ if $opSimOnly eq 0
 	plot do12 do11 do10 vid
 	plot do22 do21 do20 vres1
 	plot do3 vres2
+	plot phi1 phi2 do12 do11 do10 vid
+	plot phi1 phi2 do22 do21 do20 vres1
+	plot phi1 phi2 do3 vres2
+	plot xadc.xadc3.D0
 
 end
 
