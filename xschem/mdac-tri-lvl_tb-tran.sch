@@ -4,12 +4,125 @@ K {}
 V {}
 S {}
 E {}
+B 2 160 40 960 440 {flags=graph
+ypos1=-0.1
+ypos2=1.5
+divy=5
+unity=1
+x2=5.5e-05
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=0
+legend=1
+dataset=-1
+divx=5
+subdivy=1
+y1=-0.1
+y2=1.5
+x1=5.000005e-05
+color="6 8 11 18 19 20 21"
+node="vin_p;vip_mdac
+vdac_n;xmdac.vdac_n
+track;phi1
+cin_p;vc2
+cfb_p;vc1
+vout_p;vop_mdac
+vgnd_p;xmdac.vgndn"
+linewidth_mult=2}
+B 2 160 460 960 860 {flags=graph
+ypos1=-0.1
+ypos2=1.5
+divy=5
+unity=1
+x2=5.5e-05
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=0
+legend=1
+dataset=-1
+divx=5
+subdivy=1
+y1=-1.5
+y2=1.5
+x1=5.000005e-05
+color="10 15 9 11"
+node="vid
+hold;phi2
+vod;vout
+vod_goal;settle_goal"
+linewidth_mult=2}
+B 2 1040 40 1840 440 {flags=graph
+ypos1=-1.5
+ypos2=1.5
+divy=5
+unity=1
+x2=5.5e-05
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=0
+legend=1
+dataset=-1
+divx=5
+subdivy=1
+y1=-1.5
+y2=1.5
+x1=5.000005e-05
+color="6 8 11 18 19 20 21"
+node="vin_n;vin_mdac
+vdac_p;xmdac.vdac_p
+track;phi1
+cin_n;vc4
+cfb_n;vc3
+vout_n;von_mdac
+vgnd_n;xmdac.vgndp"
+linewidth_mult=2}
+B 2 1040 460 1840 860 {flags=graph
+ypos1=-0.1
+ypos2=1.5
+divy=5
+unity=1
+x2=5.5e-05
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=0
+legend=1
+dataset=-1
+divx=5
+subdivy=1
+y1=0
+y2=1.5
+x1=5.000005e-05
+color="20 10"
+node="hold;phi2
+err;err"
+linewidth_mult=2}
 T {Check OTA bias point:
 1. startupSim = 1
 2. opSimOnly = 1
 
 3. Mark xclkgen, SHIFT+T to ignore
 4. Mark VPHI1, VCMO1, VCMO2; 2x SHIFT+T to activate} 920 -270 0 0 0.4 0.4 {}
+T {3-bit spec allows a static error after settling of 25%} 1160 870 0 0 0.4 0.4 {}
 N 270 -780 290 -780 {
 lab=GND}
 N 270 -580 290 -580 {
@@ -114,7 +227,7 @@ N 1270 -790 1270 -680 {lab=voutn}
 N 1340 -790 1340 -720 {lab=voutp}
 N 1270 -880 1270 -850 {lab=GND}
 N 1340 -880 1340 -850 {lab=GND}
-C {devices/launcher.sym} 680 -160 0 0 {name=h1
+C {devices/launcher.sym} 450 -200 0 0 {name=h1
 descr="Annotate OP"
 tclcommand="set show_hidden_texts 1; xschem annotate_op"}
 C {devices/code_shown.sym} -700 -1130 0 0 {name=STIMULI
@@ -194,23 +307,28 @@ if $opSimOnly eq 0
 	
 	setplot tran1
 	let vid = v(vipp,vinn)
+	let vip_mdac = v(vipp,xmdac.vgndn)
+	let vin_mdac = v(vinn,xmdac.vgndp)
 	let vcmo = (voutp+voutn)/2
 	let vcmi = (xmdac.vgndp+xmdac.vgndn)/2
 	let vod = v(vout)
-	let vdacd = xmdac.vdac_p-xmdac.vdac_n
+	let vdacd = xmdac.vdac_n-xmdac.vdac_p
 	let vc1 = v(xmdac.xc1.vc_p,xmdac.vgndn)
 	let vc2 = v(xmdac.xc2.vc_p,xmdac.vgndn)
 	let vc3 = v(xmdac.xc3.vc_p,xmdac.vgndp)
 	let vc4 = v(xmdac.xc4.vc_p,xmdac.vgndp)
+	let vop_mdac = v(voutp,vcmi)
+	let von_mdac = v(voutn,vcmi)
 	let settle_goal = 2*vid-vdacd
 	let err = (settle_goal-vod)/settle_goal
-	plot vid vod vcmo vcmi phi2 settle_goal
-	plot vid/2 vdacd/2 vc1 vc2 phi1
-	plot vid/2 vdacd/2 vc3 vc4 phi2
-	plot err*100 err_max*100 phi2*100
-	plot vid vipp vinn vdacd xmdac.vdac_p xmadc.vdac_n do2 do1 do0
 
+	write mdac-tri-lvl_tb-tran.raw
+
+	plot vid vod phi2 settle_goal
+	plot err*100 phi2*100
 end
+
+set appendwrite
 
 alter @VIN[DC] = 0
 alter @VCODE2[DC] = 0.0
@@ -231,7 +349,7 @@ C {devices/vsource.sym} 190 -330 0 0 {name=V3 value=1.5
 }
 C {devices/gnd.sym} 190 -270 0 0 {name=l33 lab=GND}
 C {devices/lab_pin.sym} 190 -400 1 0 {name=p61 sig_type=std_logic lab=di_pon}
-C {devices/launcher.sym} 680 -110 0 0 {name=h2
+C {devices/launcher.sym} 700 -200 0 0 {name=h2
 descr="Simulate" 
 tclcommand="xschem save; xschem netlist; xschem simulate"
 }
@@ -304,7 +422,7 @@ C {devices/gnd.sym} 1340 -530 0 0 {name=l12 lab=GND}
 C {lab_wire.sym} 1250 -680 0 0 {name=p10 sig_type=std_logic lab=voutn}
 C {lab_wire.sym} 1250 -720 0 0 {name=p11 sig_type=std_logic lab=voutp}
 C {devices/lab_pin.sym} 960 -910 1 0 {name=p17 sig_type=std_logic lab=di_pon}
-C {devices/vsource.sym} 270 -330 0 0 {name=V7 value=0.75
+C {devices/vsource.sym} 270 -330 0 0 {name=V7 value=1.5
 }
 C {devices/gnd.sym} 270 -270 0 0 {name=l14 lab=GND}
 C {devices/lab_pin.sym} 270 -400 1 0 {name=p18 sig_type=std_logic lab=vref_p}
@@ -354,3 +472,6 @@ C {devices/vsource.sym} 1340 -820 2 0 {name=VCMO2 value=0.75
 spice_ignore=true}
 C {devices/gnd.sym} 1270 -880 2 0 {name=l17 lab=GND}
 C {devices/gnd.sym} 1340 -880 2 0 {name=l18 lab=GND}
+C {devices/launcher.sym} 700 -140 0 0 {name=h3
+descr="Load waves" 
+tclcommand="xschem raw_read $netlist_dir/[file rootname [xschem get current_name]].raw tran"}
