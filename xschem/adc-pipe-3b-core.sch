@@ -4,6 +4,13 @@ K {}
 V {}
 S {}
 E {}
+T {SAMPLE on PHI1} 160 -230 0 0 0.4 0.4 {}
+T {TRACK on PHI1
+HOLD/AMP on PHI2} 630 -280 0 0 0.4 0.4 {}
+T {SAMPLE on PHI2} 930 -230 0 0 0.4 0.4 {}
+T {TRACK on PHI2
+HOLD/AMP on PHI1} 1390 -250 0 0 0.4 0.4 {}
+T {SAMPLE on PHI1} 1860 -340 0 0 0.4 0.4 {}
 N 470 -300 510 -300 {lab=do1[2:0]
 bus=true}
 N 510 -340 550 -340 {lab=do1[2:0]
@@ -27,7 +34,7 @@ N 1010 -320 1050 -320 {lab=vres1n}
 N 880 -400 1010 -400 {lab=vres1n}
 N 990 -300 1050 -300 {lab=vref}
 N 970 -280 1050 -280 {lab=vcm}
-N 950 -260 1050 -260 {lab=vphi1}
+N 950 -260 1050 -260 {lab=vphi2}
 N 230 -300 290 -300 {lab=vref}
 N 210 -280 290 -280 {lab=vcm}
 N 190 -260 290 -260 {lab=vphi1}
@@ -77,12 +84,8 @@ N 190 -720 190 -260 {lab=vphi1}
 N 130 -720 190 -720 {lab=vphi1}
 N 130 -740 600 -740 {lab=vphi2}
 N 600 -740 600 -510 {lab=vphi2}
-N 600 -740 1360 -740 {lab=vphi2}
-N 630 -720 950 -720 {lab=vphi1}
-N 950 -720 950 -260 {lab=vphi1}
-N 950 -720 1390 -720 {lab=vphi1}
-N 1390 -720 1390 -510 {lab=vphi1}
-N 1360 -740 1360 -510 {lab=vphi2}
+N 950 -740 1390 -740 {lab=vphi2}
+N 1360 -720 1870 -720 {lab=vphi1}
 N 130 -660 690 -660 {lab=vdd_1v5}
 N 130 -760 660 -760 {lab=di_ena}
 N 660 -760 660 -510 {lab=di_ena}
@@ -123,9 +126,13 @@ N 1680 -140 1830 -140 {lab=vss}
 N 1850 -700 1850 -480 {lab=vcm}
 N 1910 -440 2100 -440 {lab=do3}
 N 1870 -720 1870 -480 {lab=vphi1}
-N 1390 -720 1870 -720 {lab=vphi1}
 N 1830 -660 1830 -480 {lab=vdd_1v5}
 N 1480 -660 1830 -660 {lab=vdd_1v5}
+N 950 -740 950 -260 {lab=vphi2}
+N 600 -740 950 -740 {lab=vphi2}
+N 1390 -740 1390 -510 {lab=vphi2}
+N 1360 -720 1360 -510 {lab=vphi1}
+N 630 -720 1360 -720 {lab=vphi1}
 C {title.sym} 160 -30 0 0 {name=l1 author="Michael Koefinger"}
 C {mdac-tri-lvl.sym} 550 -510 0 0 {name=xmdac1 cap=100f}
 C {adc-tri-lvl-ideal.sym} 290 -360 0 0 {name=xadc1}
