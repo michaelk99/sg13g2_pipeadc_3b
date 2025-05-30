@@ -47,13 +47,13 @@ N 430 -200 620 -200 {lab=vdac_p}
 N 430 -450 620 -450 {lab=vdac_n}
 N 430 -170 450 -170 {lab=vss}
 N 430 -420 450 -420 {lab=vss}
-N 200 -480 230 -480 {lab=vref_n}
+N 200 -480 230 -480 {lab=vref_p}
 N 270 -420 310 -420 {lab=vcm}
 N 200 -420 270 -420 {lab=vcm}
 N 270 -170 310 -170 {lab=vcm}
-N 230 -480 310 -480 {lab=vref_n}
-N 250 -450 310 -450 {lab=vref_p}
-N 200 -450 250 -450 {lab=vref_p}
+N 230 -480 310 -480 {lab=vref_p}
+N 250 -450 310 -450 {lab=vref_n}
+N 200 -450 250 -450 {lab=vref_n}
 N 970 -470 970 -450 {lab=vgndn}
 N 1110 -340 1110 -120 {lab=di_ena}
 N 970 -390 970 -370 {lab=vgndp}
@@ -77,7 +77,7 @@ N 790 -570 790 -440 {lab=vgndn}
 N 540 -560 540 -430 {lab=vi_p}
 N 540 -300 540 -180 {lab=vi_n}
 N 450 -170 450 -100 {lab=vss}
-N 230 -480 230 -200 {lab=vref_n}
+N 230 -480 230 -200 {lab=vref_p}
 N 270 -420 270 -170 {lab=vcm}
 N 290 -510 310 -510 {lab=di_code[2..0]
 bus=true}
@@ -145,9 +145,9 @@ N 1380 -200 1380 -100 {lab=vss}
 N 1280 -490 1380 -490 {lab=vss}
 N 1280 -490 1280 -100 {lab=vss}
 N 1070 -100 1280 -100 {lab=vss}
-N 250 -230 310 -230 {lab=vref_p}
-N 250 -450 250 -230 {lab=vref_p}
-N 230 -200 310 -200 {lab=vref_n}
+N 250 -230 310 -230 {lab=vref_n}
+N 250 -450 250 -230 {lab=vref_n}
+N 230 -200 310 -200 {lab=vref_p}
 C {title.sym} 160 0 0 0 {name=l1 author="Michael Koefinger"}
 C {ota-5t-fd.sym} 990 -450 0 0 {name=xota}
 C {switch_ngspice.sym} 1240 -510 0 1 {name=S1 model=SW1
@@ -173,8 +173,8 @@ C {sw_cap.sym} 620 -350 0 0 {name=xc3 cap=\{cap\} ron=1 roff=1G
 }
 C {sw_cap.sym} 620 -230 0 0 {name=xc4 cap=\{cap\} ron=1 roff=1G
 }
-C {ipin.sym} 200 -450 0 0 {name=p12 lab=vref_p}
-C {ipin.sym} 200 -480 0 0 {name=p13 lab=vref_n}
+C {ipin.sym} 200 -480 0 0 {name=p12 lab=vref_p}
+C {ipin.sym} 200 -450 0 0 {name=p13 lab=vref_n}
 C {sw_dac.sym} 310 -520 0 0 {name=xsw1 ron=1 roff=1G
 }
 C {sw_dac.sym} 310 -270 0 0 {name=xsw2 ron=1 roff=1G

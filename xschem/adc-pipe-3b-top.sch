@@ -62,4 +62,4 @@ C {adc-pipe-encoder-top.sym} 670 -300 0 0 {name=ADUT model=encoder
 ***Verilator***
 device_model=".model encoder d_cosim simulation=\\"../../verilog/rtl/adc_pipe_encoder_TOP.so\\""
 
-tclcommand="edit_file [abs_sym_path adc.v]"}
+*tclcommand="edit_file [abs_sym_path adc.v]"}

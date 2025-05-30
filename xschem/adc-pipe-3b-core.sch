@@ -18,9 +18,7 @@ N 1270 -340 1310 -340 {lab=do2[2..0]
 bus=true}
 N 1680 -440 1710 -440 {lab=vres2p}
 N 1680 -400 1710 -400 {lab=vres2n}
-N 1030 -440 1310 -440 {lab=vres1p}
 N 590 -290 600 -290 {lab=vss}
-N 1010 -400 1310 -400 {lab=vres1n}
 N 1030 -340 1050 -340 {lab=vres1p}
 N 880 -440 1030 -440 {lab=vres1p}
 N 1010 -320 1050 -320 {lab=vres1n}
@@ -134,6 +132,8 @@ N 930 -740 1360 -740 {lab=vphi2}
 N 170 -720 600 -720 {lab=vphi1}
 N 950 -720 1390 -720 {lab=vphi1}
 N 190 -740 630 -740 {lab=vphi2}
+N 1030 -440 1310 -440 {lab=vres1p}
+N 1010 -400 1310 -400 {lab=vres1n}
 C {title.sym} 160 -30 0 0 {name=l1 author="Michael Koefinger"}
 C {mdac-tri-lvl.sym} 550 -510 0 0 {name=xmdac1 cap=100f}
 C {adc-tri-lvl-ideal.sym} 290 -360 0 0 {name=xadc1}
