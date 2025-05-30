@@ -25,14 +25,14 @@ L 4 0 0 0 110 {}
 L 4 0 110 120 110 {}
 L 4 120 0 120 110 {}
 L 4 0 0 120 0 {}
-B 5 -2.5 7.5 2.5 12.5 {name=di_code[2:0] dir=in}
+B 5 -2.5 7.5 2.5 12.5 {name=di_code[2..0] dir=in}
 B 5 -2.5 37.5 2.5 42.5 {name=vref_p dir=inout}
 B 5 -2.5 67.5 2.5 72.5 {name=vref_n dir=inout}
 B 5 117.5 67.5 122.5 72.5 {name=vo dir=inout}
 B 5 -2.5 97.5 2.5 102.5 {name=vcm dir=inout}
 B 5 117.5 97.5 122.5 102.5 {name=vss dir=inout}
 T {@name} 75 -12 0 0 0.2 0.2 {}
-T {di_code[2:0]} 15 6 0 0 0.2 0.2 {}
+T {di_code[2..0]} 15 6 0 0 0.2 0.2 {}
 T {vref_p} 45 36 0 1 0.2 0.2 {}
 T {vref_n} 45 66 0 1 0.2 0.2 {}
 T {vo} 115 66 0 1 0.2 0.2 {}

@@ -4,17 +4,17 @@ K {}
 V {}
 S {}
 E {}
-N 480 -290 510 -290 {lab=do1[2:0]
+N 480 -290 510 -290 {lab=do1[2..0]
 bus=true}
-N 510 -340 550 -340 {lab=do1[2:0]
+N 510 -340 550 -340 {lab=do1[2..0]
 bus=true}
 N 270 -440 550 -440 {lab=vinp}
 N 250 -400 550 -400 {lab=vinn}
 N 270 -340 290 -340 {lab=vinp}
 N 250 -320 290 -320 {lab=vinn}
-N 1240 -290 1270 -290 {lab=do2[2:0]
+N 1240 -290 1270 -290 {lab=do2[2..0]
 bus=true}
-N 1270 -340 1310 -340 {lab=do2[2:0]
+N 1270 -340 1310 -340 {lab=do2[2..0]
 bus=true}
 N 1680 -440 1710 -440 {lab=vres2p}
 N 1680 -400 1710 -400 {lab=vres2n}
@@ -34,11 +34,11 @@ N 130 -440 270 -440 {lab=vinp}
 N 1830 -140 2050 -140 {lab=vss}
 N 380 -140 600 -140 {lab=vss}
 N 1140 -140 1360 -140 {lab=vss}
-N 510 -290 510 -180 {lab=do1[2:0]
+N 510 -290 510 -180 {lab=do1[2..0]
 bus=true}
 N 270 -440 270 -340 {lab=vinp}
 N 250 -400 250 -320 {lab=vinn}
-N 1270 -290 1270 -260 {lab=do2[2:0]
+N 1270 -290 1270 -260 {lab=do2[2..0]
 bus=true}
 N 380 -220 380 -140 {lab=vss}
 N 600 -290 600 -140 {lab=vss}
@@ -67,16 +67,13 @@ N 210 -700 210 -280 {lab=vcm}
 N 130 -700 210 -700 {lab=vcm}
 N 970 -700 970 -280 {lab=vcm}
 N 810 -700 970 -700 {lab=vcm}
-N 630 -720 630 -510 {lab=vphi1}
-N 170 -720 170 -240 {lab=vphi1}
-N 170 -720 630 -720 {lab=vphi1}
-N 190 -740 600 -740 {lab=vphi2}
-N 600 -740 600 -510 {lab=vphi2}
-N 950 -740 1360 -740 {lab=vphi2}
-N 930 -720 1390 -720 {lab=vphi1}
-N 930 -720 930 -240 {lab=vphi1}
 N 1390 -720 1390 -510 {lab=vphi1}
+N 170 -720 170 -240 {lab=vphi1}
+N 600 -720 950 -720 {lab=vphi1}
+N 630 -740 930 -740 {lab=vphi2}
 N 1360 -740 1360 -510 {lab=vphi2}
+N 600 -720 600 -510 {lab=vphi1}
+N 630 -740 630 -510 {lab=vphi2}
 N 130 -660 690 -660 {lab=vdd_1v5}
 N 130 -760 660 -760 {lab=di_ena}
 N 660 -760 660 -510 {lab=di_ena}
@@ -88,9 +85,9 @@ N 1420 -760 1420 -510 {lab=di_ena}
 N 2050 -780 2050 -140 {lab=vss}
 N 1680 -780 2050 -780 {lab=vss}
 N 990 -680 990 -300 {lab=vref}
-N 1270 -260 2100 -260 {lab=do2[2:0]
+N 1270 -260 2100 -260 {lab=do2[2..0]
 bus=true}
-N 510 -180 2100 -180 {lab=do1[2:0]
+N 510 -180 2100 -180 {lab=do1[2..0]
 bus=true}
 N 1680 -310 1680 -140 {lab=vss}
 N 1360 -140 1680 -140 {lab=vss}
@@ -112,13 +109,12 @@ N 1830 -360 1830 -140 {lab=vss}
 N 1680 -140 1830 -140 {lab=vss}
 N 1850 -700 1850 -480 {lab=vcm}
 N 1930 -440 2100 -440 {lab=do3}
-N 1390 -720 1890 -720 {lab=vphi1}
 N 1830 -660 1830 -480 {lab=vdd_1v5}
 N 1480 -660 1830 -660 {lab=vdd_1v5}
-N 510 -340 510 -290 {lab=do1[2:0]
+N 510 -340 510 -290 {lab=do1[2..0]
 bus=true}
 N 130 -140 380 -140 {lab=vss}
-N 1270 -340 1270 -290 {lab=do2[2:0]
+N 1270 -340 1270 -290 {lab=do2[2..0]
 bus=true}
 N 600 -140 1140 -140 {lab=vss}
 N 130 -720 170 -720 {lab=vphi1}
@@ -126,14 +122,18 @@ N 170 -240 290 -240 {lab=vphi1}
 N 190 -260 290 -260 {lab=vphi2}
 N 190 -740 190 -260 {lab=vphi2}
 N 130 -740 190 -740 {lab=vphi2}
-N 630 -720 930 -720 {lab=vphi1}
-N 950 -260 1050 -260 {lab=vphi2}
-N 950 -740 950 -260 {lab=vphi2}
-N 600 -740 950 -740 {lab=vphi2}
-N 930 -240 1050 -240 {lab=vphi1}
+N 950 -260 1050 -260 {lab=vphi1}
 N 1360 -740 1870 -740 {lab=vphi2}
+N 930 -240 1050 -240 {lab=vphi2}
 N 1870 -740 1870 -480 {lab=vphi2}
 N 1890 -720 1890 -480 {lab=vphi1}
+N 930 -740 930 -240 {lab=vphi2}
+N 950 -720 950 -260 {lab=vphi1}
+N 1390 -720 1890 -720 {lab=vphi1}
+N 930 -740 1360 -740 {lab=vphi2}
+N 170 -720 600 -720 {lab=vphi1}
+N 950 -720 1390 -720 {lab=vphi1}
+N 190 -740 630 -740 {lab=vphi2}
 C {title.sym} 160 -30 0 0 {name=l1 author="Michael Koefinger"}
 C {mdac-tri-lvl.sym} 550 -510 0 0 {name=xmdac1 cap=100f}
 C {adc-tri-lvl-ideal.sym} 290 -360 0 0 {name=xadc1}
@@ -154,8 +154,8 @@ C {lab_wire.sym} 1120 -440 0 0 {name=p11 sig_type=std_logic lab=vres1p}
 C {lab_wire.sym} 1120 -400 0 0 {name=p10 sig_type=std_logic lab=vres1n}
 C {lab_wire.sym} 1740 -450 0 0 {name=p12 sig_type=std_logic lab=vres2p}
 C {lab_wire.sym} 1740 -390 2 1 {name=p13 sig_type=std_logic lab=vres2n}
-C {opin.sym} 2100 -180 0 0 {name=p14 lab=do1[2:0]}
-C {opin.sym} 2100 -260 0 0 {name=p15 lab=do2[2:0]}
+C {opin.sym} 2100 -180 0 0 {name=p14 lab=do1[2..0]}
+C {opin.sym} 2100 -260 0 0 {name=p15 lab=do2[2..0]}
 C {opin.sym} 2100 -440 0 0 {name=p16 lab=do3}
 C {capa.sym} 1680 -530 0 0 {name=C1
 m=1

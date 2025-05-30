@@ -6,12 +6,8 @@ S {}
 E {}
 N 350 -210 350 -160 {lab=vss}
 N 480 -290 590 -290 {lab=do3}
-N 480 -250 590 -250 {lab=do1[2..0]
-bus=true}
 N 670 -210 670 -160 {lab=vss}
 N 670 -440 670 -380 {lab=vdd_1v5}
-N 760 -250 890 -250 {lab=do_b[2:0]
-bus=true}
 N 480 -270 590 -270 {lab=do2[2..0]
 bus=true}
 N 210 -460 370 -460 {lab=di_ena}
@@ -37,12 +33,18 @@ N 210 -310 260 -310 {lab=vinp}
 N 210 -230 260 -230 {lab=vinn}
 N 350 -160 670 -160 {lab=vss}
 N 210 -160 350 -160 {lab=vss}
+N 760 -250 890 -250 {lab=do_b[2..0]
+bus=true}
+N 480 -250 590 -250 {lab=do1[2..0]
+bus=true}
+N 410 -520 940 -520 {lab=vphi2}
+N 940 -520 940 -320 {lab=vphi2}
+N 760 -320 940 -320 {lab=vphi2}
 C {title.sym} 160 -30 0 0 {name=l1 author="D. Brandstetter, M. Koefinger"}
 C {adc-pipe-3b-core.sym} 260 -330 0 0 {name=xpipe}
 C {lab_wire.sym} 560 -250 0 0 {name=p11 sig_type=std_logic lab=do1[2..0]}
 C {lab_wire.sym} 560 -270 0 0 {name=p19 sig_type=std_logic lab=do2[2..0]}
 C {lab_wire.sym} 520 -290 0 0 {name=p21 sig_type=std_logic lab=do3}
-C {adc_pipe_encoder_TOP.sym} 670 -300 0 0 {name=xencode}
 C {ipin.sym} 210 -310 0 0 {name=p1 lab=vinp}
 C {ipin.sym} 210 -230 0 0 {name=p2 lab=vinn}
 C {ipin.sym} 210 -480 0 0 {name=p3 lab=di_rst}
@@ -53,4 +55,11 @@ C {ipin.sym} 210 -540 0 0 {name=p7 lab=vref}
 C {ipin.sym} 210 -560 0 0 {name=p8 lab=vcm}
 C {iopin.sym} 210 -440 0 1 {name=p9 lab=vdd_1v5}
 C {iopin.sym} 210 -160 0 1 {name=p10 lab=vss}
-C {opin.sym} 890 -250 0 0 {name=p12 lab=do_b[2:0]}
+C {opin.sym} 890 -250 0 0 {name=p12 lab=do_b[2..0]}
+C {lab_wire.sym} 560 -250 0 0 {name=p13 sig_type=std_logic lab=do1[2..0]}
+C {adc-pipe-encoder-top.sym} 670 -300 0 0 {name=ADUT model=encoder
+
+***Verilator***
+device_model=".model encoder d_cosim simulation=\\"../../verilog/rtl/adc_pipe_encoder_TOP.so\\""
+
+tclcommand="edit_file [abs_sym_path adc.v]"}

@@ -13,7 +13,8 @@ module adc_pipe_encoder #(
     parameter REDUNDANCY         = 1, // Number of redundant bits between stages
     parameter BITS_ADC_STAGE     = 1  // Number of bits contributed by the final ADC stage
 )(
-    input wire clock_i,                      
+    input wire clock_i,  
+    input wire clock2_i,                    
     input wire reset_i,                      
     input wire [(NUM_BITS_PER_STAGE * ((NUM_BITS-BITS_ADC_STAGE)/(NUM_BITS_PER_STAGE-REDUNDANCY)))-1:0] d_stage_i,      // Data from all stages 1 - N-1
     input wire [BITS_ADC_STAGE-1:0]                                                                     d_last_stage_i, // Data from the final N stage
@@ -56,7 +57,7 @@ endgenerate
 integer i;
 
 // Process pipeline stages
-always @(posedge clock_i) begin
+always @(posedge clock_i, posedge clock2_i) begin
 
     for (i = 0; i <= NUM_STAGES; i = i + 1) begin
         if(reset_i) begin
@@ -72,6 +73,8 @@ always @(posedge clock_i) begin
         end
 	end
 end
+
+
 
 
 // // Process even-numbered pipeline stages on positive clock edge

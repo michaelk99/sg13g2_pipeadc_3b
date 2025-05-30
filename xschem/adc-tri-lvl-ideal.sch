@@ -97,19 +97,16 @@ N 520 -570 660 -570 {lab=CLK}
 N 520 -680 520 -570 {lab=CLK}
 N 520 -680 660 -680 {lab=CLK}
 N 120 -280 450 -280 {lab=vss}
-N 1310 -700 1370 -700 {lab=do[2]}
-N 1310 -640 1370 -640 {lab=do[1]}
-N 1310 -580 1370 -580 {lab=do[0]}
-N 1380 -720 1380 -570 {lab=do[2:0]
+N 1280 -720 1280 -570 {lab=do[2..0]
 bus=true}
-N 1380 -720 1410 -720 {lab=do[2:0]
+N 1280 -720 1310 -720 {lab=do[2..0]
 bus=true}
 N 1070 -700 1140 -700 {lab=H2}
 N 1070 -640 1140 -640 {lab=H1}
 N 1070 -580 1140 -580 {lab=H0}
-N 1200 -700 1250 -700 {lab=do2}
-N 1200 -640 1250 -640 {lab=do1}
-N 1200 -580 1250 -580 {lab=do0}
+N 1200 -700 1270 -700 {lab=do2}
+N 1200 -640 1270 -640 {lab=do1}
+N 1200 -580 1270 -580 {lab=do0}
 N 120 -320 160 -320 {lab=vclk_reg}
 N 220 -320 560 -320 {lab=CLK_REG}
 N 560 -520 560 -320 {lab=CLK_REG}
@@ -144,7 +141,7 @@ C {ipin.sym} 120 -360 0 0 {name=p8 lab=vclk}
 C {lab_wire.sym} 330 -360 0 0 {name=p9 sig_type=std_logic lab=CLK}
 C {devices/dac_bridge.sym} 1170 -640 0 0 {name=A3 dac_bridge_model= dac1}
 C {devices/dac_bridge.sym} 1170 -700 0 0 {name=A4 dac_bridge_model= dac1}
-C {opin.sym} 1410 -720 0 0 {name=p12 lab=do[2:0]}
+C {opin.sym} 1310 -720 0 0 {name=p12 lab=do[2..0]}
 C {netlist_at_end.sym} 1160 -450 0 0 {name=THERMO2ONEHOT only_toplevel=false value="
 a23 [NQ1 Q0] %d(H0) and1
 a24 [NQ1 NQ0] %d(H1) and1
@@ -154,15 +151,9 @@ C {devices/dac_bridge.sym} 1170 -580 0 0 {name=A2 dac_bridge_model= dac1}
 C {lab_wire.sym} 1120 -700 0 0 {name=p10 sig_type=std_logic lab=H2}
 C {lab_wire.sym} 1120 -640 0 0 {name=p11 sig_type=std_logic lab=H1}
 C {lab_wire.sym} 1120 -580 0 0 {name=p13 sig_type=std_logic lab=H0}
-C {bus_connect_nolab.sym} 1380 -710 2 0 {name=r1}
-C {bus_connect_nolab.sym} 1380 -650 2 0 {name=r2}
-C {bus_connect_nolab.sym} 1380 -590 2 0 {name=r3}
-C {lab_wire.sym} 1360 -700 0 0 {name=p14 sig_type=std_logic lab=do[2]}
-C {lab_wire.sym} 1360 -640 0 0 {name=p15 sig_type=std_logic lab=do[1]}
-C {lab_wire.sym} 1360 -580 0 0 {name=p16 sig_type=std_logic lab=do[0]}
-C {vsource.sym} 1280 -700 3 0 {name=V1 value=0 savecurrent=false}
-C {vsource.sym} 1280 -640 3 0 {name=V2 value=0 savecurrent=false}
-C {vsource.sym} 1280 -580 3 0 {name=V3 value=0 savecurrent=false}
+C {bus_connect_nolab.sym} 1280 -710 2 0 {name=r1}
+C {bus_connect_nolab.sym} 1280 -650 2 0 {name=r2}
+C {bus_connect_nolab.sym} 1280 -590 2 0 {name=r3}
 C {lab_wire.sym} 1240 -700 0 0 {name=p17 sig_type=std_logic lab=do2}
 C {lab_wire.sym} 1240 -640 0 0 {name=p18 sig_type=std_logic lab=do1}
 C {lab_wire.sym} 1240 -580 0 0 {name=p19 sig_type=std_logic lab=do0}

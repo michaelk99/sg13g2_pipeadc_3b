@@ -49,9 +49,7 @@ N 130 -300 130 -260 {
 lab=vref}
 N 50 -290 50 -260 {
 lab=vclk}
-N 770 -410 770 -380 {lab=vclk}
 N 730 -260 730 -210 {lab=GND}
-N 830 -340 880 -340 {lab=do}
 N 130 -200 130 -170 {lab=GND}
 N 830 -300 880 -300 {lab=do_b}
 N 730 -420 730 -380 {lab=vdd}
@@ -59,9 +57,11 @@ N 210 -200 210 -170 {
 lab=GND}
 N 210 -290 210 -260 {
 lab=vdd}
-N 790 -410 790 -380 {lab=vclk}
-N 770 -410 790 -410 {lab=vclk}
-N 770 -420 770 -410 {lab=vclk}
+N 770 -400 770 -380 {lab=vclk}
+N 830 -340 880 -340 {lab=do}
+N 770 -400 790 -400 {lab=vclk}
+N 770 -420 770 -400 {lab=vclk}
+N 790 -400 790 -380 {lab=vclk}
 C {devices/vsource.sym} 360 -200 0 0 {name=V2 value=0.75
 }
 C {devices/vcvs.sym} 430 -340 0 0 {name=E1 value=-0.5}
@@ -97,7 +97,7 @@ let tfr_clk = tper_clk/100
 let ton_clk = tper_clk/2-2*tfr_clk
 
 ** Set input signal
-let f_sig = 100k
+let f_sig = 50k
 let tper_sig = 1/f_sig
 let tfr_sig = tper_sig/100
 *let ton_sig = tper_sig*1/1000

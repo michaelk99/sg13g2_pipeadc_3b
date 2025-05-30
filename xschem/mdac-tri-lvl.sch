@@ -79,13 +79,13 @@ N 540 -300 540 -180 {lab=vi_n}
 N 450 -170 450 -100 {lab=vss}
 N 230 -480 230 -200 {lab=vref_n}
 N 270 -420 270 -170 {lab=vcm}
-N 290 -510 310 -510 {lab=di_code[2:0]
+N 290 -510 310 -510 {lab=di_code[2..0]
 bus=true}
-N 290 -260 310 -260 {lab=di_code[2:0]
+N 290 -260 310 -260 {lab=di_code[2..0]
 bus=true}
-N 290 -510 290 -260 {lab=di_code[2:0]
+N 290 -510 290 -260 {lab=di_code[2..0]
 bus=true}
-N 200 -510 290 -510 {lab=di_code[2:0]
+N 200 -510 290 -510 {lab=di_code[2..0]
 bus=true}
 N 580 -540 620 -540 {lab=vtrack}
 N 440 -580 440 -540 {lab=vtrack}
@@ -180,10 +180,10 @@ C {sw_dac.sym} 310 -520 0 0 {name=xsw1 ron=1 roff=1G
 C {sw_dac.sym} 310 -270 0 0 {name=xsw2 ron=1 roff=1G
 }
 C {ipin.sym} 200 -420 0 0 {name=p14 lab=vcm}
-C {ipin.sym} 200 -510 0 0 {name=p15 lab=di_code[2:0]}
+C {ipin.sym} 200 -510 0 0 {name=p15 lab=di_code[2..0]}
 C {ipin.sym} 200 -580 0 0 {name=p16 lab=vtrack}
 C {ipin.sym} 200 -600 0 0 {name=p17 lab=vhold}
-C {lab_wire.sym} 290 -510 0 0 {name=p24 sig_type=std_logic lab=di_code[2:0]}
+C {lab_wire.sym} 290 -510 0 0 {name=p24 sig_type=std_logic lab=di_code[2..0]}
 C {lab_wire.sym} 1390 -350 0 1 {name=p11 sig_type=std_logic lab=vhold}
 C {lab_wire.sym} 1360 -350 0 0 {name=p20 sig_type=std_logic lab=vtrack}
 C {lab_wire.sym} 1280 -580 3 0 {name=p21 sig_type=std_logic lab=vtrack}
