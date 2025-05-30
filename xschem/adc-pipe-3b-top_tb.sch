@@ -4,12 +4,12 @@ K {}
 V {}
 S {}
 E {}
-B 2 1010 -630 1810 -230 {flags=graph
+B 2 2130 -880 2930 -480 {flags=graph
 ypos1=-0.1
 ypos2=1.5
 divy=5
 unity=1
-x2=9.3792027e-05
+x2=7e-05
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -36,25 +36,24 @@ divx=5
 subdivy=1
 y1=-0.1
 y2=1.5
-x1=9.1134377e-05}
-B 2 1020 -1160 1820 -760 {flags=graph
-ypos1=-0.3
-ypos2=1.5
+x1=5.000005e-05}
+B 2 1240 -440 2040 -40 {flags=graph
+ypos1=-0.68109387
+ypos2=1.1189062
 divy=5
 unity=1
-x2=9.3792027e-05
+x2=7e-05
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
-node="vres2;vres2
+node="vi-stage3;vres2
 do3;xadc.do3
-phi1;phi1
-phi2;phi2"
-color="4 6 21 7"
+sample;phi1"
+color="7 21 12"
 unitx=1
 logx=0
 logy=0
-hilight_wave=1
+hilight_wave=-1
 digital=1
 legend=1
 linewidth_mult=2
@@ -62,7 +61,67 @@ dataset=-1
 divx=5
 subdivy=1
 y1=-0.3
-x1=9.1134377e-05
+x1=5.000005e-05
+y2=1.5}
+B 2 1240 -1320 2040 -920 {flags=graph
+ypos1=-0.07611933
+ypos2=1.723881
+divy=5
+unity=1
+x2=7e-05
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+node="vi-stage1;vid
+do1[2];xadc.do12
+do1[1];xadc.do11
+do1[0];xadc.do10
+vo-stage1;vres1
+track;phi1
+hold;phi2"
+color="7 21 21 21 6 12 13"
+unitx=1
+logx=0
+logy=0
+hilight_wave=-1
+digital=1
+legend=1
+linewidth_mult=2
+dataset=-1
+divx=5
+subdivy=1
+y1=-0.3
+x1=5.000005e-05
+y2=1.5}
+B 2 1240 -880 2040 -480 {flags=graph
+ypos1=-0.3
+ypos2=1.5
+divy=5
+unity=1
+x2=7e-05
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+node="vi-stage2;vres1
+do2[2];xadc.do22
+do2[1];xadc.do21
+do2[0];xadc.do20
+vo-stage2;vres2
+track;phi2
+hold;phi1"
+color="7 21 21 21 6 12 13"
+unitx=1
+logx=0
+logy=0
+hilight_wave=-1
+digital=1
+legend=1
+linewidth_mult=2
+dataset=-1
+divx=5
+subdivy=1
+y1=-0.3
+x1=5.000005e-05
 y2=1.5}
 N 270 -780 290 -780 {
 lab=GND}
@@ -147,11 +206,11 @@ value="
 .control
 save vin vip vid vcmi phi1 phi2 vref clock reset do_b2 do_b1 do_b0 vdig vdig_plt
 save xadc.xpipe.vres1p xadc.xpipe.vres1n xadc.xpipe.vres2p xadc.xpipe.vres2n
-save xadc.xpipe.xmdac1.vdac_p xadc.xpipe.mdac1.vdac_n xadc.xpipe.xmdac1.vgndp xadc.xpipe.xmdac1.vgndn xadc.xpipe.xmdac1.vfb xadc.xpipe.xmdac1.vbp
+save xadc.xpipe.xmdac1.vdac_p xadc.xpipe.xmdac1.vdac_n xadc.xpipe.xmdac1.vgndp xadc.xpipe.xmdac1.vgndn xadc.xpipe.xmdac1.vfb xadc.xpipe.xmdac1.vbp
 save xadc.xpipe.xmdac1.xc1.vc_p xadc.xpipe.xmdac1.xc2.vc_p xadc.xpipe.xmdac1.xc3.vc_p xadc.xpipe.xmdac1.xc4.vc_p
-save xadc.xpipe.xmdac2.vdac_p xadc.xpipe.mdac2.vdac_n xadc.xpipe.xmdac2.vgndp xadc.xpipe.xmdac2.vgndn xadc.xpipe.xmdac2.vfb xadc.xpipe.xmdac2.vbp
+save xadc.xpipe.xmdac2.vdac_p xadc.xpipe.xmdac2.vdac_n xadc.xpipe.xmdac2.vgndp xadc.xpipe.xmdac2.vgndn xadc.xpipe.xmdac2.vfb xadc.xpipe.xmdac2.vbp
 save xadc.xpipe.xmdac2.xc1.vc_p xadc.xpipe.xmdac2.xc2.vc_p xadc.xpipe.xmdac2.xc3.vc_p xadc.xpipe.xmdac2.xc4.vc_p
-save xadc.do3
+save xadc.do3 xadc.do22 xadc.do21 xadc.do20 xadc.do12 xadc.do11 xadc.do10
 
 set wr_singlescale
 set wr_vecnames
@@ -175,7 +234,7 @@ let ton_sig = tper_sig*1/1000
 
 ** Set transient simulation parameters
 let tstep = 0.001/fs
-let tstop = 5/f_sig+t_delay
+let tstop = 2/f_sig+t_delay
 let tstart = t_delay
 
 alter @VIN[DC] = 0.0
@@ -188,7 +247,6 @@ if $opSimOnly eq 0
 	alter @VIN[SIN] = [ 0 1 $&f_sig t_delay 0 0 ]
 	tran $&tstep $&tstop $&tstart
 		
-
 	setplot tran1
 	let vid = v(vid)
 	let vres1 = xadc.xpipe.vres1p - xadc.xpipe.vres1n
@@ -209,6 +267,9 @@ if $opSimOnly eq 0
 	let err1 = 2*vid-vres1
 	let err2 = 2*vres1-vres2
 
+	let vdac_1 = v(xadc.xpipe.xmdac1.vdac_p,xadc.xpipe.xmdac1.vdac_n)
+	let vdac_2 = v(xadc.xpipe.xmdac2.vdac_p,xadc.xpipe.xmdac2.vdac_n)
+
 	let clock = phi1
 	let reset = reset
 	let do_b2 = do_b2
@@ -220,18 +281,18 @@ if $opSimOnly eq 0
 
 	write adc-pipe-3b-top_tb.raw
 
-	plot vid vres1 vcmo1 vcmi1 phi2
-	plot vcap_in_n v_in_n v_dac_p vcap_in_p v_in_p
-	plot err1
-	plot err2
-	plot vid vres1 vres2
-	plot do12 do11 do10 vid
-	plot do22 do21 do20 vres1
-	plot do3 vres2
+	*plot vid vres1 vcmo1 vcmi1 phi2
+	*plot vcap_in_n v_in_n v_dac_p vcap_in_p v_in_p
+	*plot err1
+	*plot err2
+	*plot vid vres1 vres2
+	plot xadc.do12 xadc.do11 xadc.do10 vid
+	plot xadc.do22 xadc.do21 xadc.do20 vres1
+	plot xadc.do3 vres2
 	plot do_b2 do_b1 do_b0
-	plot vid vdig_plt
-
-
+	*plot vid vdig_plt
+	plot vid vdac_1 vres1
+	plot vres1 vdac_2 vres2
 end
 
 set appendwrite
