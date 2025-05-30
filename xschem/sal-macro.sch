@@ -146,7 +146,7 @@ N 760 -560 840 -560 {lab=#net5}
 N 760 -570 760 -560 {lab=#net5}
 C {title.sym} 160 0 0 0 {name=l1 author="Michael Koefinger"}
 C {devices/adc_bridge.sym} 900 -520 0 0 {name=A1 adc_bridge_model= comp0}
-C {devices/vccs.sym} 410 -340 0 0 {name=G1 value=100e-6}
+C {devices/vccs.sym} 410 -340 0 0 {name=G1 value=10e-6}
 C {netlist_at_end.sym} 30 -90 0 0 {name=MODEL only_toplevel=false value=".model comp0 adc_bridge(in_low=0.74 in_high=0.76)"}
 C {iopin.sym} 280 -150 0 1 {name=p1 lab=vss}
 C {ipin.sym} 330 -360 0 0 {name=p2 lab=vip_1}
