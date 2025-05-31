@@ -43,19 +43,25 @@ N 620 -350 660 -350 {
 lab=vi_p}
 N 620 -290 660 -290 {
 lab=vi_n}
-N 730 -420 730 -380 {
-lab=vref}
 N 750 -420 750 -380 {
 lab=vcm}
 N 130 -300 130 -260 {
 lab=vref}
 N 50 -290 50 -260 {
 lab=vclk}
-N 770 -420 770 -380 {lab=vclk}
 N 730 -260 730 -210 {lab=GND}
-N 810 -340 840 -340 {lab=do}
 N 130 -200 130 -170 {lab=GND}
-N 810 -300 840 -300 {lab=do_b}
+N 830 -300 880 -300 {lab=do_b}
+N 730 -420 730 -380 {lab=vdd}
+N 210 -200 210 -170 {
+lab=GND}
+N 210 -290 210 -260 {
+lab=vdd}
+N 770 -400 770 -380 {lab=vclk}
+N 830 -340 880 -340 {lab=do}
+N 770 -400 790 -400 {lab=vclk}
+N 770 -420 770 -400 {lab=vclk}
+N 790 -400 790 -380 {lab=vclk}
 C {devices/vsource.sym} 360 -200 0 0 {name=V2 value=0.75
 }
 C {devices/vcvs.sym} 430 -340 0 0 {name=E1 value=-0.5}
@@ -91,27 +97,31 @@ let tfr_clk = tper_clk/100
 let ton_clk = tper_clk/2-2*tfr_clk
 
 ** Set input signal
-let f_sig = 200k
+let f_sig = 50k
 let tper_sig = 1/f_sig
-let tfr_sig = tper_sig*5/10
-let ton_sig = tper_sig*1/1000
+let tfr_sig = tper_sig/100
+*let ton_sig = tper_sig*1/1000
+let ton_sig = tper_sig/10-2*tfr_sig
 
 ** Set sources
 alter @VCLK[PULSE]=[ 0 1.5 0 $&tfr_clk $&tfr_clk $&ton_clk $&tper_clk 0 ]
-*alter @VIN[PULSE]=[ -1.5 1.5 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
-alter @VIN[SIN] = [ 0 1.5 $&f_sig 0 0 0 ]
+alter @VIN[PULSE]=[ -0.2 0.2 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
+*alter @VIN[SIN] = [ 0 1.5 $&f_sig 0 0 0 ]
 alter @VIN[DC] = 0.0
 
 
 ** Set transient simulation parameters
-let tstep = 0.001/fclk
-let tstop = 1/f_sig
+let tstep = 0.0001/fclk
+let tstop = 5/f_sig
 let tstart = 0
 
 ** Main Simulations	
 tran $&tstep $&tstop $&tstart $&tstep
 setplot tran1
-plot vid do do_b
+let vp = xadc.xcomp.vp
+let vq = xadc.xcomp.vq
+plot vid do vclk
+plot vp vq
 op
 remzerovec
 write adc-tri-lvl-ideal_tb.raw
@@ -123,13 +133,17 @@ C {devices/lab_pin.sym} 620 -290 0 0 {name=l12 sig_type=std_logic lab=vi_n
 }
 C {devices/lab_pin.sym} 130 -300 1 0 {name=l26 sig_type=std_logic lab=vref
 }
-C {devices/lab_pin.sym} 730 -420 3 1 {name=l15 sig_type=std_logic lab=vref
-}
 C {devices/lab_pin.sym} 750 -420 3 1 {name=l9 sig_type=std_logic lab=vcm}
 C {devices/lab_pin.sym} 770 -420 1 0 {name=p1 sig_type=std_logic lab=vclk}
 C {devices/gnd.sym} 730 -210 0 0 {name=l8 lab=GND}
 C {title.sym} 160 -30 0 0 {name=l10 author="Michael Koefinger"}
-C {lab_wire.sym} 830 -340 0 1 {name=p9 sig_type=std_logic lab=do}
+C {lab_wire.sym} 880 -340 0 1 {name=p9 sig_type=std_logic lab=do}
 C {devices/gnd.sym} 130 -170 0 0 {name=l13 lab=GND}
 C {adc-1b-ideal.sym} 630 -380 0 0 {name=xadc}
-C {lab_wire.sym} 830 -300 0 1 {name=p2 sig_type=std_logic lab=do_b}
+C {lab_wire.sym} 880 -300 0 1 {name=p2 sig_type=std_logic lab=do_b}
+C {devices/vsource.sym} 210 -230 0 0 {name=V1 value=1.5
+}
+C {devices/gnd.sym} 210 -170 0 0 {name=V5 lab=GND
+value=1.5}
+C {devices/lab_pin.sym} 210 -290 1 0 {name=p3 sig_type=std_logic lab=vdd}
+C {devices/lab_pin.sym} 730 -420 1 0 {name=p4 sig_type=std_logic lab=vdd}

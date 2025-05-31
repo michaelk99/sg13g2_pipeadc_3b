@@ -51,19 +51,19 @@ N 130 -300 130 -260 {
 lab=vref}
 N 50 -290 50 -260 {
 lab=vclk}
-N 620 -280 660 -280 {lab=vclk}
-N 730 -260 730 -210 {lab=GND}
-N 840 -320 930 -320 {lab=do[2:0]
+N 640 -280 660 -280 {lab=vclk}
+N 750 -240 750 -190 {lab=GND}
+N 850 -310 940 -310 {lab=do[2..0]
 bus=true}
-N 940 -310 990 -310 {lab=do[2]}
-N 940 -280 990 -280 {lab=do[1]}
-N 940 -250 990 -250 {lab=do[0]}
-N 1050 -310 1080 -310 {lab=do2}
-N 1050 -280 1080 -280 {lab=do1}
-N 1050 -250 1080 -250 {lab=do0}
+N 950 -300 1030 -300 {lab=do2}
+N 950 -270 1030 -270 {lab=do1}
+N 950 -240 1030 -240 {lab=do0}
 N 130 -200 130 -170 {lab=GND}
-N 930 -320 930 -230 {lab=do[2:0]
+N 940 -310 940 -220 {lab=do[2..0]
 bus=true}
+N 640 -280 640 -260 {lab=vclk}
+N 620 -280 640 -280 {lab=vclk}
+N 640 -260 660 -260 {lab=vclk}
 C {devices/vsource.sym} 360 -200 0 0 {name=V2 value=0.75
 }
 C {devices/vcvs.sym} 430 -340 0 0 {name=E1 value=-0.5}
@@ -136,22 +136,13 @@ C {devices/lab_pin.sym} 620 -320 0 0 {name=l15 sig_type=std_logic lab=vref
 C {devices/lab_pin.sym} 620 -300 0 0 {name=l9 sig_type=std_logic lab=vcm}
 C {adc-tri-lvl-ideal.sym} 660 -380 0 0 {name=xadc}
 C {devices/lab_pin.sym} 620 -280 2 1 {name=p1 sig_type=std_logic lab=vclk}
-C {devices/gnd.sym} 730 -210 0 0 {name=l8 lab=GND}
+C {devices/gnd.sym} 750 -190 0 0 {name=l8 lab=GND}
 C {title.sym} 160 -30 0 0 {name=l10 author="Michael Koefinger"}
-C {lab_wire.sym} 910 -320 0 0 {name=p2 sig_type=std_logic lab=do[2:0]}
-C {bus_connect_nolab.sym} 940 -310 2 0 {name=r1}
-C {bus_connect_nolab.sym} 940 -280 2 0 {name=r2}
-C {bus_connect_nolab.sym} 940 -250 2 0 {name=r3}
-C {lab_wire.sym} 980 -310 0 0 {name=p3 sig_type=std_logic lab=do[2]}
-C {lab_wire.sym} 980 -280 0 0 {name=p4 sig_type=std_logic lab=do[1]}
-C {lab_wire.sym} 980 -250 0 0 {name=p5 sig_type=std_logic lab=do[0]}
-C {devices/vsource.sym} 1020 -310 3 0 {name=V1 value="0"
-}
-C {devices/vsource.sym} 1020 -280 3 0 {name=V4 value="0"
-}
-C {devices/vsource.sym} 1020 -250 3 0 {name=V5 value="0"
-}
-C {lab_wire.sym} 1070 -310 0 1 {name=p6 sig_type=std_logic lab=do2}
-C {lab_wire.sym} 1070 -280 0 1 {name=p7 sig_type=std_logic lab=do1}
-C {lab_wire.sym} 1070 -250 0 1 {name=p9 sig_type=std_logic lab=do0}
+C {lab_wire.sym} 920 -310 0 0 {name=p2 sig_type=std_logic lab=do[2..0]}
+C {bus_connect_nolab.sym} 950 -300 2 0 {name=r1}
+C {bus_connect_nolab.sym} 950 -270 2 0 {name=r2}
+C {bus_connect_nolab.sym} 950 -240 2 0 {name=r3}
+C {lab_wire.sym} 1020 -300 0 1 {name=p6 sig_type=std_logic lab=do2}
+C {lab_wire.sym} 1020 -270 0 1 {name=p7 sig_type=std_logic lab=do1}
+C {lab_wire.sym} 1020 -240 0 1 {name=p9 sig_type=std_logic lab=do0}
 C {devices/gnd.sym} 130 -170 0 0 {name=l13 lab=GND}

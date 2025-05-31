@@ -61,26 +61,20 @@ N 740 -820 740 -760 {lab=phi2}
 N 780 -820 780 -760 {lab=vcmi}
 N 700 -820 700 -760 {lab=di_pon}
 N 680 -820 680 -760 {lab=VDD}
-N 810 -720 1380 -720 {lab=do3}
-N 810 -680 880 -680 {lab=do1[2:0]
+N 810 -720 1280 -720 {lab=do3}
+N 810 -680 880 -680 {lab=do1[2..0]
 bus=true}
-N 880 -680 880 -590 {lab=do1[2:0]
+N 880 -680 880 -590 {lab=do1[2..0]
 bus=true}
-N 1030 -660 1090 -660 {lab=do12}
-N 1030 -630 1090 -630 {lab=do11}
-N 1030 -600 1090 -600 {lab=do10}
-N 890 -660 970 -660 {lab=do1[2]}
-N 890 -630 970 -630 {lab=do1[1]}
-N 890 -600 970 -600 {lab=do1[0]}
-N 1280 -660 1340 -660 {lab=do22}
-N 1280 -630 1340 -630 {lab=do21}
-N 1280 -600 1340 -600 {lab=do20}
-N 1140 -660 1220 -660 {lab=do2[2]}
-N 1140 -630 1220 -630 {lab=do2[1]}
-N 1140 -600 1220 -600 {lab=do2[0]}
-N 1130 -700 1130 -590 {lab=do2[2:0]
+N 890 -660 1030 -660 {lab=do12}
+N 890 -630 1030 -630 {lab=do11}
+N 890 -600 1030 -600 {lab=do10}
+N 1140 -660 1280 -660 {lab=do22}
+N 1140 -630 1280 -630 {lab=do21}
+N 1140 -600 1280 -600 {lab=do20}
+N 1130 -700 1130 -590 {lab=do2[2..0]
 bus=true}
-N 810 -700 1130 -700 {lab=do2[2:0]
+N 810 -700 1130 -700 {lab=do2[2..0]
 bus=true}
 C {devices/launcher.sym} 680 -160 0 0 {name=h1
 descr="Annotate OP"
@@ -106,6 +100,7 @@ save xadc.xmdac1.vdac_p xadc.mdac1.vdac_n xadc.xmdac1.vgndp xadc.xmdac1.vgndn xa
 save xadc.xmdac1.xc1.vc_p xadc.xmdac1.xc2.vc_p xadc.xmdac1.xc3.vc_p xadc.xmdac1.xc4.vc_p
 save xadc.xmdac2.vdac_p xadc.mdac2.vdac_n xadc.xmdac2.vgndp xadc.xmdac2.vgndn xadc.xmdac2.vfb xadc.xmdac2.vbp
 save xadc.xmdac2.xc1.vc_p xadc.xmdac2.xc2.vc_p xadc.xmdac2.xc3.vc_p xadc.xmdac2.xc4.vc_p
+save xadc.xadc3.D0
 
 set wr_singlescale
 set wr_vecnames
@@ -137,8 +132,8 @@ alter @VIN[DC] = 0.0
 ** Main Simulations
 if $opSimOnly eq 0
 	** Set sources
-	*alter @VIN[PULSE]=[ -1.5 1.5 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
-	alter @VIN[SIN] = [ 0 1 $&f_sig t_delay 0 0 ]
+	alter @VIN[PULSE]=[ -1.5 1.5 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
+	*alter @VIN[SIN] = [ 0 1 $&f_sig t_delay 0 0 ]
 	tran $&tstep $&tstop $&tstart
 	
 	setplot tran1
@@ -169,6 +164,11 @@ if $opSimOnly eq 0
 	plot do12 do11 do10 vid
 	plot do22 do21 do20 vres1
 	plot do3 vres2
+	plot phi1 phi2 do12 do11 do10 vid
+	plot phi1 phi2 do22 do21 do20 vres1
+	plot phi1 phi2 do3 vres2
+	plot vres1 xadc.vres1p xadc.vres1n
+	plot xadc.xmdac1.vgndp xadc.xmdac1.vgndn
 
 end
 
@@ -241,33 +241,15 @@ C {devices/lab_pin.sym} 740 -820 1 0 {name=p7 sig_type=std_logic lab=phi2}
 C {bus_connect_nolab.sym} 880 -650 0 0 {name=r1}
 C {bus_connect_nolab.sym} 880 -620 0 0 {name=r2}
 C {bus_connect_nolab.sym} 880 -590 0 0 {name=r3}
-C {devices/vsource.sym} 1000 -660 3 0 {name=V4 value=0
-}
-C {devices/vsource.sym} 1000 -630 3 0 {name=V5 value=0
-}
-C {devices/vsource.sym} 1000 -600 3 0 {name=V6 value=0
-}
-C {lab_wire.sym} 1090 -660 0 0 {name=p2 sig_type=std_logic lab=do12}
-C {lab_wire.sym} 1090 -630 0 0 {name=p3 sig_type=std_logic lab=do11}
-C {lab_wire.sym} 1090 -600 0 0 {name=p4 sig_type=std_logic lab=do10}
-C {lab_wire.sym} 940 -660 0 0 {name=p8 sig_type=std_logic lab=do1[2]}
-C {lab_wire.sym} 940 -630 0 0 {name=p9 sig_type=std_logic lab=do1[1]}
-C {lab_wire.sym} 940 -600 0 0 {name=p10 sig_type=std_logic lab=do1[0]}
-C {lab_wire.sym} 880 -680 0 0 {name=p11 sig_type=std_logic lab=do1[2:0]}
-C {lab_wire.sym} 880 -700 0 0 {name=p19 sig_type=std_logic lab=do2[2:0]}
+C {lab_wire.sym} 1030 -660 0 0 {name=p2 sig_type=std_logic lab=do12}
+C {lab_wire.sym} 1030 -630 0 0 {name=p3 sig_type=std_logic lab=do11}
+C {lab_wire.sym} 1030 -600 0 0 {name=p4 sig_type=std_logic lab=do10}
+C {lab_wire.sym} 880 -680 0 0 {name=p11 sig_type=std_logic lab=do1[2..0]}
+C {lab_wire.sym} 880 -700 0 0 {name=p19 sig_type=std_logic lab=do2[2..0]}
 C {lab_wire.sym} 880 -720 0 0 {name=p21 sig_type=std_logic lab=do3}
 C {bus_connect_nolab.sym} 1130 -650 0 0 {name=r4}
 C {bus_connect_nolab.sym} 1130 -620 0 0 {name=r5}
 C {bus_connect_nolab.sym} 1130 -590 0 0 {name=r6}
-C {devices/vsource.sym} 1250 -660 3 0 {name=V8 value=0
-}
-C {devices/vsource.sym} 1250 -630 3 0 {name=V9 value=0
-}
-C {devices/vsource.sym} 1250 -600 3 0 {name=V10 value=0
-}
-C {lab_wire.sym} 1190 -660 0 0 {name=p27 sig_type=std_logic lab=do2[2]}
-C {lab_wire.sym} 1190 -630 0 0 {name=p28 sig_type=std_logic lab=do2[1]}
-C {lab_wire.sym} 1190 -600 0 0 {name=p29 sig_type=std_logic lab=do2[0]}
-C {lab_wire.sym} 1340 -660 0 0 {name=p24 sig_type=std_logic lab=do22}
-C {lab_wire.sym} 1340 -630 0 0 {name=p25 sig_type=std_logic lab=do21}
-C {lab_wire.sym} 1340 -600 0 0 {name=p26 sig_type=std_logic lab=do20}
+C {lab_wire.sym} 1280 -660 0 0 {name=p24 sig_type=std_logic lab=do22}
+C {lab_wire.sym} 1280 -630 0 0 {name=p25 sig_type=std_logic lab=do21}
+C {lab_wire.sym} 1280 -600 0 0 {name=p26 sig_type=std_logic lab=do20}
