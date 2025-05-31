@@ -51,7 +51,7 @@ B 5 167.5 -2.5 172.5 2.5 {name=ibias_1u5 dir=in}
 B 5 47.5 -2.5 52.5 2.5 {name=vhold dir=in}
 B 5 77.5 -2.5 82.5 2.5 {name=vtrack dir=in}
 B 5 -2.5 67.5 2.5 72.5 {name=vi_p dir=in}
-B 5 -2.5 167.5 2.5 172.5 {name=di_code[2:0] dir=in}
+B 5 -2.5 167.5 2.5 172.5 {name=di_code[2..0] dir=in}
 B 5 197.5 -2.5 202.5 2.5 {name=vref_p dir=in}
 B 5 227.5 -2.5 232.5 2.5 {name=vref_n dir=in}
 B 5 327.5 67.5 332.5 72.5 {name=vo_p dir=out}
@@ -66,7 +66,7 @@ T {ibias_1u5} 174 5 1 0 0.2 0.2 {}
 T {vhold} 54 5 1 0 0.2 0.2 {}
 T {vtrack} 84 5 1 0 0.2 0.2 {}
 T {vi_p} 25 66 0 0 0.2 0.2 {}
-T {di_code[2:0]} 25 166 0 0 0.2 0.2 {}
+T {di_code[2..0]} 25 166 0 0 0.2 0.2 {}
 T {vref_p} 196 5 3 1 0.2 0.2 {}
 T {vref_n} 226 5 3 1 0.2 0.2 {}
 T {vo_p} 305 66 0 1 0.2 0.2 {}

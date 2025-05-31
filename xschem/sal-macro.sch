@@ -92,8 +92,6 @@ N 210 -690 270 -690 {lab=vdd}
 N 470 -600 470 -570 {lab=#net4}
 N 560 -570 640 -570 {lab=#net4}
 N 640 -590 640 -570 {lab=#net4}
-N 310 -590 310 -430 {lab=#net2}
-N 310 -430 410 -430 {lab=#net2}
 N 230 -600 430 -600 {lab=vclk}
 N 840 -690 940 -690 {lab=vdd}
 N 940 -690 940 -650 {lab=vdd}
@@ -144,6 +142,8 @@ N 760 -690 840 -690 {lab=vdd}
 N 840 -590 840 -560 {lab=#net5}
 N 760 -560 840 -560 {lab=#net5}
 N 760 -570 760 -560 {lab=#net5}
+N 310 -590 310 -430 {lab=#net2}
+N 310 -430 410 -430 {lab=#net2}
 C {title.sym} 160 0 0 0 {name=l1 author="Michael Koefinger"}
 C {devices/adc_bridge.sym} 900 -520 0 0 {name=A1 adc_bridge_model= comp0}
 C {devices/vccs.sym} 410 -340 0 0 {name=G1 value=10e-6}
@@ -201,12 +201,12 @@ footprint=1206
 device=resistor
 m=1}
 C {res.sym} 450 -370 0 0 {name=R5
-value=100Meg
+value=1Meg
 footprint=1206
 device=resistor
 m=1}
 C {res.sym} 490 -370 0 0 {name=R6
-value=100e-6
+value=1Meg
 footprint=1206
 device=resistor
 m=1}

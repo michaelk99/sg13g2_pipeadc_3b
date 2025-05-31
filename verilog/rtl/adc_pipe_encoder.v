@@ -13,7 +13,8 @@ module adc_pipe_encoder #(
     parameter REDUNDANCY         = 1, // Number of redundant bits between stages
     parameter BITS_ADC_STAGE     = 1  // Number of bits contributed by the final ADC stage
 )(
-    input wire clock_i,                      
+    input wire clock_i,  
+    input wire clock2_i,                    
     input wire reset_i,                      
     input wire [(NUM_BITS_PER_STAGE * ((NUM_BITS-BITS_ADC_STAGE)/(NUM_BITS_PER_STAGE-REDUNDANCY)))-1:0] d_stage_i,      // Data from all stages 1 - N-1
     input wire [BITS_ADC_STAGE-1:0]                                                                     d_last_stage_i, // Data from the final N stage
@@ -25,10 +26,10 @@ module adc_pipe_encoder #(
 localparam NUM_STAGES = (NUM_BITS - BITS_ADC_STAGE) / (NUM_BITS_PER_STAGE - REDUNDANCY);
 
 // Register array to hold intermediate pipeline results
-reg  [NUM_BITS-1:0] pipeStage_sreg [NUM_STAGES:0];
+reg  [NUM_BITS-1:0] pipeStage_sreg [0:NUM_STAGES];
 
 // Array of stage aligned and shifted values
-wire [NUM_BITS-1:0] d_stage        [NUM_STAGES:0];
+wire [NUM_BITS-1:0] d_stage        [0:NUM_STAGES];
 
 /*
 #######################################################################################
@@ -36,12 +37,12 @@ wire [NUM_BITS-1:0] d_stage        [NUM_STAGES:0];
 #######################################################################################
 */
 
-assign d_stage[0] = {{NUM_BITS-BITS_ADC_STAGE{1'b0}}, d_last_stage_i};
+assign d_stage[NUM_STAGES] = {{NUM_BITS-BITS_ADC_STAGE{1'b0}}, d_last_stage_i};
 
 genvar k;
 generate
-    for (k = 1; k <= NUM_STAGES; k = k + 1) begin
-        assign d_stage[k] = {{NUM_BITS-NUM_BITS_PER_STAGE{1'b0}}, d_stage_i[(k-1)*NUM_BITS_PER_STAGE +: NUM_BITS_PER_STAGE]} << ((k-2) * (NUM_BITS_PER_STAGE - REDUNDANCY) + BITS_ADC_STAGE);
+    for (k = 0; k < NUM_STAGES; k = k + 1) begin
+        assign d_stage[k] = {{NUM_BITS-NUM_BITS_PER_STAGE{1'b0}}, d_stage_i[(k)*NUM_BITS_PER_STAGE +: NUM_BITS_PER_STAGE]} << ((NUM_STAGES-k-2) * (NUM_BITS_PER_STAGE - REDUNDANCY) + BITS_ADC_STAGE);
     end
 endgenerate
 
@@ -56,22 +57,24 @@ endgenerate
 integer i;
 
 // Process pipeline stages
-always @(posedge clock_i) begin
+always @(posedge clock_i, posedge clock2_i) begin
 
     for (i = 0; i <= NUM_STAGES; i = i + 1) begin
         if(reset_i) begin
             pipeStage_sreg[i] <= 0;
         end else begin
-            if(i == NUM_STAGES) begin
+            if(i == 0) begin
                 // First stage stores its value directly
                 pipeStage_sreg[i] <= d_stage[i];
             end else begin
                 // Accumulate value from the previous stage and current input
-                pipeStage_sreg[i] <= pipeStage_sreg[i+1] + d_stage[i];
+                pipeStage_sreg[i] <= pipeStage_sreg[i-1] + d_stage[i];
             end
         end
 	end
 end
+
+
 
 
 // // Process even-numbered pipeline stages on positive clock edge
@@ -111,6 +114,6 @@ end
 // end
 
 // Final output is the accumulated result from the last pipeline register
-assign d_o = pipeStage_sreg[0];
+assign d_o = pipeStage_sreg[NUM_STAGES];
 
 endmodule

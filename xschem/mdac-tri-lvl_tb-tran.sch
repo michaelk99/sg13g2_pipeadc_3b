@@ -148,7 +148,7 @@ N 430 -900 490 -900 {lab=vipp}
 N 490 -720 850 -720 {lab=vipp}
 N 1480 -620 1570 -620 {lab=voutn}
 N 1480 -660 1570 -660 {lab=voutp}
-N 590 -620 850 -620 {lab=code[2:0]
+N 590 -620 850 -620 {lab=code[2..0]
 bus=true}
 N 490 -680 850 -680 {lab=vinn}
 N 110 -300 110 -270 {lab=GND}
@@ -200,25 +200,22 @@ N 1340 -720 1340 -630 {lab=voutp}
 N 1270 -570 1270 -530 {lab=GND}
 N 1340 -570 1340 -530 {lab=GND}
 N 990 -910 990 -790 {lab=VDD}
-N 1080 -360 1080 -330 {lab=GND}
+N 1100 -340 1100 -310 {lab=GND}
 N 980 -460 1010 -460 {lab=vipp}
 N 980 -440 1010 -440 {lab=vinn}
 N 980 -420 1010 -420 {lab=vref_p}
 N 980 -400 1010 -400 {lab=vcmi}
 N 980 -380 1010 -380 {lab=phi1}
-N 1190 -420 1280 -420 {lab=do[2:0]
+N 1200 -410 1290 -410 {lab=do[2..0]
 bus=true}
-N 1290 -410 1340 -410 {lab=do[2]}
-N 1290 -380 1340 -380 {lab=do[1]}
-N 1290 -350 1340 -350 {lab=do[0]}
-N 1400 -410 1470 -410 {lab=do2}
-N 1400 -380 1470 -380 {lab=do1}
-N 1400 -350 1470 -350 {lab=do0}
-N 1280 -420 1280 -330 {lab=do[2:0]
+N 1300 -400 1420 -400 {lab=do2}
+N 1300 -370 1420 -370 {lab=do1}
+N 1300 -340 1420 -340 {lab=do0}
+N 1290 -410 1290 -320 {lab=do[2..0]
 bus=true}
-N 590 -610 590 -360 {lab=code[2]}
-N 700 -610 700 -360 {lab=code[1]}
-N 810 -610 810 -360 {lab=code[0]}
+N 590 -610 590 -360 {lab=code2}
+N 700 -610 700 -360 {lab=code1}
+N 810 -610 810 -360 {lab=code0}
 N 560 -850 560 -810 {lab=GND}
 N 560 -970 560 -910 {lab=phi1}
 N 560 -970 930 -970 {lab=phi1}
@@ -227,6 +224,7 @@ N 1270 -790 1270 -680 {lab=voutn}
 N 1340 -790 1340 -720 {lab=voutp}
 N 1270 -880 1270 -850 {lab=GND}
 N 1340 -880 1340 -850 {lab=GND}
+N 980 -360 1010 -360 {lab=phi2}
 C {devices/launcher.sym} 450 -200 0 0 {name=h1
 descr="Annotate OP"
 tclcommand="set show_hidden_texts 1; xschem annotate_op"}
@@ -399,10 +397,10 @@ C {devices/gnd.sym} 700 -270 0 0 {name=l8 lab=GND}
 C {devices/vsource.sym} 810 -330 0 0 {name=VCODE0 value=1.5
 }
 C {devices/gnd.sym} 810 -270 0 0 {name=l9 lab=GND}
-C {lab_wire.sym} 590 -510 3 0 {name=p5 sig_type=std_logic lab=code[2]}
-C {lab_wire.sym} 700 -510 3 0 {name=p7 sig_type=std_logic lab=code[1]}
-C {lab_wire.sym} 810 -510 3 0 {name=p8 sig_type=std_logic lab=code[0]}
-C {lab_wire.sym} 800 -620 0 0 {name=p9 sig_type=std_logic lab=code[2:0]}
+C {lab_wire.sym} 590 -510 3 0 {name=p5 sig_type=std_logic lab=code2}
+C {lab_wire.sym} 700 -510 3 0 {name=p7 sig_type=std_logic lab=code1}
+C {lab_wire.sym} 810 -510 3 0 {name=p8 sig_type=std_logic lab=code0}
+C {lab_wire.sym} 800 -620 0 0 {name=p9 sig_type=std_logic lab=code[2..0]}
 C {bus_connect_nolab.sym} 820 -620 2 0 {name=r1}
 C {bus_connect_nolab.sym} 710 -620 2 0 {name=r2}
 C {bus_connect_nolab.sym} 600 -620 2 0 {name=r3}
@@ -441,28 +439,19 @@ C {lab_wire.sym} 830 -860 0 0 {name=p23 sig_type=std_logic lab=phi2}
 C {devices/vdd.sym} 990 -910 0 0 {name=l5 lab=VDD}
 C {mdac-tri-lvl.sym} 850 -790 0 0 {name=xmdac cap=\{cap\}}
 C {adc-tri-lvl-ideal.sym} 1010 -480 0 0 {name=xadc}
-C {devices/gnd.sym} 1080 -330 0 0 {name=l13 lab=GND}
-C {lab_wire.sym} 990 -460 0 0 {name=p24 sig_type=std_logic lab=vipp}
-C {lab_wire.sym} 990 -440 0 0 {name=p25 sig_type=std_logic lab=vinn}
-C {lab_wire.sym} 990 -420 0 0 {name=p26 sig_type=std_logic lab=vref_p}
-C {lab_wire.sym} 990 -400 0 0 {name=p27 sig_type=std_logic lab=vcmi}
-C {lab_wire.sym} 990 -380 0 0 {name=p28 sig_type=std_logic lab=phi1}
-C {lab_wire.sym} 1260 -420 0 0 {name=p29 sig_type=std_logic lab=do[2:0]}
-C {bus_connect_nolab.sym} 1290 -410 2 0 {name=r4}
-C {bus_connect_nolab.sym} 1290 -380 2 0 {name=r5}
-C {bus_connect_nolab.sym} 1290 -350 2 0 {name=r6}
-C {lab_wire.sym} 1330 -410 0 0 {name=p30 sig_type=std_logic lab=do[2]}
-C {lab_wire.sym} 1330 -380 0 0 {name=p31 sig_type=std_logic lab=do[1]}
-C {lab_wire.sym} 1330 -350 0 0 {name=p32 sig_type=std_logic lab=do[0]}
-C {devices/vsource.sym} 1370 -410 3 0 {name=V4 value="0"
-}
-C {devices/vsource.sym} 1370 -380 3 0 {name=V5 value="0"
-}
-C {devices/vsource.sym} 1370 -350 3 0 {name=V6 value="0"
-}
-C {lab_wire.sym} 1420 -410 0 1 {name=p33 sig_type=std_logic lab=do2}
-C {lab_wire.sym} 1420 -380 0 1 {name=p34 sig_type=std_logic lab=do1}
-C {lab_wire.sym} 1420 -350 0 1 {name=p35 sig_type=std_logic lab=do0}
+C {devices/gnd.sym} 1100 -310 0 0 {name=l13 lab=GND}
+C {lab_wire.sym} 980 -460 0 0 {name=p24 sig_type=std_logic lab=vipp}
+C {lab_wire.sym} 980 -440 0 0 {name=p25 sig_type=std_logic lab=vinn}
+C {lab_wire.sym} 980 -420 0 0 {name=p26 sig_type=std_logic lab=vref_p}
+C {lab_wire.sym} 980 -400 0 0 {name=p27 sig_type=std_logic lab=vcmi}
+C {lab_wire.sym} 980 -380 0 0 {name=p28 sig_type=std_logic lab=phi1}
+C {lab_wire.sym} 1270 -410 0 0 {name=p29 sig_type=std_logic lab=do[2..0]}
+C {bus_connect_nolab.sym} 1300 -400 2 0 {name=r4}
+C {bus_connect_nolab.sym} 1300 -370 2 0 {name=r5}
+C {bus_connect_nolab.sym} 1300 -340 2 0 {name=r6}
+C {lab_wire.sym} 1370 -400 0 1 {name=p33 sig_type=std_logic lab=do2}
+C {lab_wire.sym} 1370 -370 0 1 {name=p34 sig_type=std_logic lab=do1}
+C {lab_wire.sym} 1370 -340 0 1 {name=p35 sig_type=std_logic lab=do0}
 C {devices/vsource.sym} 560 -880 0 0 {name=VPHI1 value=1.5
 spice_ignore=true}
 C {devices/gnd.sym} 560 -810 0 0 {name=l16 lab=GND}
@@ -472,6 +461,7 @@ C {devices/vsource.sym} 1340 -820 2 0 {name=VCMO2 value=0.75
 spice_ignore=true}
 C {devices/gnd.sym} 1270 -880 2 0 {name=l17 lab=GND}
 C {devices/gnd.sym} 1340 -880 2 0 {name=l18 lab=GND}
+C {lab_wire.sym} 980 -360 0 0 {name=p30 sig_type=std_logic lab=phi2}
 C {devices/launcher.sym} 700 -140 0 0 {name=h3
 descr="Load waves" 
 tclcommand="xschem raw_read $netlist_dir/[file rootname [xschem get current_name]].raw tran"}

@@ -1,3 +1,5 @@
 *.raw
 *.spice
 *.save
+verilog/rtl/*.so
+verilog/rtl/*_obj_dir/

@@ -49,16 +49,19 @@ N 130 -300 130 -260 {
 lab=vref}
 N 50 -290 50 -260 {
 lab=vclk}
-N 770 -420 770 -380 {lab=vclk}
 N 730 -260 730 -210 {lab=GND}
-N 810 -340 840 -340 {lab=do}
 N 130 -200 130 -170 {lab=GND}
-N 810 -300 840 -300 {lab=do_b}
+N 830 -300 880 -300 {lab=do_b}
 N 730 -420 730 -380 {lab=vdd}
 N 210 -200 210 -170 {
 lab=GND}
 N 210 -290 210 -260 {
 lab=vdd}
+N 770 -400 770 -380 {lab=vclk}
+N 830 -340 880 -340 {lab=do}
+N 770 -400 790 -400 {lab=vclk}
+N 770 -420 770 -400 {lab=vclk}
+N 790 -400 790 -380 {lab=vclk}
 C {devices/vsource.sym} 360 -200 0 0 {name=V2 value=0.75
 }
 C {devices/vcvs.sym} 430 -340 0 0 {name=E1 value=-0.5}
@@ -94,7 +97,7 @@ let tfr_clk = tper_clk/100
 let ton_clk = tper_clk/2-2*tfr_clk
 
 ** Set input signal
-let f_sig = 200k
+let f_sig = 50k
 let tper_sig = 1/f_sig
 let tfr_sig = tper_sig/100
 *let ton_sig = tper_sig*1/1000
@@ -134,10 +137,10 @@ C {devices/lab_pin.sym} 750 -420 3 1 {name=l9 sig_type=std_logic lab=vcm}
 C {devices/lab_pin.sym} 770 -420 1 0 {name=p1 sig_type=std_logic lab=vclk}
 C {devices/gnd.sym} 730 -210 0 0 {name=l8 lab=GND}
 C {title.sym} 160 -30 0 0 {name=l10 author="Michael Koefinger"}
-C {lab_wire.sym} 830 -340 0 1 {name=p9 sig_type=std_logic lab=do}
+C {lab_wire.sym} 880 -340 0 1 {name=p9 sig_type=std_logic lab=do}
 C {devices/gnd.sym} 130 -170 0 0 {name=l13 lab=GND}
 C {adc-1b-ideal.sym} 630 -380 0 0 {name=xadc}
-C {lab_wire.sym} 830 -300 0 1 {name=p2 sig_type=std_logic lab=do_b}
+C {lab_wire.sym} 880 -300 0 1 {name=p2 sig_type=std_logic lab=do_b}
 C {devices/vsource.sym} 210 -230 0 0 {name=V1 value=1.5
 }
 C {devices/gnd.sym} 210 -170 0 0 {name=V5 lab=GND
