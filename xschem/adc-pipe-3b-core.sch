@@ -4,6 +4,13 @@ K {}
 V {}
 S {}
 E {}
+T {SAMPLE on PHI1} 160 -230 0 0 0.4 0.4 {}
+T {TRACK on PHI1
+HOLD/AMP on PHI2} 630 -280 0 0 0.4 0.4 {}
+T {SAMPLE on PHI2} 930 -230 0 0 0.4 0.4 {}
+T {TRACK on PHI2
+HOLD/AMP on PHI1} 1390 -250 0 0 0.4 0.4 {}
+T {SAMPLE on PHI1} 1860 -340 0 0 0.4 0.4 {}
 N 480 -290 510 -290 {lab=do1[2..0]
 bus=true}
 N 510 -340 550 -340 {lab=do1[2..0]

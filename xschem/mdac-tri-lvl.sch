@@ -5,6 +5,8 @@ V {}
 S {}
 E {}
 P 4 1 200 -540 {}
+T {Single-ended analysis: vo[n+1] = - 2 * vi[n] - vdac[n+1]
+Differential: invert input vi to get non-inverting output, do not invert vdac to get subtraction} 20 -820 0 0 0.4 0.4 {}
 N 970 -450 990 -450 {lab=vgndn}
 N 970 -390 990 -390 {lab=vgndp}
 N 910 -470 970 -470 {lab=vgndn}
