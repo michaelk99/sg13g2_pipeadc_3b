@@ -41,7 +41,7 @@ N 410 -520 940 -520 {lab=vphi2}
 N 940 -520 940 -320 {lab=vphi2}
 N 760 -320 940 -320 {lab=vphi2}
 C {title.sym} 160 -30 0 0 {name=l1 author="D. Brandstetter, M. Koefinger"}
-C {adc-pipe-3b-core.sym} 260 -330 0 0 {name=xpipe}
+C {adc-pipe-3b-core-ideal.sym} 260 -330 0 0 {name=xpipe}
 C {lab_wire.sym} 560 -250 0 0 {name=p11 sig_type=std_logic lab=do1[2..0]}
 C {lab_wire.sym} 560 -270 0 0 {name=p19 sig_type=std_logic lab=do2[2..0]}
 C {lab_wire.sym} 520 -290 0 0 {name=p21 sig_type=std_logic lab=do3}

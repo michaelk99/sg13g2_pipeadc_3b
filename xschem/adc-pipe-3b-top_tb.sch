@@ -9,7 +9,7 @@ ypos1=0.14
 ypos2=1.74
 divy=5
 unity=1
-x2=6.7614529e-05
+x2=0.00205
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -23,7 +23,7 @@ vdig;vdig_plt;vid
 vid; vid
 vres1;vres1
 vres2;vres2"
-color="4 5 6 6 6 21 21 10 4 4"
+color="4 5 6 6 6 21 21 16 16 16"
 unitx=1
 logx=0
 logy=0
@@ -34,30 +34,30 @@ linewidth_mult=2
 dataset=-1
 divx=5
 subdivy=1
-y1=-0.1
+y1=0
 y2=1.5
-x1=5.9063289e-05
+x1=5.0000001e-05
 rawfile=$netlist_dir/adc-pipe-3b-top_tb.raw}
 B 2 1020 -1160 1820 -760 {flags=graph
 ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=6.7614529e-05
+x2=0.00205
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
-node="vres2;vres2
+node="vid;vid
 do12;xadc.do12
 do10;xadc.do10
 do11;xadc.do11
+vres1;vres1
 do22;xadc.do22
 do20;xadc.do20
 do21;xadc.do21
-do3;xadc.do3
-phi1;phi1
-phi2;phi2"
-color="13 10 10 10 12 12 12 7 4 4"
+vres2;vres2
+do3;xadc.do3"
+color="16 18 18 18 16 18 18 18 16 18"
 unitx=1
 logx=0
 logy=0
@@ -68,9 +68,112 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-0.3
-x1=5.9063289e-05
+x1=5.0000001e-05
 y2=1.5
 divx=10}
+B 2 1820 30 2620 430 {flags=graph
+ypos1=0.15
+ypos2=1.95
+divy=10
+unity=1
+x2=0.00205
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+node="vres2;vres2
+do3;xadc.do3"
+color="7 21"
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=0
+legend=1
+linewidth_mult=2
+dataset=-1
+subdivy=1
+y1=-1.5
+x1=5.0000001e-05
+y2=1.5
+divx=10}
+B 2 980 30 1780 430 {flags=graph
+ypos1=0.15
+ypos2=1.95
+divy=10
+unity=1
+x2=0.00205
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+node="vres1;vres1
+do22;xadc.do22
+do20;xadc.do20
+do21;xadc.do21"
+color="7 4 12 10"
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=0
+legend=1
+linewidth_mult=2
+dataset=-1
+subdivy=1
+y1=-1.5
+x1=5.0000001e-05
+y2=1.5
+divx=10}
+B 2 140 30 940 430 {flags=graph
+ypos1=0.15
+ypos2=1.95
+divy=10
+unity=1
+x2=0.00205
+subdivx=4
+xlabmag=1.0
+ylabmag=1.0
+node="vid;vid
+do12;xadc.do12
+do10;xadc.do10
+do11;xadc.do11"
+color="7 4 12 10"
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=0
+legend=1
+linewidth_mult=2
+dataset=-1
+subdivy=1
+y1=-1.5
+x1=5.0000001e-05
+y2=1.5
+divx=10}
+B 2 1880 -880 2680 -480 {flags=graph
+ypos1=0.15
+ypos2=1.95
+unity=1
+x2=0.00205
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+unitx=1
+logx=0
+logy=0
+hilight_wave=1
+digital=0
+legend=1
+linewidth_mult=2
+dataset=-1
+subdivy=1
+x1=5.0000001e-05
+color=5
+node="code;vdig"
+y1=0
+y2=7
+divx=10
+divy=7}
 P 4 1 780 -510 {}
 N 270 -780 290 -780 {
 lab=GND}
@@ -182,14 +285,14 @@ let n_per_startup = 100
 let t_delay = n_per_startup/fs
 
 ** Set input signal
-let f_sig = 100k
+let f_sig = 1k
 let tper_sig = 1/f_sig
 let tfr_sig = tper_sig*5/10
 let ton_sig = tper_sig*1/1000
 
 ** Set transient simulation parameters
-let tstep = 0.001/fs
-let tstop = 5/f_sig+t_delay
+let tstep = 0.1/fs
+let tstop = 2/f_sig+t_delay
 let tstart = t_delay
 
 alter @VIN[DC] = 0.0
@@ -227,16 +330,16 @@ if $opSimOnly eq 0
 	let do_b2 = do_b2
 	let do_b1 = do_b1
 	let do_b0 = do_b0
-	let vdig = do_b2*4 + do_b1*2 + do_b0
+	let vdig = 4*do_b2/1.5 + 2*do_b1/1.5 + do_b0/1.5
 	meas tran vdig_max max vdig
 	let vdig_plt = 2*(vdig/vdig_max-0.5)
 
 	write adc-pipe-3b-top_tb.raw
 
-	plot vid vres1 vcmo1 vcmi1 phi2
-	plot vcap_in_n v_in_n v_dac_p vcap_in_p v_in_p
-	plot err1
-	plot err2
+	*plot vid vres1 vcmo1 vcmi1 phi2
+	*plot vcap_in_n v_in_n v_dac_p vcap_in_p v_in_p
+	*plot err1
+	*plot err2
 	plot vid vres1 vres2
 	plot do12 do11 do10 vid
 	plot do22 do21 do20 vres1
@@ -330,7 +433,7 @@ tclcommand="execute 1 sh -c \\"cd /foss/designs/verilog/rtl; ngspice vlnggen adc
 C {lab_pin.sym} 750 -380 0 0 {name=p42 lab=do_b2}
 C {lab_pin.sym} 830 -380 0 0 {name=p43 lab=do_b1}
 C {lab_pin.sym} 910 -380 0 0 {name=p44 lab=do_b0}
-C {adc-pipe-3b-top.sym} 590 -760 0 0 {name=xadc}
+C {adc-pipe-3b-top-ideal.sym} 590 -760 0 0 {name=xadc}
 C {devices/gnd.sym} 830 -270 0 0 {name=l6 lab=GND}
 C {devices/gnd.sym} 910 -270 0 0 {name=l8 lab=GND}
 C {devices/gnd.sym} 750 -270 0 0 {name=l9 lab=GND}
