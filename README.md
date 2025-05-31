@@ -9,6 +9,5 @@
 - `python`: system level design and gm/Id design scripts
 - `xschem`: schematics and testbench schematics with ngspice code
 - `verilog`
-  - `verilog/rtl`: RTL description of the encoder
+  - `verilog/rtl`: RTL description of the encoder, verilated shared-object files
   - `verilog/sim`: verilog testbench and simulation scripts
-- `xspice`: standard cell synthesis results
