@@ -325,7 +325,7 @@ descr="Load waves"
 tclcommand="xschem raw_read $netlist_dir/[file rootname [xschem get current_name]].raw tran"}
 C {launcher.sym} 1240 -110 0 0 {name=h4
 descr="Build Verilator object" 
-tclcommand="execute 1 sh -c \\"cd ../verilog/rtl; ngspice vlnggen adc_pipe_encoder_TOP.v\\""
+tclcommand="execute 1 sh -c \\"cd /foss/designs/verilog/rtl; ngspice vlnggen adc_pipe_encoder_TOP.v\\""
 }
 C {lab_pin.sym} 750 -380 0 0 {name=p42 lab=do_b2}
 C {lab_pin.sym} 830 -380 0 0 {name=p43 lab=do_b1}
