@@ -3,3 +3,7 @@
 *.save
 verilog/rtl/*.so
 verilog/rtl/*_obj_dir/
+*.mat
+*.asv
+*.slxc
+*.xml

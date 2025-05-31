@@ -11,3 +11,4 @@
 - `verilog`
   - `verilog/rtl`: RTL description of the encoder, verilated shared-object files
   - `verilog/sim`: verilog testbench and simulation scripts
+- `matlab`: ideal system-level simulation
