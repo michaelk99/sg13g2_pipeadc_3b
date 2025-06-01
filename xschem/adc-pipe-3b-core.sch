@@ -146,8 +146,8 @@ C {mdac-tri-lvl.sym} 550 -510 0 0 {name=xmdac1 cap=100f}
 C {adc-tri-lvl-ideal.sym} 290 -360 0 0 {name=xadc1}
 C {mdac-tri-lvl.sym} 1310 -510 0 0 {name=xmdac2 cap=100f}
 C {adc-tri-lvl-ideal.sym} 1050 -360 0 0 {name=xadc2}
-C {isource.sym} 720 -580 0 0 {name=I0 value=2u}
-C {isource.sym} 1480 -590 0 0 {name=I1 value=2u}
+C {isource.sym} 720 -580 0 0 {name=I0 value=3u}
+C {isource.sym} 1480 -590 0 0 {name=I1 value=3u}
 C {iopin.sym} 130 -660 0 1 {name=p1 lab=vdd_1v5}
 C {ipin.sym} 130 -680 0 0 {name=p2 lab=vref}
 C {ipin.sym} 130 -700 0 0 {name=p3 lab=vcm}
