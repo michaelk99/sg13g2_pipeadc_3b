@@ -161,8 +161,6 @@ N 340 -300 340 -270 {lab=GND}
 N 340 -400 340 -360 {lab=vref_n}
 N 1180 -720 1340 -720 {lab=voutp}
 N 1180 -680 1270 -680 {lab=voutn}
-N 780 -860 900 -860 {lab=phi2}
-N 780 -890 930 -890 {lab=phi1}
 N 590 -300 590 -270 {lab=GND}
 N 700 -300 700 -270 {lab=GND}
 N 810 -300 810 -270 {lab=GND}
@@ -170,14 +168,13 @@ N 900 -570 900 -530 {lab=GND}
 N 1610 -610 1610 -580 {lab=GND}
 N 1610 -690 1610 -670 {lab=vout}
 N 900 -860 900 -790 {lab=phi2}
-N 930 -890 930 -790 {lab=phi1}
 N 960 -910 960 -790 {lab=di_pon}
 N 1050 -910 1050 -790 {lab=vref_p}
 N 1080 -910 1080 -790 {lab=vref_n}
 N 1110 -910 1110 -790 {lab=vcmi}
 N 1020 -910 1020 -880 {lab=VDD}
 N 1020 -820 1020 -790 {lab=#net2}
-N 710 -840 710 -810 {lab=GND}
+N 750 -840 750 -810 {lab=GND}
 N 330 -770 330 -700 {lab=vcmi}
 N 410 -700 410 -680 {lab=vcmi}
 N 410 -620 410 -600 {lab=GND}
@@ -216,15 +213,22 @@ bus=true}
 N 590 -610 590 -360 {lab=code2}
 N 700 -610 700 -360 {lab=code1}
 N 810 -610 810 -360 {lab=code0}
-N 560 -850 560 -810 {lab=GND}
-N 560 -970 560 -910 {lab=phi1}
-N 560 -970 930 -970 {lab=phi1}
-N 930 -970 930 -890 {lab=phi1}
+N 540 -850 540 -810 {lab=GND}
+N 540 -970 540 -910 {lab=phi1}
+N 930 -890 930 -790 {lab=phi1}
 N 1270 -790 1270 -680 {lab=voutn}
 N 1340 -790 1340 -720 {lab=voutp}
 N 1270 -880 1270 -850 {lab=GND}
 N 1340 -880 1340 -850 {lab=GND}
 N 980 -360 1010 -360 {lab=phi2}
+N 600 -850 600 -810 {lab=GND}
+N 820 -860 900 -860 {lab=phi2}
+N 820 -890 930 -890 {lab=phi1}
+N 930 -970 930 -890 {lab=phi1}
+N 900 -940 900 -860 {lab=phi2}
+N 600 -940 900 -940 {lab=phi2}
+N 600 -940 600 -910 {lab=phi2}
+N 540 -970 930 -970 {lab=phi1}
 C {devices/launcher.sym} 450 -200 0 0 {name=h1
 descr="Annotate OP"
 tclcommand="set show_hidden_texts 1; xschem annotate_op"}
@@ -236,7 +240,7 @@ value="
 .options method=gear reltol=.005 
 .options sparse
 .param fs=2Meg
-.param ibias=1.5u
+.param ibias=3u
 .param cap=100f
 .param cap_load = 100f
 .param ron=1
@@ -282,7 +286,6 @@ let tstep = 0.1*t_rf
 if $startupSim eq 1
 	let tstart = 0
 	let tstop = t_delay
-
 else
 	let tstart = t_delay
 	let tstop = 20*t_per+t_delay
@@ -321,13 +324,14 @@ if $opSimOnly eq 0
 	let err = (settle_goal-vod)/settle_goal
 
 	write mdac-tri-lvl_tb-tran.raw
+	set appendwrite
 
 	plot vid vod phi2 settle_goal
 	plot err*100 phi2*100
 end
-
-set appendwrite
-
+if $opSimOnly eq 1 and $startupSim eq 1
+	save all
+end
 alter @VIN[DC] = 0
 alter @VCODE2[DC] = 0.0
 alter @VCODE1[DC] = 0.0
@@ -386,7 +390,7 @@ C {devices/gnd.sym} 1610 -580 0 0 {name=l6 lab=GND}
 C {lab_wire.sym} 1550 -660 2 1 {name=p2 sig_type=std_logic lab=voutp}
 C {lab_wire.sym} 1550 -620 0 0 {name=p3 sig_type=std_logic lab=voutn}
 C {lab_wire.sym} 1610 -690 0 0 {name=p4 sig_type=std_logic lab=vout}
-C {clk_noverlap_ideal.sym} 640 -910 0 0 {name=xclkgen fs=\{fs\} tnover=50n tdelay=0 trf=5n
+C {clk_noverlap_ideal.sym} 680 -910 0 0 {name=xclkgen fs=\{fs\} tnover=50n tdelay=0 trf=5n
 }
 C {devices/vsource.sym} 590 -330 0 0 {name=VCODE2 value=0
 }
@@ -431,11 +435,12 @@ C {devices/lab_pin.sym} 340 -400 1 0 {name=p19 sig_type=std_logic lab=vref_n}
 C {devices/lab_pin.sym} 1050 -910 1 0 {name=p20 sig_type=std_logic lab=vref_p}
 C {devices/lab_pin.sym} 1080 -910 1 0 {name=p21 sig_type=std_logic lab=vref_n}
 C {devices/lab_pin.sym} 1110 -910 1 0 {name=p22 sig_type=std_logic lab=vcmi}
-C {isource.sym} 1020 -850 0 0 {name=I0 value=\{ibias\}}
+C {isource.sym} 1020 -850 0 0 {name=I0 value=\{ibias\}
+}
 C {devices/vdd.sym} 1020 -910 0 0 {name=l3 lab=VDD}
-C {devices/gnd.sym} 710 -810 0 0 {name=l1 lab=GND}
-C {lab_wire.sym} 830 -890 0 0 {name=p1 sig_type=std_logic lab=phi1}
-C {lab_wire.sym} 830 -860 0 0 {name=p23 sig_type=std_logic lab=phi2}
+C {devices/gnd.sym} 750 -810 0 0 {name=l1 lab=GND}
+C {lab_wire.sym} 870 -890 0 0 {name=p1 sig_type=std_logic lab=phi1}
+C {lab_wire.sym} 870 -860 0 0 {name=p23 sig_type=std_logic lab=phi2}
 C {devices/vdd.sym} 990 -910 0 0 {name=l5 lab=VDD}
 C {mdac-tri-lvl.sym} 850 -790 0 0 {name=xmdac cap=\{cap\}}
 C {adc-tri-lvl-ideal.sym} 1010 -480 0 0 {name=xadc}
@@ -452,9 +457,9 @@ C {bus_connect_nolab.sym} 1300 -340 2 0 {name=r6}
 C {lab_wire.sym} 1370 -400 0 1 {name=p33 sig_type=std_logic lab=do2}
 C {lab_wire.sym} 1370 -370 0 1 {name=p34 sig_type=std_logic lab=do1}
 C {lab_wire.sym} 1370 -340 0 1 {name=p35 sig_type=std_logic lab=do0}
-C {devices/vsource.sym} 560 -880 0 0 {name=VPHI1 value=1.5
+C {devices/vsource.sym} 540 -880 0 0 {name=VPHI1 value=1.5
 spice_ignore=true}
-C {devices/gnd.sym} 560 -810 0 0 {name=l16 lab=GND}
+C {devices/gnd.sym} 540 -810 0 0 {name=l16 lab=GND}
 C {devices/vsource.sym} 1270 -820 2 0 {name=VCMO1 value=0.75
 spice_ignore=true}
 C {devices/vsource.sym} 1340 -820 2 0 {name=VCMO2 value=0.75
@@ -465,3 +470,6 @@ C {lab_wire.sym} 980 -360 0 0 {name=p30 sig_type=std_logic lab=phi2}
 C {devices/launcher.sym} 700 -140 0 0 {name=h3
 descr="Load waves" 
 tclcommand="xschem raw_read $netlist_dir/[file rootname [xschem get current_name]].raw tran"}
+C {devices/vsource.sym} 600 -880 0 0 {name=VPHI2 value=0
+spice_ignore=true}
+C {devices/gnd.sym} 600 -810 0 0 {name=l19 lab=GND}
