@@ -235,16 +235,16 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 800 -590 0 0 {name=MN1
 l=0.5u
-w=27u
-ng=27
+w=5.5u
+ng=11
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 1020 -590 0 1 {name=MN2
 l=0.5u
-w=27u
-ng=27
+w=5.5u
+ng=11
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
