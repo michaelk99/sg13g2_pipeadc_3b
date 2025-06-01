@@ -5,11 +5,11 @@ V {}
 S {}
 E {}
 T {1.45 < 1.5(nom) < 1.55V} 370 -890 0 0 0.4 0.4 {}
-T {3uA} 880 -150 0 0 0.4 0.4 {}
-T {~0.30V} 750 -300 2 1 0.3 0.3 {}
-T {~0.5V} 860 -530 2 1 0.3 0.3 {}
-T {1.5uA} 610 -150 0 0 0.4 0.4 {}
-T {1.5uA} 1250 -150 0 0 0.4 0.4 {}
+T {6uA} 880 -150 0 0 0.4 0.4 {}
+T {~0.35V} 750 -300 2 1 0.3 0.3 {}
+T {~0.43V} 860 -530 2 1 0.3 0.3 {}
+T {3uA} 610 -150 0 0 0.4 0.4 {}
+T {3uA} 1250 -150 0 0 0.4 0.4 {}
 N 820 -640 820 -620 {
 lab=voutn}
 N 900 -710 960 -710 {
@@ -219,40 +219,40 @@ N 840 -350 1120 -350 {lab=gate_n}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="(c) 2025 M. Koefinger"}
 C {sg13g2_pr/sg13_lv_nmos.sym} 880 -280 0 0 {name=MN3
 l=0.5u
-w=2.5u
-ng=5
+w=3u
+ng=6
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} 980 -710 0 0 {name=MP2
 l=0.5u
-w=0.5u
-ng=1
+w=1u
+ng=2
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 800 -590 0 0 {name=MN1
 l=0.5u
-w=27u
-ng=27
+w=8u
+ng=8
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 1020 -590 0 1 {name=MN2
 l=0.5u
-w=27u
-ng=27
+w=8u
+ng=8
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} 840 -710 0 1 {name=MP1
 l=0.5u
-w=0.5u
-ng=1
+w=1u
+ng=2
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
@@ -337,16 +337,16 @@ C {opin.sym} 1140 -660 0 0 {name=p13 lab=voutp}
 C {ipin.sym} 160 -660 0 0 {name=p14 lab=vfb}
 C {sg13g2_pr/sg13_lv_nmos.sym} 1250 -280 0 0 {name=MN9
 l=0.5u
-w=1u
-ng=2
+w=1.5u
+ng=3
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} 1290 -730 0 1 {name=MP3
 l=0.5u
-w=0.5u
-ng=1
+w=1u
+ng=2
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
