@@ -60,4 +60,4 @@ C {lab_wire.sym} 560 -250 0 0 {name=p13 sig_type=std_logic lab=do1[2..0]}
 C {adc-pipe-encoder-top.sym} 670 -300 0 0 {name=ADUT model=encoder
 
 ***Verilator***
-device_model=".model encoder d_cosim simulation=\\"../verilog/rtl/adc_pipe_encoder_TOP.so\\""}
+device_model=".model encoder d_cosim simulation=\\"../../verilog/rtl/adc_pipe_encoder_TOP.so\\""}

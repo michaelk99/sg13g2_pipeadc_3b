@@ -270,9 +270,6 @@ save xadc.xpipe.xmdac1.xc1.vc_p xadc.xpipe.xmdac1.xc2.vc_p xadc.xpipe.xmdac1.xc3
 save xadc.xpipe.xmdac2.vdac_p xadc.xpipe.mdac2.vdac_n xadc.xpipe.xmdac2.vgndp xadc.xpipe.xmdac2.vgndn xadc.xpipe.xmdac2.vfb xadc.xpipe.xmdac2.vbp
 save xadc.xpipe.xmdac2.xc1.vc_p xadc.xpipe.xmdac2.xc2.vc_p xadc.xpipe.xmdac2.xc3.vc_p xadc.xpipe.xmdac2.xc4.vc_p
 save xadc.do3 xadc.do20 xadc.do21 xadc.do22 xadc.do10 xadc.do11 xadc.do12
-save xadc.xpipe.xadc1.D1 xadc.xpipe.xadc1.D0
-save xadc.xpipe.xadc1.Q0 xadc.xpipe.xadc1.NQ0
-save xadc.xpipe.xadc1.Q1 xadc.xpipe.xadc1.NQ1
 
 set wr_singlescale
 set wr_vecnames
@@ -350,8 +347,6 @@ if $opSimOnly eq 0
 	plot do3 vres2
 	plot do_b2 do_b1 do_b0
 	plot vid vdig_plt
-	plot vid xadc.xpipe.xadc1.D1 xadc.xpipe.xadc1.D0
-	plot vid xadc.xpipe.xadc1.Q0 xadc.xpipe.xadc1.NQ0 xadc.xpipe.xadc1.Q1 xadc.xpipe.xadc1.NQ1 
 
 
 end
@@ -439,7 +434,6 @@ tclcommand="execute 1 sh -c \\"cd ../verilog/rtl; ngspice vlnggen adc_pipe_encod
 C {lab_pin.sym} 750 -380 0 0 {name=p42 lab=do_b2}
 C {lab_pin.sym} 830 -380 0 0 {name=p43 lab=do_b1}
 C {lab_pin.sym} 910 -380 0 0 {name=p44 lab=do_b0}
-C {adc-pipe-3b-top-ideal.sym} 590 -760 0 0 {name=xadc}
 C {devices/gnd.sym} 830 -270 0 0 {name=l6 lab=GND}
 C {devices/gnd.sym} 910 -270 0 0 {name=l8 lab=GND}
 C {devices/gnd.sym} 750 -270 0 0 {name=l9 lab=GND}
@@ -458,3 +452,4 @@ value=1G
 footprint=1206
 device=resistor
 m=1}
+C {adc-pipe-3b-top.sym} 590 -760 0 0 {name=x1}
