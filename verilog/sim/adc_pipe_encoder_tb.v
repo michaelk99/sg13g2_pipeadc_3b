@@ -10,16 +10,16 @@
 module adc_pipe_encoder_tb();
 
     // ADC reference voltage and comparator thresholds
-    localparam real VREF = 0.5; 
+    localparam real VREF = 0.75; 
     localparam real TOL = 0.01;
-    localparam real TH_H_STAGE_1 = 0.7 * 2 * VREF;
-    localparam real TH_L_STAGE_1 = 0.3 * 2 * VREF;
-    localparam real TH_H_STAGE_2 = 0.7 * 2 * VREF;
-    localparam real TH_L_STAGE_2 = 0.3 * 2 * VREF;
-    localparam real TH_H_STAGE_3 = 0.5 * 2 * VREF;
-    localparam real TH_L_STAGE_3 = 0.3 * 2 * VREF;
+    localparam real TH_H_STAGE_1 = 1.125;
+    localparam real TH_L_STAGE_1 = 0.375;
+    localparam real TH_H_STAGE_2 = 1.125;
+    localparam real TH_L_STAGE_2 = 0.375;
+    localparam real TH_H_STAGE_3 = 0.75;
+    localparam real TH_L_STAGE_3 = 0.75;
 
-    reg clock_tb;
+    reg phi1_tb, phi2_tb;
     reg reset_tb;
     wire [2:0] d1_tb;
     wire [2:0] d2_tb;
@@ -32,6 +32,18 @@ module adc_pipe_encoder_tb();
     real V_in_sh;
     real residue [0:1];
     real residue_sh [0:1];
+
+    integer i;
+
+    // Signal Parameter
+    real t;                   
+    real Tstep = 100e-9;
+
+    real freq = 100e3;        // 100 kHz
+    real offset = VREF;       
+    real amplitude = 0.5;     // 1V Vpp
+    real pi = 3.141592653589;
+    real vin;                 // sine wave output
 
     // Stage 1:
     assign d1_tb = comp(V_in_sh, TH_H_STAGE_1, TH_L_STAGE_1);
@@ -46,7 +58,8 @@ module adc_pipe_encoder_tb();
 
     // DUT: Pipelined ADC encoder instance
     adc_pipe_encoder_TOP #() encoder (
-        .clock_i(clock_tb),
+        .phi1_i(phi1_tb),
+        .phi2_i(phi2_tb),
         .reset_i(reset_tb),
         .d1_i(d1_tb),
         .d2_i(d2_tb),
@@ -54,24 +67,34 @@ module adc_pipe_encoder_tb();
         .d_o(d_tb)
     );
 
-    // Clock generation (10 ns period)
+    // Non-Overlapping Clock generation (500 ns period => 2 MHz sample rate)
     initial begin
-        clock_tb = 0;
-        forever #5 clock_tb = ~clock_tb;
+        phi1_tb = 0;
+        forever begin
+            #25   phi1_tb = 1;
+            #200  phi1_tb = 0;
+            #275;             
+        end
     end
 
-    // // Sample analog values at both edges (mimics sample-and-hold)
-    // always @(posedge clock_tb, negedge clock_tb) begin
-    //     V_in_sh = V_in;
-    //     residue_sh[0] = residue[0];
-    //     residue_sh[1] = residue[1];
-    // end
+    initial begin
+        phi2_tb = 0;
+        forever begin
+            #275  phi2_tb = 1;
+            #200  phi2_tb = 0; 
+            #25;             
+        end
+    end
 
-    // Sample analog values at both edges (mimics sample-and-hold)
-    always @(posedge clock_tb) begin
+    // Sample analog values at rising edge of phi1 (mimics sample-and-hold)
+    always @(posedge phi1_tb) begin
         V_in_sh = V_in;
-        residue_sh[0] = residue[0];
         residue_sh[1] = residue[1];
+    end
+
+    // Sample analog values at rising edge of phi2 (mimics sample-and-hold)
+    always @(posedge phi2_tb) begin
+        residue_sh[0] = residue[0];
     end
 
     // Input stimulus: Sweep V_in from 0.0 to 1.0
@@ -79,21 +102,22 @@ module adc_pipe_encoder_tb();
         // reset
         reset_tb = 1;
         V_in = 0.0;
-        #12;
+        #50;
         reset_tb = 0;
-        #3;
 
-        // loop -> increase V_in from 0 to 1
-        for (V_in = 0.0; V_in <= 1.0; V_in = V_in + 0.001) begin
-            #10;
-            $display("Time = %0t | V_in = %0f", $time, V_in);
+        $display("Time (us)\tVin (V)");
+        for (i = 0; i < 400; i = i + 1) begin
+            t = i * Tstep;
+            V_in = offset + amplitude * $sin(2.0 * pi * freq * t);
+            $display("%0.3f\t\t%0.4f", t * 1e6, vin);
+            #100;  // 100 ns pause
         end
         #10;
 
         $stop;
     end
 
-    // 1-bit comparator function (returns 1 if x_i > TH)
+    // comparator function (returns one-hot)
     function [2:0]comp;
         input real x_i;
         input real TH_H;
@@ -102,9 +126,9 @@ module adc_pipe_encoder_tb();
             if (x_i >= TH_H) begin
                 comp = 3'b100;
             end else if (x_i < TH_H && x_i >= TH_L) begin
-                comp = 3'b010;
-            end else begin
                 comp = 3'b001;
+            end else begin
+                comp = 3'b010;
             end
         end
     endfunction
@@ -118,8 +142,8 @@ module adc_pipe_encoder_tb();
         begin
             case (ctrl_i)
                 3'b100:   mdac_2b = 2.0 * V_i - 2.0 * Vref_i;  // –Vref
-                3'b010:   mdac_2b = 2.0 * V_i - Vref_i;        // -Vref/2
-                3'b001:   mdac_2b = 2.0 * V_i;                 // +0
+                3'b001:   mdac_2b = 2.0 * V_i - Vref_i;        // -Vref/2
+                3'b010:   mdac_2b = 2.0 * V_i;                 // -0
                 default: mdac_2b = 0.0;
             endcase
         end

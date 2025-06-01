@@ -5,15 +5,16 @@ V {}
 S {}
 E {}
 B 2 1010 -630 1810 -230 {flags=graph
-ypos1=0.14
-ypos2=1.74
+ypos1=0.3
+ypos2=1.9
 divy=5
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
-node="clock;phi1
+node="phi1
+phi2
 reset
 do_b2
 do_b1
@@ -23,7 +24,7 @@ vdig;vdig_plt;vid
 vid; vid
 vres1;vres1
 vres2;vres2"
-color="4 5 6 6 6 21 21 16 16 16"
+color="4 4 7 6 6 21 21 16 16 16 4"
 unitx=1
 logx=0
 logy=0
@@ -36,14 +37,14 @@ divx=5
 subdivy=1
 y1=0
 y2=1.5
-x1=5.0000001e-05
+x1=0.0011329505
 rawfile=$netlist_dir/adc-pipe-3b-top_tb.raw}
 B 2 1020 -1160 1820 -760 {flags=graph
 ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -68,7 +69,7 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-0.3
-x1=5.0000001e-05
+x1=0.0011329505
 y2=1.5
 divx=10}
 B 2 1820 30 2620 430 {flags=graph
@@ -76,7 +77,7 @@ ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -93,7 +94,7 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-1.5
-x1=5.0000001e-05
+x1=0.0011329505
 y2=1.5
 divx=10}
 B 2 980 30 1780 430 {flags=graph
@@ -101,7 +102,7 @@ ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -120,7 +121,7 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-1.5
-x1=5.0000001e-05
+x1=0.0011329505
 y2=1.5
 divx=10}
 B 2 140 30 940 430 {flags=graph
@@ -128,7 +129,7 @@ ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -147,14 +148,14 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-1.5
-x1=5.0000001e-05
+x1=0.0011329505
 y2=1.5
 divx=10}
 B 2 1880 -880 2680 -480 {flags=graph
 ypos1=0.15
 ypos2=1.95
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
@@ -167,7 +168,7 @@ legend=1
 linewidth_mult=2
 dataset=-1
 subdivy=1
-x1=5.0000001e-05
+x1=0.0011329505
 color=5
 node="code;vdig"
 y1=0
@@ -269,6 +270,9 @@ save xadc.xpipe.xmdac1.xc1.vc_p xadc.xpipe.xmdac1.xc2.vc_p xadc.xpipe.xmdac1.xc3
 save xadc.xpipe.xmdac2.vdac_p xadc.xpipe.mdac2.vdac_n xadc.xpipe.xmdac2.vgndp xadc.xpipe.xmdac2.vgndn xadc.xpipe.xmdac2.vfb xadc.xpipe.xmdac2.vbp
 save xadc.xpipe.xmdac2.xc1.vc_p xadc.xpipe.xmdac2.xc2.vc_p xadc.xpipe.xmdac2.xc3.vc_p xadc.xpipe.xmdac2.xc4.vc_p
 save xadc.do3 xadc.do20 xadc.do21 xadc.do22 xadc.do10 xadc.do11 xadc.do12
+save xadc.xpipe.xadc1.D1 xadc.xpipe.xadc1.D0
+save xadc.xpipe.xadc1.Q0 xadc.xpipe.xadc1.NQ0
+save xadc.xpipe.xadc1.Q1 xadc.xpipe.xadc1.NQ1
 
 set wr_singlescale
 set wr_vecnames
@@ -346,6 +350,8 @@ if $opSimOnly eq 0
 	plot do3 vres2
 	plot do_b2 do_b1 do_b0
 	plot vid vdig_plt
+	plot vid xadc.xpipe.xadc1.D1 xadc.xpipe.xadc1.D0
+	plot vid xadc.xpipe.xadc1.Q0 xadc.xpipe.xadc1.NQ0 xadc.xpipe.xadc1.Q1 xadc.xpipe.xadc1.NQ1 
 
 
 end
@@ -428,7 +434,7 @@ descr="Load waves"
 tclcommand="xschem raw_read $netlist_dir/[file rootname [xschem get current_name]].raw tran"}
 C {launcher.sym} 1240 -110 0 0 {name=h4
 descr="Build Verilator object" 
-tclcommand="execute 1 sh -c \\"cd /foss/designs/verilog/rtl; ngspice vlnggen adc_pipe_encoder_TOP.v\\""
+tclcommand="execute 1 sh -c \\"cd ../verilog/rtl; ngspice vlnggen adc_pipe_encoder_TOP.v\\""
 }
 C {lab_pin.sym} 750 -380 0 0 {name=p42 lab=do_b2}
 C {lab_pin.sym} 830 -380 0 0 {name=p43 lab=do_b1}

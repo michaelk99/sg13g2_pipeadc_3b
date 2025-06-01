@@ -7,7 +7,7 @@ E {}
 N 350 -210 350 -160 {lab=vss}
 N 480 -290 590 -290 {lab=do3}
 N 670 -210 670 -160 {lab=vss}
-N 670 -440 670 -380 {lab=vdd_1v5}
+N 670 -440 670 -400 {lab=vdd_1v5}
 N 480 -270 590 -270 {lab=do2[2..0]
 bus=true}
 N 210 -460 370 -460 {lab=di_ena}
@@ -15,8 +15,7 @@ N 370 -460 370 -330 {lab=di_ena}
 N 520 -480 520 -320 {lab=di_rst}
 N 520 -320 590 -320 {lab=di_rst}
 N 390 -500 540 -500 {lab=vphi1}
-N 540 -500 540 -340 {lab=vphi1}
-N 540 -340 590 -340 {lab=vphi1}
+N 540 -360 590 -360 {lab=vphi1}
 N 390 -500 390 -330 {lab=vphi1}
 N 410 -520 410 -330 {lab=vphi2}
 N 430 -540 430 -330 {lab=vref}
@@ -37,9 +36,10 @@ N 760 -250 890 -250 {lab=do_b[2..0]
 bus=true}
 N 480 -250 590 -250 {lab=do1[2..0]
 bus=true}
-N 410 -520 940 -520 {lab=vphi2}
-N 940 -520 940 -320 {lab=vphi2}
-N 760 -320 940 -320 {lab=vphi2}
+N 540 -500 540 -360 {lab=vphi1}
+N 560 -340 590 -340 {lab=vphi2}
+N 560 -520 560 -340 {lab=vphi2}
+N 410 -520 560 -520 {lab=vphi2}
 C {title.sym} 160 -30 0 0 {name=l1 author="D. Brandstetter, M. Koefinger"}
 C {adc-pipe-3b-core-ideal.sym} 260 -330 0 0 {name=xpipe}
 C {lab_wire.sym} 560 -250 0 0 {name=p11 sig_type=std_logic lab=do1[2..0]}
@@ -60,6 +60,4 @@ C {lab_wire.sym} 560 -250 0 0 {name=p13 sig_type=std_logic lab=do1[2..0]}
 C {adc-pipe-encoder-top.sym} 670 -300 0 0 {name=ADUT model=encoder
 
 ***Verilator***
-device_model=".model encoder d_cosim simulation=\\"/foss/designs/verilog/rtl/adc_pipe_encoder_TOP.so\\""
-
-*tclcommand="edit_file [abs_sym_path adc.v]"}
+device_model=".model encoder d_cosim simulation=\\"../../verilog/rtl/adc_pipe_encoder_TOP.so\\""}

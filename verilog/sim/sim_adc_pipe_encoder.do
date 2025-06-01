@@ -9,4 +9,4 @@ vlog -work work adc_pipe_encoder_tb.v
 vsim -t 1ps work.adc_pipe_encoder_tb 
 
 do adc_pipe_encoder_wave.do
-run 10 us
+run 100 us
