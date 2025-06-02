@@ -204,6 +204,16 @@
 \begin{center}
 \small
 ```
+![$A_\mathrm{sig} = \qty{1}{\volt\of{peak}}$ $f_\mathrm{sig} = \qty{1}{\kilo\hertz}$ ](./fig/sim_results_detail.png){width=100%}
+```{=latex}
+\end{center}
+\normalsize
+```
+# Circuit Level Simulation 
+```{=latex}
+\begin{center}
+\small
+```
 ![$A_\mathrm{sig} = \qty{1}{\volt\of{peak}}$ $f_\mathrm{sig} = \qty{1}{\kilo\hertz}$ ](./fig/sim_results_sine_real.png){width=90%}
 ```{=latex}
 \end{center}
@@ -222,8 +232,12 @@
 ```
 
 # Summary and Known Issues
-- Gain error
-- ADC macro only handles $f_\mathrm{sig} < f_\mathrm{s}/10$
+- Mixed-signal/level simulation of pipeline ADC was implemented
+
 - Redesign OTA for more gain (different architecture e.g. two-stage, folded-cascode)
-- INL, DNL calculation is missing
+
+- Limitations
+	- INL/DNL looks bad, must be calculated
+	- ADC macro only handles $f_\mathrm{sig} < f_\mathrm{s}/10\quad\rightarrow\quad$ implement **CMOS comparators**!
+- Gain error
 
