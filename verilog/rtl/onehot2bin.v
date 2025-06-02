@@ -12,19 +12,16 @@ module onehot2bin #(
     output wire [$clog2(WIDTH)-1:0] binary_o  // Binary output
 );
 
-    // reg [$clog2(WIDTH)-1:0] binary;
-    // integer i;
+    reg [$clog2(WIDTH)-1:0] binary;
+    integer i;
 
-    // always @(*) begin
-    //     binary = 0;
-    //     for (i = 0; i < WIDTH; i = i + 1) begin
-    //         if (onehot_i[i])
-    //             binary = i[$clog2(WIDTH)-1:0];
-    //     end
-    // end
-
-    wire [1:0] binary;
-    assign binary = onehot_i[2] ? 2'd2 : onehot_i[1] ? 2'd1 : onehot_i[0] ? 2'd0 : 2'd0; 
+    always @(*) begin
+        binary = 0;
+        for (i = 0; i < WIDTH; i = i + 1) begin
+            if (onehot_i[i])
+                binary = i[$clog2(WIDTH)-1:0];
+        end
+    end
 
     assign binary_o = binary; 
 
