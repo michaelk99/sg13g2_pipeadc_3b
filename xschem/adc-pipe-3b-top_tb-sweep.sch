@@ -5,15 +5,16 @@ V {}
 S {}
 E {}
 B 2 1010 -630 1810 -230 {flags=graph
-ypos1=0.14
-ypos2=1.74
+ypos1=0.3
+ypos2=1.9
 divy=5
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
-node="clock;phi1
+node="phi1
+phi2
 reset
 do_b2
 do_b1
@@ -23,7 +24,7 @@ vdig;vdig_plt;vid
 vid; vid
 vres1;vres1
 vres2;vres2"
-color="4 5 6 6 6 21 21 16 16 16"
+color="4 4 7 6 6 21 21 16 16 16 4"
 unitx=1
 logx=0
 logy=0
@@ -36,14 +37,14 @@ divx=5
 subdivy=1
 y1=0
 y2=1.5
-x1=5.0000001e-05
+x1=0.0011329505
 rawfile=$netlist_dir/adc-pipe-3b-top_tb.raw}
 B 2 1020 -1160 1820 -760 {flags=graph
 ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -68,7 +69,7 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-0.3
-x1=5.0000001e-05
+x1=0.0011329505
 y2=1.5
 divx=10}
 B 2 1820 30 2620 430 {flags=graph
@@ -76,7 +77,7 @@ ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -93,7 +94,7 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-1.5
-x1=5.0000001e-05
+x1=0.0011329505
 y2=1.5
 divx=10}
 B 2 980 30 1780 430 {flags=graph
@@ -101,7 +102,7 @@ ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -120,7 +121,7 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-1.5
-x1=5.0000001e-05
+x1=0.0011329505
 y2=1.5
 divx=10}
 B 2 140 30 940 430 {flags=graph
@@ -128,7 +129,7 @@ ypos1=0.15
 ypos2=1.95
 divy=10
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=4
 xlabmag=1.0
 ylabmag=1.0
@@ -147,14 +148,14 @@ linewidth_mult=2
 dataset=-1
 subdivy=1
 y1=-1.5
-x1=5.0000001e-05
+x1=0.0011329505
 y2=1.5
 divx=10}
 B 2 1880 -880 2680 -480 {flags=graph
 ypos1=0.15
 ypos2=1.95
 unity=1
-x2=0.00205
+x2=0.0011385043
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
@@ -167,7 +168,7 @@ legend=1
 linewidth_mult=2
 dataset=-1
 subdivy=1
-x1=5.0000001e-05
+x1=0.0011329505
 color=5
 node="code;vdig"
 y1=0
@@ -246,7 +247,7 @@ N 830 -290 830 -270 {lab=GND}
 C {devices/launcher.sym} 680 -160 0 0 {name=h1
 descr="Annotate OP"
 tclcommand="set show_hidden_texts 1; xschem annotate_op"}
-C {devices/code_shown.sym} -1120 -1280 0 0 {name=STIMULI
+C {devices/code_shown.sym} -840 -1220 0 0 {name=STIMULI
 only_toplevel=false
 value="
 .include adc-pipe-3b-top_tb.save
@@ -262,21 +263,13 @@ value="
 .param roff=1G
 
 .control
-*save vin vip vid vcmi vref reset do_b2 do_b1 do_b0 vdig vdig_plt
 save vin vip vid do_b2 do_b1 do_b0 vdig vdig_plt
-*save xadc.xpipe.vres1p xadc.xpipe.vres1n xadc.xpipe.vres2p xadc.xpipe.vres2n
-*save xadc.xpipe.xmdac1.vdac_p xadc.xpipe.mdac1.vdac_n xadc.xpipe.xmdac1.vgndp xadc.xpipe.xmdac1.vgndn xadc.xpipe.xmdac1.vfb xadc.xpipe.xmdac1.vbp
-*save xadc.xpipe.xmdac1.xc1.vc_p xadc.xpipe.xmdac1.xc2.vc_p xadc.xpipe.xmdac1.xc3.vc_p xadc.xpipe.xmdac1.xc4.vc_p
-*save xadc.xpipe.xmdac2.vdac_p xadc.xpipe.mdac2.vdac_n xadc.xpipe.xmdac2.vgndp xadc.xpipe.xmdac2.vgndn xadc.xpipe.xmdac2.vfb xadc.xpipe.xmdac2.vbp
-*save xadc.xpipe.xmdac2.xc1.vc_p xadc.xpipe.xmdac2.xc2.vc_p xadc.xpipe.xmdac2.xc3.vc_p xadc.xpipe.xmdac2.xc4.vc_p
-*save xadc.do3 xadc.do20 xadc.do21 xadc.do22 xadc.do10 xadc.do11 xadc.do12
 
 set wr_singlescale
 set wr_vecnames
 option numdgt=3
 
 ** Sim Options
-set opSimOnly = 0
 
 ** Set sampling frequency
 let fs = 2Meg
@@ -299,63 +292,27 @@ let tstart = t_delay
 alter @VIN[DC] = 0.0
 
 ** Main Simulations
-if $opSimOnly eq 0
-	** Set sources
-	alter @VRST[PULSE] = [ 1.5 0 $&t_delay 10p 10p ]
-	alter @VIN[PULSE]=[ 1.5 -1.5 0 $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
-	*alter @VIN[SIN] = [ 0 1 $&f_sig t_delay 0 0 ]
-	tran $&tstep $&tstop $&tstart
-		
-	setplot tran1
-	let vid = v(vid)
-	let vres1 = xadc.xpipe.vres1p - xadc.xpipe.vres1n
-	let vres2 = xadc.xpipe.vres2p - xadc.xpipe.vres2n
+** Set sources
+alter @VRST[PULSE] = [ 1.5 0 $&t_delay 10p 10p ]
+alter @VIN[PULSE]=[ 1.5 -1.5 $&t_delay $&tfr_sig $&tfr_sig $&ton_sig $&tper_sig 0 ]
 
-	let vcmo1 = (xadc.xpipe.vres1p+xadc.xpipe.vres1n)/2
-	let vcmo2 = (xadc.xpipe.vres2p+xadc.xpipe.vres2n)/2
-	let vcmi1 = (xadc.xpipe.xmdac1.vgndp+xadc.xpipe.xmdac1.vgndn)/2
-	let vcmi2 = (xadc.xpipe.xmdac2.vgndp+xadc.xpipe.xmdac2.vgndn)/2
+tran $&tstep $&tstop $&tstart
+setplot tran1
+let vid = v(vid)
+let do_b2 = do_b2
+let do_b1 = do_b1
+let do_b0 = do_b0
+let vdig = 4*do_b2/1.5 + 2*do_b1/1.5 + do_b0/1.5
+meas tran vdig_max max vdig
+let vdig_plt = 2*(vdig/vdig_max-0.5)
 
-	let vcap_in_n = v(xadc.xpipe.xmdac1.xc2.vc_p,xadc.xpipe.xmdac1.vgndn)
-	let v_in_n = v(vin,vcmi1)
-	let v_dac_p = v(xadc.xpipe.xmdac1.vdac_p,vcmi1)
-	let vcap_in_p = v(xadc.xpipe.xmdac1.xc4.vc_p,xadc.xpipe.xmdac1.vgndp)
-	let v_in_p = v(vip,vcmi)
-	let v_dac_n = v(xadc.xpipe.xmdac1.vdac_n,vcmi1)
+plot vid vres1 vres2
+plot do12 do11 do10 vid
+plot do22 do21 do20 vres1
+plot do3 vres2
+plot do_b2 do_b1 do_b0
+plot vid vdig_plt
 
-	let err1 = 2*vid-vres1
-	let err2 = 2*vres1-vres2
-
-	let clock = phi1
-	let reset = reset
-	let do_b2 = do_b2
-	let do_b1 = do_b1
-	let do_b0 = do_b0
-	let vdig = 4*do_b2/1.5 + 2*do_b1/1.5 + do_b0/1.5
-	meas tran vdig_max max vdig
-	let vdig_plt = 2*(vdig/vdig_max-0.5)
-
-	write adc-pipe-3b-top_tb.raw
-
-	*plot vid vres1 vcmo1 vcmi1 phi2
-	*plot vcap_in_n v_in_n v_dac_p vcap_in_p v_in_p
-	*plot err1
-	*plot err2
-	plot vid vres1 vres2
-	plot do12 do11 do10 vid
-	plot do22 do21 do20 vres1
-	plot do3 vres2
-	plot do_b2 do_b1 do_b0
-	plot vid vdig_plt
-
-
-end
-
-set appendwrite
-
-alter @VIN[DC] = 0
-optran 0 0 0 0.1u $&t_delay 0
-op
 remzerovec
 write adc-pipe-3b-top_tb.raw
 
@@ -429,12 +386,11 @@ descr="Load waves"
 tclcommand="xschem raw_read $netlist_dir/[file rootname [xschem get current_name]].raw tran"}
 C {launcher.sym} 1240 -110 0 0 {name=h4
 descr="Build Verilator object" 
-tclcommand="execute 1 sh -c \\"cd /foss/designs/verilog/rtl; ngspice vlnggen adc_pipe_encoder_TOP.v\\""
+tclcommand="execute 1 sh -c \\"cd ./verilog/rtl; ngspice vlnggen adc_pipe_encoder_TOP.v\\""
 }
 C {lab_pin.sym} 750 -380 0 0 {name=p42 lab=do_b2}
 C {lab_pin.sym} 830 -380 0 0 {name=p43 lab=do_b1}
 C {lab_pin.sym} 910 -380 0 0 {name=p44 lab=do_b0}
-C {adc-pipe-3b-top.sym} 590 -760 0 0 {name=xadc}
 C {devices/gnd.sym} 830 -270 0 0 {name=l6 lab=GND}
 C {devices/gnd.sym} 910 -270 0 0 {name=l8 lab=GND}
 C {devices/gnd.sym} 750 -270 0 0 {name=l9 lab=GND}
@@ -453,3 +409,4 @@ value=1G
 footprint=1206
 device=resistor
 m=1}
+C {adc-pipe-3b-top-ideal.sym} 590 -760 0 0 {name=x1}
