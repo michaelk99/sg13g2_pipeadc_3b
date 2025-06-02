@@ -13,3 +13,12 @@
   - `verilog/sim`: verilog testbench and simulation scripts
 - `matlab`: ideal system-level simulation
 - `doc`: presentation
+
+# Tools
+- (`IIC\_OSIC\_TOOLS`)[https://github.com/iic-jku/IIC-OSIC-TOOLS]
+	- The root of this repo must be located at `/foss/designs/` inside the Docker container, e.g. `export DESINGS = <path-to-repo>` before you call `start_x.sh`.
+- `Modelsim`
+	- Use `*.do` files in `verilog/sim`
+- (`Pandoc')[https://pandoc.org/]
+	- `pandoc -t beamer aicd_ss25_pres.md -o aicd_ss25_pres.pdf`
+	- Requires the (`JKU LaTeX beamer theme`)[https://github.com/michaelroland/jku-templates-presentation-latex]
