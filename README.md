@@ -17,7 +17,7 @@
 # Tools
 - [IIC_OSIC_TOOLS](https://github.com/iic-jku/IIC-OSIC-TOOLS)
 	- The root of this repo must be located at `/foss/designs/` inside the Docker container, e.g. `export DESINGS = <path-to-repo>` before you call `start_x.sh`.
-- `Modelsim`
+- Modelsim
 	- Use `*.do` files in `verilog/sim`
 - [Pandoc](https://pandoc.org/)
 	- `pandoc -t beamer aicd_ss25_pres.md -o aicd_ss25_pres.pdf`
