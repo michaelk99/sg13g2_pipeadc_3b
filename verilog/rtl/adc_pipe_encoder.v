@@ -13,8 +13,8 @@ module adc_pipe_encoder #(
     parameter REDUNDANCY         = 1, // Number of redundant bits between stages
     parameter BITS_ADC_STAGE     = 1  // Number of bits contributed by the final ADC stage
 )(
-    input wire clock_i,  
-    input wire clock2_i,                    
+    input wire phi1_i,  
+    input wire phi2_i,                    
     input wire reset_i,                      
     input wire [(NUM_BITS_PER_STAGE * ((NUM_BITS-BITS_ADC_STAGE)/(NUM_BITS_PER_STAGE-REDUNDANCY)))-1:0] d_stage_i,      // Data from all stages 1 - N-1
     input wire [BITS_ADC_STAGE-1:0]                                                                     d_last_stage_i, // Data from the final N stage
@@ -26,7 +26,8 @@ module adc_pipe_encoder #(
 localparam NUM_STAGES = (NUM_BITS - BITS_ADC_STAGE) / (NUM_BITS_PER_STAGE - REDUNDANCY);
 
 // Register array to hold intermediate pipeline results
-reg  [NUM_BITS-1:0] pipeStage_sreg [0:NUM_STAGES];
+reg [NUM_BITS-1:0] pipeStage_1_sreg [0:NUM_STAGES/2];
+reg [NUM_BITS-1:0] pipeStage_2_sreg [0:NUM_STAGES/2];
 
 // Array of stage aligned and shifted values
 wire [NUM_BITS-1:0] d_stage        [0:NUM_STAGES];
@@ -48,7 +49,6 @@ endgenerate
 
 /*
 #######################################################################################
-* DDR pipeline register (Double Data Rate Register)
 * Each stage adds its input to the next stages result.
 * Final output is accumulated in pipeStage_sreg[0].
 #######################################################################################
@@ -56,64 +56,38 @@ endgenerate
 
 integer i;
 
-// Process pipeline stages
-always @(posedge clock_i, posedge clock2_i) begin
+// Process even-numbered pipeline stages on positive clock edge of phi1
+always @(posedge phi1_i) begin
 
-    for (i = 0; i <= NUM_STAGES; i = i + 1) begin
+    for (i = 0; i <= NUM_STAGES; i = i + 2) begin
         if(reset_i) begin
-            pipeStage_sreg[i] <= 0;
+            pipeStage_1_sreg[i/2] <= 0;
         end else begin
             if(i == 0) begin
                 // First stage stores its value directly
-                pipeStage_sreg[i] <= d_stage[i];
+                pipeStage_1_sreg[i/2] <= d_stage[i];
             end else begin
                 // Accumulate value from the previous stage and current input
-                pipeStage_sreg[i] <= pipeStage_sreg[i-1] + d_stage[i];
+                pipeStage_1_sreg[i/2] <= pipeStage_2_sreg[i/2-1] + d_stage[i];
             end
         end
 	end
 end
 
+// Process odd-numbered pipeline stages on positive clock edge of phi2
+always @(posedge phi2_i) begin
 
-
-
-// // Process even-numbered pipeline stages on positive clock edge
-// always @(posedge clock_i) begin
-
-//     for (i = 0; i <= NUM_STAGES; i = i + 2) begin
-//         if(reset_i) begin
-//             pipeStage_sreg[i] <= 0;
-//         end else begin
-//             if(i == NUM_STAGES) begin
-//                 // First stage stores its value directly
-//                 pipeStage_sreg[i] <= d_stage[i];
-//             end else begin
-//                 // Accumulate value from the previous stage and current input
-//                 pipeStage_sreg[i] <= pipeStage_sreg[i+1] + d_stage[i];
-//             end
-//         end
-// 	end
-// end
-
-// // Process odd-numbered pipeline stages on negative clock edge
-// always @(negedge clock_i) begin
-
-//     for (i = 1; i <= NUM_STAGES; i = i + 2) begin
-//         if(reset_i) begin
-//             pipeStage_sreg[i] <= 0;
-//         end else begin
-//             if(i == NUM_STAGES) begin
-//                 // First stage stores its value directly
-//                 pipeStage_sreg[i] <= d_stage[i];
-//             end else begin
-//                 // Accumulate value from the previous stage and current input
-//                 pipeStage_sreg[i] <= pipeStage_sreg[i+1] + d_stage[i];
-//             end
-//         end
-// 	end
-// end
+    for (i = 1; i <= NUM_STAGES; i = i + 2) begin
+        if(reset_i) begin
+            pipeStage_2_sreg[i/2] <= 0;
+        end else begin
+            // Accumulate value from the previous stage and current input
+            pipeStage_2_sreg[i/2] <= pipeStage_1_sreg[i/2] + d_stage[i];
+        end
+	end
+end
 
 // Final output is the accumulated result from the last pipeline register
-assign d_o = pipeStage_sreg[NUM_STAGES];
+assign d_o = (NUM_STAGES % 2 == 0)? pipeStage_1_sreg[NUM_STAGES/2] : pipeStage_2_sreg[NUM_STAGES/2];
 
 endmodule
